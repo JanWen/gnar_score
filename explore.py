@@ -8,6 +8,7 @@ stages = 0
 matches = 0
 
 for tournament in tournaments_data:
+    print(tournament["name"])
     stages += len(tournament["stages"])
     for stage in tournament["stages"]:
         for section in stage["sections"]:

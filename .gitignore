@@ -1,1 +1,4 @@
+.vscode
+venv
 esports-data
+__pycache__/
