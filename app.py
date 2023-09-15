@@ -56,8 +56,26 @@ def tournament_rankings(tournament_id):
         tournament_id string (path) *required ID of tournament to return rankings for
         stage string (query) Stage of tournament to return rankings for
     """    
-
     return {}
+
+@app.route('/team_rankings')
+def team_rankings():
+    """
+    Tournament rankings - get team rankings for a given tournament
+    Params:
+        team_ids array[string] (query) *required IDs of tournaments to return ranking for
+    """
+    team_ids = []
+    #TODO looks like shit
+    if app.current_request.query_params:
+        if app.current_request.query_params.get('team_ids'):
+            #TODO try except in case query param is some bullshit
+            team_ids = app.current_request.query_params.get('team_ids').split(",")
+            team_ids = [i.strip() for i in team_ids]
+    if team_ids:
+        return list(team.json() for team in team_elo.team_rankings(team_ids))
+    
+    return {"error": "Please provide team_ids query param (comma separated list of team ids)"}
 
 # The view function above will return {"hello": "world"}
 # whenever you make an HTTP GET request to '/'.

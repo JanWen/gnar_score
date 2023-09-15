@@ -48,51 +48,17 @@ def yield_games(elo):
 def init_elo():
     return {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
 
-def calculate_elo_matches():
-    elo = init_elo()
-    back_test = {}
-
-    for league_id, match in yield_matches():
-        match_type = match["strategy"]["type"]
-        if match_type == "bestOf":
-            best_of_x = match["strategy"]["count"]
-            blue_id = match["teams"][0]["id"]
-            red_id = match["teams"][1]["id"]
-            blue_win = match["teams"][0]["result"]["outcome"] == "win"
-            if match["teams"][0]["side"] != "blue":
-                raise "FUCKING SHITBALL"
-            pass
-
-            try: # todo some chinese teams are not in the teams.json file
-                blue_elo = elo[blue_id].elo
-                red_elo = elo[red_id].elo
-            except KeyError as e:
-                continue
-
-            update_elo(
-                elo,
-                blue_id,
-                red_id,
-                blue_elo,
-                red_elo,
-                blue_win,
-                multiplier=best_of_x/2
-            )
-
-        elif match_type == "playAll":
-            pass
-        else:
-            print(match)
-            print(match_type)
-            raise "UHM ACtuALLy"
-    
-
-    return elo, back_test
-
 
 def global_rankings():
     elo, _ = calculate_elo()
     teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True)]
+    for i, team in enumerate(teams_sorted):
+        team.rank = i + 1
+        yield team
+
+def team_rankings(team_ids):
+    elo, _ = calculate_elo()
+    teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True) if team.id in team_ids]
     for i, team in enumerate(teams_sorted):
         team.rank = i + 1
         yield team
