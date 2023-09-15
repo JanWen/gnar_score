@@ -15,6 +15,24 @@ win bo5
 boX are good numerical indicator of match importance since it's unlikely you'd want important titles decided by a small nr of matches
 how do we make this so the code isnt shit :thinking_face:
 
+
+RESERACH:
+
+COMPARING RANKING SYSTEMS:
+There are many ways to compare two power ranking systems. Here are a few common methods:
+
+    Direct comparison: This is the simplest method, and it simply involves comparing the rankings of each system for each team. The system with the higher rankings for the most teams is generally considered to be the better system.
+    Predictive accuracy: This method compares the ability of the two systems to predict the outcomes of future matches. This can be done by using a historical dataset of match results and comparing the predictions of the two systems to the actual outcomes.
+    Sensitivity to recent results: This method compares how sensitive the two systems are to recent results. A system that is more sensitive to recent results will tend to change rankings more quickly in response to changes in team performance.
+    Complexity: This method compares the complexity of the two systems. A more complex system may be more accurate, but it may also be more difficult to understand and use.
+    Robustness: This method compares how robust the two systems are to changes in the data. A more robust system will be less likely to produce inaccurate rankings if the data is noisy or incomplete.
+
+
+Elo rating system, the Glicko rating system, and the Sagarin rating system.
+
+
+
+
 CHANGELOG:
 
 13/09/2023:

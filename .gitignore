@@ -2,3 +2,4 @@
 venv
 esports-data
 __pycache__/
+.chalice/

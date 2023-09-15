@@ -1,4 +1,4 @@
-from team_elo import calculate_elo, get_elo_cutoff
+from team_elo import calculate_elo, get_elo_cutoff,calculate_elo_matches
 from esports import teams_data
 import statistics
 import os
@@ -16,33 +16,20 @@ try:
 except FileExistsError:
     pass
 
-class Team:
-    def __init__(self, elo_tuple):
-        self.id = elo_tuple[0]
-        self.elo = elo_tuple[1]
-        self.team_info = [team for team in teams_data if team["team_id"] == self.id]
-        if len(self.team_info):
-            self.team_name = self.team_info[0]["name"]
-        else:
-            self.team_name = "UNKNOWN"
-
-    
-    def __repr__(self) -> str:
-        return "%s %s" % (self.team_name, self.elo)
-
 
 def print_elo(elo):
     # sort dictionary by values
     
     with open(results_dir + "/elo.txt", "w") as f:
-        f.write("MIN ELO: %d \n" % min([i[1] for i in elo.items()]))
-        f.write("AVERAGE ELO: %d \n" % (sum([i[1] for i in elo.items()])/len(elo)))
-        f.write("MEDIAN ELO: %d \n" % statistics.median([i[1] for i in elo.items()]))
-        f.write("MAX ELO: %d \n" % max([i[1] for i in elo.items()]))
+        f.write("MIN ELO: %d \n" % min([i[1].elo for i in elo.items()]))
+        f.write("AVERAGE ELO: %d \n" % (sum([i[1].elo for i in elo.items()])/len(elo)))
+        f.write("MEDIAN ELO: %d \n" % statistics.median([i[1].elo for i in elo.items()]))
+        f.write("MAX ELO: %d \n" % max([i[1].elo for i in elo.items()]))
         f.write("\n")
-        for team in sorted(elo.items(), key=lambda item: item[1]):
-            t = Team(team)
-            f.write(str(t) + "\n")
+        for _, team in sorted(elo.items(), key=lambda item: item[1].elo):
+            if not team.games:
+                continue
+            f.write(str(team) + "\n")
 
 def print_backtest(back_test, even_match_cutoff):
     # sort dictionary by values
@@ -69,11 +56,11 @@ def team_elodiff(elo):
     import matplotlib.pyplot as plt
 
     plt.figure(figsize=(40, 24), dpi=80)
-    elo_items = sorted(elo.items(), key=lambda item: item[1])
+    elo_items = sorted(elo.items(), key=lambda item: item[1].elo)
     
 
     x = list(range(100, 3000, 100))
-    y = [len([i[1] for i in elo_items if i[1] >= r and i[1] < r+100]) for r in x]
+    y = [len([i[1] for i in elo_items if i[1].elo >= r and i[1].elo < r+100]) for r in x]
     # plt.ylim(min(y), max(y))
 
     sns.barplot(x=x, y=y)
