@@ -5,6 +5,7 @@ class Team:
         self.id = elo_tuple[0]
         self.elo = elo_tuple[1]
         self.games = 0
+        self.matches = 0
         self.rank = 0
         self.team_info = [team for team in teams_data if team["team_id"] == self.id]
         if len(self.team_info):
@@ -20,6 +21,7 @@ class Team:
                 "team_code": self.code,
                 "team_name": self.team_name,
                 "rank": self.rank,
+                "matches": self.matches,
                 "elo": round(self.elo),
             }
     

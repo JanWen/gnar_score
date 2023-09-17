@@ -55,8 +55,9 @@ def tournament_rankings(tournament_id):
     Params:
         tournament_id string (path) *required ID of tournament to return rankings for
         stage string (query) Stage of tournament to return rankings for
-    """    
-    return {}
+    """
+    
+    return list(team.json() for team in team_elo.tournament_rankings(tournament_id))
 
 @app.route('/team_rankings')
 def team_rankings():

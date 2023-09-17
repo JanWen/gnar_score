@@ -1,5 +1,5 @@
-from team_elo import calculate_elo, get_elo_cutoff,calculate_elo_matches
-from esports import teams_data
+from src.team_elo import calculate_elo, get_elo_cutoff
+from src.esports import teams_data
 import statistics
 import os
 import matplotlib.pyplot as plt

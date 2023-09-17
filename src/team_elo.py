@@ -3,32 +3,17 @@
 
 import matplotlib.pyplot as plt
 from src.esports import teams_data, tournaments_data
-import statistics
+import statistics#
+from src.leagues import league_points
+from datetime import datetime
 from src.team import Team
 
 ELO_GROWTH = 0.01
 BASE_ELO = 1000
+K_FACTOR = 50
 
-def update_elo(
-    elo,
-    blue_id,
-    red_id,
-    blue_elo,
-    red_elo,
-    blue_win,
-    multiplier=1
-):
-    # calculate elo
-    kitty = ELO_GROWTH * multiplier * (blue_elo + red_elo)
-    elo[blue_id].elo -= ELO_GROWTH * multiplier * blue_elo
-    elo[red_id].elo -= ELO_GROWTH * multiplier * red_elo
 
-    if blue_win:
-        elo[blue_id].elo += kitty
-    else:
-        elo[red_id].elo += kitty
-
-def yield_matches(elo):
+def yield_matches():
     for tournament in tournaments_data:
         # if tournament["leagueId"] != "98767991302996019":
         #     continue
@@ -36,38 +21,82 @@ def yield_matches(elo):
             for section in stage["sections"]:
                 for match in section["matches"]:
                     if match["state"] == "completed":
-                        yield tournament["id"], tournament["leagueId"], match
+                        yield tournament, tournament["leagueId"], match
 
-def yield_games(elo):
-    for tournament_id, league_id, match in yield_matches(elo):
+def yield_games():
+    for tournament, league_id, match in yield_matches():
         for game in match["games"]:
             if game["state"] == "completed":
-                yield tournament_id, league_id, game
+                yield tournament, league_id, game
 
 
 def init_elo():
     return {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
 
 
-def global_rankings():
-    elo, _ = calculate_elo()
-    teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True)]
+def rank_teams(teams_sorted):
     for i, team in enumerate(teams_sorted):
         team.rank = i + 1
         yield team
+
+def global_rankings():
+    elo, _ = calculate_elo()
+    teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True)]
+    return rank_teams(teams_sorted)
 
 def team_rankings(team_ids):
     elo, _ = calculate_elo()
     teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True) if team.id in team_ids]
-    for i, team in enumerate(teams_sorted):
-        team.rank = i + 1
-        yield team
+    return rank_teams(teams_sorted)
 
-def calculate_elo():
+
+def get_tournament_teams(tournament):
+    for stage in tournament["stages"]:
+        for section in stage["sections"]:
+            for match in section["matches"]:
+                if match["state"] == "completed":
+                    for team in match["teams"]:
+                        yield team["id"]
+
+def tournament_rankings(tournament_id):
+    elo, _ = calculate_elo(tournament_id)
+    teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True)]
+
+    tournament = [tournament for tournament in tournaments_data if tournament["id"] == tournament_id][0]
+    teams_in_tournament = list(get_tournament_teams(tournament))
+    teams_sorted = [team for team in teams_sorted if team.id in teams_in_tournament]
+    return rank_teams(teams_sorted)
+
+def update_elo_real(
+    elo,
+    blue_id,
+    red_id,
+    blue_elo,
+    red_elo,
+    blue_win,
+):
+    expected_score_blue = 1/(1+10**((red_elo-blue_elo)/480))
+    expected_score_red = 1 - expected_score_blue
+    print(expected_score_blue,expected_score_red)
+    if blue_win:
+        elo[blue_id].elo = blue_elo + K_FACTOR*(1-expected_score_blue)
+        elo[red_id].elo = red_elo + K_FACTOR*(0-expected_score_red)
+    else:
+        elo[blue_id].elo = blue_elo + K_FACTOR*(0-expected_score_blue)
+        elo[red_id].elo = red_elo + K_FACTOR*(1-expected_score_red)
+
+
+def calculate_elo(tournament_id=None, startDate=datetime.now()):
     elo = init_elo()
     back_test = {}
 
-    for tournament, league_id, game in yield_games(elo):
+    for tournament, league_id, game in yield_games():
+        if tournament_id and tournament["id"] != tournament_id:
+            break
+        tournament_start_date = datetime.strptime(tournament["startDate"], "%Y-%m-%d")
+        days_since = (startDate- tournament_start_date).days
+        if days_since > 365:
+            continue
         blue_id = game["teams"][0]["id"]
         red_id = game["teams"][1]["id"]
         blue_win = game["teams"][0]["result"]["outcome"] == "win"
@@ -95,7 +124,7 @@ def calculate_elo():
                 back_test[elo_diff]["blue_wins"] += 1
             
 
-        update_elo(
+        update_elo_real(
             elo,
             blue_id,
             red_id,
