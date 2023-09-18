@@ -39,14 +39,19 @@ def rank_teams(teams_sorted):
         team.rank = i + 1
         yield team
 
+
+def teams_by_elo(elo):
+    return [team for _, team in sorted(elo.items(), key=lambda item: item[1].adjusted_elo(), reverse=True)]
+     
+
 def global_rankings():
     elo, _ = calculate_elo()
-    teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True)]
+    teams_sorted = teams_by_elo(elo)
     return rank_teams(teams_sorted)
 
 def team_rankings(team_ids):
     elo, _ = calculate_elo()
-    teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True) if team.id in team_ids]
+    teams_sorted = [team for team in teams_by_elo(elo) if team.id in team_ids]
     return rank_teams(teams_sorted)
 
 
@@ -60,30 +65,32 @@ def get_tournament_teams(tournament):
 
 def tournament_rankings(tournament_id):
     elo, _ = calculate_elo(tournament_id)
-    teams_sorted = [team for _, team in sorted(elo.items(), key=lambda item: item[1].elo, reverse=True)]
+    teams_sorted = teams_by_elo(elo)
 
     tournament = [tournament for tournament in tournaments_data if tournament["id"] == tournament_id][0]
     teams_in_tournament = list(get_tournament_teams(tournament))
     teams_sorted = [team for team in teams_sorted if team.id in teams_in_tournament]
     return rank_teams(teams_sorted)
 
-def update_elo_real(
+def update_elo(
     elo,
     blue_id,
     red_id,
     blue_elo,
     red_elo,
     blue_win,
+    k_factor = K_FACTOR
 ):
+    if not k_factor:
+        k_factor = K_FACTOR
     expected_score_blue = 1/(1+10**((red_elo-blue_elo)/480))
     expected_score_red = 1 - expected_score_blue
-    print(expected_score_blue,expected_score_red)
     if blue_win:
-        elo[blue_id].elo = blue_elo + K_FACTOR*(1-expected_score_blue)
-        elo[red_id].elo = red_elo + K_FACTOR*(0-expected_score_red)
+        elo[blue_id].elo = blue_elo + k_factor*(1-expected_score_blue)
+        elo[red_id].elo = red_elo + k_factor*(0-expected_score_red)
     else:
-        elo[blue_id].elo = blue_elo + K_FACTOR*(0-expected_score_blue)
-        elo[red_id].elo = red_elo + K_FACTOR*(1-expected_score_red)
+        elo[blue_id].elo = blue_elo + k_factor*(0-expected_score_blue)
+        elo[red_id].elo = red_elo + k_factor*(1-expected_score_red)
 
 
 def calculate_elo(tournament_id=None, startDate=datetime.now()):
@@ -95,7 +102,7 @@ def calculate_elo(tournament_id=None, startDate=datetime.now()):
             break
         tournament_start_date = datetime.strptime(tournament["startDate"], "%Y-%m-%d")
         days_since = (startDate- tournament_start_date).days
-        if days_since > 365:
+        if days_since > 700:
             continue
         blue_id = game["teams"][0]["id"]
         red_id = game["teams"][1]["id"]
@@ -122,18 +129,23 @@ def calculate_elo(tournament_id=None, startDate=datetime.now()):
             back_test[elo_diff]["total"] += 1
             if blue_win:
                 back_test[elo_diff]["blue_wins"] += 1
-            
+        if not league_id:
+            raise "WAHT THE FUCK? WHAT THE FUUUCKKK!!!"    
+        k_factor = league_points(league_id)
 
-        update_elo_real(
+        update_elo(
             elo,
             blue_id,
             red_id,
             blue_elo,
             red_elo,
-            blue_win
+            blue_win,
+            k_factor
         )
         elo[blue_id].games += 1
         elo[red_id].games += 1
+        elo[blue_id].leagues.append(league_id)
+        elo[red_id].leagues.append(league_id)
         # check if blue tuple is really blue
         
     

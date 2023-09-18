@@ -1,5 +1,8 @@
 from chalice import Chalice
 from src import team_elo
+import logging
+
+log = logging.getLogger(__name__)
 
 app = Chalice(app_name='power_ranking')
 
