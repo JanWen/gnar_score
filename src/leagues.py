@@ -51,6 +51,7 @@ def get_league_name(league_id):
         return "UNKNOWN"
     return league["name"]
 
+
 def league_points(league_id):
     leagues = get_leagues()
     try:

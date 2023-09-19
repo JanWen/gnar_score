@@ -17,21 +17,40 @@ def tournaments():
     matches = 0
 
     for tournament in tournaments_data:
-        print(tournament["name"])
+        print(tournament["slug"])
         stages += len(tournament["stages"])
         for stage in tournament["stages"]:
-            for section in stage["sections"]:
-                matches += len(section["matches"])
+            print("\t" + stage["name"])
 
-    print("Stages:" + str(stages))
-    print("Matches:" + str(matches))
 
-def elo_form(x,y):
+def elo_form_single_match(actual_reasult, x,y):
     ea = 1/(1+10**((y-x)/400))
     eb = 1/(1+10**((x-y)/400))
 
-    ra = x + 32*(1-ea)
+    ra = x + 32*(actual_reasult-ea)
     return ra
+
+
+def bestOfFive(p):
+	q = 1-p
+	return p*p*p*(p*p + 5*p*q + 10*q*q)
+
+def elo_bo5(actual_reasult, x,y):
+    ea = 1/(1+10**((y-x)/400))
+
+    ra = x + 32*(actual_reasult-bestOfFive(ea))
+    return ra
+
+
+
+def example_elo():
+    blue = 1000
+    red = 1200
+    print(elo_form_single_match(1, blue, red))
+    print(elo_bo5(1, blue, red))
+
+
+example_elo()
 
 def get_stages():
 
@@ -70,6 +89,8 @@ def download_gzip_and_write_to_json(file_name):
        print(response)
        print(f"Failed to download {file_name}")
 
-print("ij")
+# print("ij")
 
-download_gzip_and_write_to_json("games/ESPORTSTMNT05:1831534")
+# download_gzip_and_write_to_json("games/ESPORTSTMNT05:1831534")
+
+# tournaments()

@@ -38,3 +38,19 @@ teams_data = load_team_ids()
 tournaments_data = get_tournaments_data()
 
 
+
+def yield_matches():
+    for tournament in tournaments_data:
+        # if tournament["leagueId"] != "98767991302996019":
+        #     continue
+        for stage in tournament["stages"]:
+            for section in stage["sections"]:
+                for match in section["matches"]:
+                    if match["state"] == "completed":
+                        yield tournament, tournament["leagueId"], match
+
+def yield_games():
+    for tournament, league_id, match in yield_matches():
+        for game in match["games"]:
+            if game["state"] == "completed":
+                yield tournament, league_id, game

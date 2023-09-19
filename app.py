@@ -1,5 +1,5 @@
 from chalice import Chalice
-from src import team_elo
+from src import rankings
 import logging
 
 log = logging.getLogger(__name__)
@@ -9,7 +9,7 @@ app = Chalice(app_name='power_ranking')
 
 @app.route('/')
 def index():
-    rankings = [
+    example_rankings = [
         {
             "team_id": "100205573495116443",
             "team_code": "GEN",
@@ -29,7 +29,7 @@ def index():
             "rank": 3
         }
     ]
-    return rankings
+    return example_rankings
 
 @app.route('/global_rankings')
 def global_rankings():
@@ -45,11 +45,10 @@ def global_rankings():
         if app.current_request.query_params.get('number_of_teams'):
             #TODO try except in case query param is some bullshit
             number_of_teams = int(app.current_request.query_params.get('number_of_teams'))
-
-    rankings = list(
-        team.json() for team in team_elo.global_rankings()
+    
+    return list(
+        team.json() for team in rankings.global_rankings()
     )[:number_of_teams]
-    return rankings
 
 @app.route('/tournament_rankings/{tournament_id}')
 def tournament_rankings(tournament_id):
@@ -60,7 +59,7 @@ def tournament_rankings(tournament_id):
         stage string (query) Stage of tournament to return rankings for
     """
     
-    return list(team.json() for team in team_elo.tournament_rankings(tournament_id))
+    return list(team.json() for team in rankings.tournament_rankings(tournament_id))
 
 @app.route('/team_rankings')
 def team_rankings():
@@ -77,7 +76,7 @@ def team_rankings():
             team_ids = app.current_request.query_params.get('team_ids').split(",")
             team_ids = [i.strip() for i in team_ids]
     if team_ids:
-        return list(team.json() for team in team_elo.team_rankings(team_ids))
+        return list(team.json() for team in rankings.team_rankings(team_ids))
     
     return {"error": "Please provide team_ids query param (comma separated list of team ids)"}
 

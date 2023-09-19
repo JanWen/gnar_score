@@ -2,8 +2,8 @@
 # teams elo set to 1000
 
 import matplotlib.pyplot as plt
-from src.esports import teams_data, tournaments_data
-import statistics#
+from src.esports import teams_data, tournaments_data, yield_games, yield_matches
+import statistics
 from src.leagues import league_points
 from datetime import datetime
 from src.team import Team
@@ -12,65 +12,8 @@ ELO_GROWTH = 0.01
 BASE_ELO = 1000
 K_FACTOR = 50
 
-
-def yield_matches():
-    for tournament in tournaments_data:
-        # if tournament["leagueId"] != "98767991302996019":
-        #     continue
-        for stage in tournament["stages"]:
-            for section in stage["sections"]:
-                for match in section["matches"]:
-                    if match["state"] == "completed":
-                        yield tournament, tournament["leagueId"], match
-
-def yield_games():
-    for tournament, league_id, match in yield_matches():
-        for game in match["games"]:
-            if game["state"] == "completed":
-                yield tournament, league_id, game
-
-
 def init_elo():
     return {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
-
-
-def rank_teams(teams_sorted):
-    for i, team in enumerate(teams_sorted):
-        team.rank = i + 1
-        yield team
-
-
-def teams_by_elo(elo):
-    return [team for _, team in sorted(elo.items(), key=lambda item: item[1].adjusted_elo(), reverse=True)]
-     
-
-def global_rankings():
-    elo, _ = calculate_elo()
-    teams_sorted = teams_by_elo(elo)
-    return rank_teams(teams_sorted)
-
-def team_rankings(team_ids):
-    elo, _ = calculate_elo()
-    teams_sorted = [team for team in teams_by_elo(elo) if team.id in team_ids]
-    return rank_teams(teams_sorted)
-
-
-def get_tournament_teams(tournament):
-    for stage in tournament["stages"]:
-        for section in stage["sections"]:
-            for match in section["matches"]:
-                if match["state"] == "completed":
-                    for team in match["teams"]:
-                        yield team["id"]
-
-def tournament_rankings(tournament_id):
-    elo, _ = calculate_elo(tournament_id)
-    teams_sorted = teams_by_elo(elo)
-
-    tournament = [tournament for tournament in tournaments_data if tournament["id"] == tournament_id][0]
-    teams_in_tournament = list(get_tournament_teams(tournament))
-    teams_sorted = [team for team in teams_sorted if team.id in teams_in_tournament]
-    return rank_teams(teams_sorted)
 
 def update_elo(
     elo,
@@ -150,7 +93,6 @@ def calculate_elo(tournament_id=None, startDate=datetime.now()):
         
     
     return elo, back_test
-
 
 
 def get_elo_cutoff(back_test, percentage):
