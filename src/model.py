@@ -23,14 +23,11 @@ class Model():
     def __init__(self):
         self.blue_team = Team("blue")
         self.red_team = Team("red")
-        self.red_name = "red"
-        self.red_kills = 0
-        self.red_play_penalty = 0
         self.steps = 0
     
     def win(self):
-        blue_win_roll = random.randint(0,100) - 30 + self.steps + self.blue_team.kills - self.red_kills
-        red_win_roll = random.randint(0,100) - 30 + self.steps + self.red_kills - self.blue_team.kills
+        blue_win_roll = random.randint(0,100) - 30 + self.steps + self.blue_team.kills - self.red_team.kills
+        red_win_roll = random.randint(0,100) - 30 + self.steps + self.red_team.kills - self.blue_team.kills
         if blue_win_roll > 100:
             log.info(f"Blue team wins")
             return "blue"
@@ -48,21 +45,21 @@ class Model():
             kill_roll = 5
         if team == "blue":
             self.blue_team.kills += kill_roll
-            log.info(f"blue team kill {self.blue_team.kills}|{self.red_kills}")
+            log.info(f"blue team kill {self.blue_team.kills}|{self.red_team.kills}")
 
         elif team == "red":
-            self.red_kills += kill_roll
-            log.info(f"red team kill {self.blue_team.kills}|{self.red_kills}")
+            self.red_team.kills += kill_roll
+            log.info(f"red team kill {self.blue_team.kills}|{self.red_team.kills}")
 
     def plays(self):
         """
         2. Both team roll for plays
         """
-        blue_play_roll = random.randint(0,100) + self.blue_team.kills - self.red_kills
+        blue_play_roll = random.randint(0,100) + self.blue_team.kills - self.red_team.kills
         if self.blue_team.play_penalty > 0:
             blue_play_roll -= 20
-        red_play_roll = random.randint(0,100) + self.red_kills - self.blue_team.kills
-        if self.red_play_penalty > 0:
+        red_play_roll = random.randint(0,100) + self.red_team.kills - self.blue_team.kills
+        if self.red_team.play_penalty > 0:
             red_play_roll -= 20
 
         
@@ -70,10 +67,10 @@ class Model():
             self.roll_for_kills(self.blue_team.name)
             self.blue_team.play_penalty = 2
         elif random.randint(0,100) > 70: # roll for counterplay
-            self.roll_for_kills(self.red_name)
+            self.roll_for_kills(self.red_team.name)
         if red_play_roll > 50:
-            self.roll_for_kills(self.red_name)
-            self.red_play_penalty = 2
+            self.roll_for_kills(self.red_team.name)
+            self.red_team.play_penalty = 2
         elif random.randint(0,100) > 70: # roll for counterplay
 
             self.roll_for_kills(self.blue_team.name)
@@ -93,8 +90,8 @@ class Model():
         
         if self.blue_team.play_penalty > 0:
             self.blue_team.play_penalty -= 1
-        if self.red_play_penalty > 0:
-            self.red_play_penalty -= 1
+        if self.red_team.play_penalty > 0:
+            self.red_team.play_penalty -= 1
         
         self.steps += 1
 
