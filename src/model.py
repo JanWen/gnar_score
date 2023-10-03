@@ -21,10 +21,8 @@ class Team():
 
 class Model():
     def __init__(self):
-        self.blue_name = "blue"
-        self.blue_kills = 0
-        self.blue_play_penalty = 0
         self.blue_team = Team("blue")
+        self.red_team = Team("red")
         self.red_name = "red"
         self.red_kills = 0
         self.red_play_penalty = 0
@@ -70,7 +68,7 @@ class Model():
         
         if blue_play_roll > 50:
             self.roll_for_kills(self.blue_team.name)
-            self.blue_team.play_pentaly = 2
+            self.blue_team.play_penalty = 2
         elif random.randint(0,100) > 70: # roll for counterplay
             self.roll_for_kills(self.red_name)
         if red_play_roll > 50:
@@ -113,7 +111,7 @@ class Model():
 
 
 winners = []
-for i in range(100):
+for i in range(300):
     model = Model()
     winners.append(model.run())
 
