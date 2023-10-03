@@ -1,23 +1,27 @@
 import random
 import logging
-logging.basicConfig(filename="model_log.txt",
-                    filemode='w',
-                    # format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                    datefmt='%H:%M:%S',
-                    level=logging.DEBUG)
-
-log = logging.getLogger('model')
+from src.models.team import Team
+from src.models.logger import log
 
 
-class Team():
-    def __init__(
-        self,
-        name,
-    ):
-        self.name = name
-        self.kills = 0
-        self.play_penalty = 0
+class EarlyGameTeam(Team):
+    def __init__(self, name):
+        super(EarlyGameTeam, self).__init__(name)
+        self.scaling_var = 20
+        self.scaling_var += 1
+    def get_scaling_bonus(self):
+        self.scaling_var -= 1
+        return self.scaling_var
 
+
+class LateGameTeam(Team):
+    def __init__(self, name):
+        super(LateGameTeam, self).__init__(name)
+        self.scaling_var = -10
+        self.scaling_var -= 1
+    def get_scaling_bonus(self):
+        self.scaling_var += 1
+        return self.scaling_var
 
 class Model():
     def __init__(self):
@@ -40,7 +44,10 @@ class Model():
         3. Team that makes play rolls for kills
         
         """
-        kill_roll = round(random.random() + (random.random()*0.3 * (self.steps / 10)))
+        kill_roll = round(random.random())
+        #skirmush_bonus
+        if round(random.random()*0.3):
+            kill_roll += round(random.random()*(self.steps / 10))
         if kill_roll > 5:
             kill_roll = 5
         if team == "blue":
@@ -55,24 +62,19 @@ class Model():
         """
         2. Both team roll for plays
         """
-        blue_play_roll = random.randint(0,100) + self.blue_team.kills - self.red_team.kills
-        if self.blue_team.play_penalty > 0:
-            blue_play_roll -= 20
-        red_play_roll = random.randint(0,100) + self.red_team.kills - self.blue_team.kills
-        if self.red_team.play_penalty > 0:
-            red_play_roll -= 20
+        blue_play_roll = self.blue_team.roll_for_play(self.red_team)
+        red_play_roll = self.red_team.roll_for_play(self.blue_team)
 
         
         if blue_play_roll > 50:
-            self.roll_for_kills(self.blue_team.name)
+            self.blue_team.roll_for_kills(self.red_team)
             self.blue_team.play_penalty = 2
         elif random.randint(0,100) > 70: # roll for counterplay
-            self.roll_for_kills(self.red_team.name)
+            self.red_team.roll_for_kills(self.blue_team)
         if red_play_roll > 50:
-            self.roll_for_kills(self.red_team.name)
+            self.red_team.roll_for_kills(self.blue_team)
             self.red_team.play_penalty = 2
         elif random.randint(0,100) > 70: # roll for counterplay
-
             self.roll_for_kills(self.blue_team.name)
 
     
@@ -108,7 +110,7 @@ class Model():
 
 
 winners = []
-for i in range(300):
+for i in range(1000):
     model = Model()
     winners.append(model.run())
 
