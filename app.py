@@ -1,15 +1,12 @@
 from chalice import Chalice
 from chalicelib import rankings
 import logging, json
-import boto3
+from chalicelib.aws import s3
 from chalicelib.const import RANKINGS_BUCKET, GLOBAL_RANKINGS_FILE
 
 log = logging.getLogger(__name__)
 
 app = Chalice(app_name='power_ranking')
-
-s3 = boto3.client('s3')
-
 
 @app.route('/')
 def index():
@@ -92,11 +89,3 @@ def team_rankings():
     
     return {"error": "Please provide team_ids query param (comma separated list of team ids)"}
 
-
-
-
-@app.schedule('rate(3 Hours)')
-def generate_rankings(event):
-    generate_global_rankings()
-    generate_tournament_rankings()
-    return {"status": "success"}
