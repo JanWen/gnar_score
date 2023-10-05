@@ -1,10 +1,14 @@
 from chalice import Chalice
-from src import rankings
-import logging
+from chalicelib import rankings
+import logging, json
+import boto3
+from chalicelib.const import RANKINGS_BUCKET, GLOBAL_RANKINGS_FILE
 
 log = logging.getLogger(__name__)
 
 app = Chalice(app_name='power_ranking')
+
+s3 = boto3.client('s3')
 
 
 @app.route('/')
@@ -31,6 +35,13 @@ def index():
     ]
     return example_rankings
 
+
+def rank_teams(teams_sorted):
+    for i, team in enumerate(teams_sorted):
+        team["rank"] = i + 1
+        yield team
+
+
 @app.route('/global_rankings')
 def global_rankings():
     """
@@ -39,15 +50,11 @@ def global_rankings():
         number_of_teams: number of teams to return
     """
     number_of_teams = 20
-    
-    #TODO looks like shit
-    if app.current_request.query_params:
-        if app.current_request.query_params.get('number_of_teams'):
-            #TODO try except in case query param is some bullshit
-            number_of_teams = int(app.current_request.query_params.get('number_of_teams'))
-    
+    obj = s3.get_object(Bucket=RANKINGS_BUCKET, Key=GLOBAL_RANKINGS_FILE)
+    data = obj['Body'].read().decode('utf-8')
+    data = json.loads(data)
     return list(
-        team.json() for team in rankings.global_rankings()
+        rank_teams(data)
     )[:number_of_teams]
 
 @app.route('/tournament_rankings/{tournament_id}')
@@ -59,12 +66,17 @@ def tournament_rankings(tournament_id):
         stage string (query) Stage of tournament to return rankings for
     """
     
-    return list(team.json() for team in rankings.tournament_rankings(tournament_id))
+    obj = s3.get_object(Bucket=RANKINGS_BUCKET, Key="rankings/"+tournament_id+".json")
+    data = obj['Body'].read().decode('utf-8')
+    data = json.loads(data)
+    return list(
+        rank_teams(data)
+    )
 
 @app.route('/team_rankings')
 def team_rankings():
     """
-    Tournament rankings - get team rankings for a given tournament
+    Get ranking for a list of teams
     Params:
         team_ids array[string] (query) *required IDs of tournaments to return ranking for
     """
@@ -80,22 +92,11 @@ def team_rankings():
     
     return {"error": "Please provide team_ids query param (comma separated list of team ids)"}
 
-# The view function above will return {"hello": "world"}
-# whenever you make an HTTP GET request to '/'.
-#
-# Here are a few more examples:
-#
-# @app.route('/hello/{name}')
-# def hello_name(name):
-#    # '/hello/james' -> {"hello": "james"}
-#    return {'hello': name}
-#
-# @app.route('/users', methods=['POST'])
-# def create_user():
-#     # This is the JSON body the user sent in their POST request.
-#     user_as_json = app.current_request.json_body
-#     # We'll echo the json body back to the user in a 'user' key.
-#     return {'user': user_as_json}
-#
-# See the README documentation for more examples.
-#
+
+
+
+@app.schedule('rate(3 Hours)')
+def generate_rankings(event):
+    generate_global_rankings()
+    generate_tournament_rankings()
+    return {"status": "success"}

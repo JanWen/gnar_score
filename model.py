@@ -1,7 +1,7 @@
 import random
 import logging
-from src.models.team import Team, NoShutdownTeam
-from src.models.logger import log
+from chalicelib.models.team import Team, NoShutdownTeam
+from chalicelib.models.logger import log
 
 
 class EarlyGameTeam(Team):
