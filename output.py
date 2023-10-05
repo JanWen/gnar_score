@@ -1,4 +1,4 @@
-from chalicelib.team_elo import calculate_elo, get_elo_cutoff
+from chalicelib.match_elo import calculate_elo, get_elo_cutoff
 from chalicelib.esports import teams_data
 import statistics
 import os

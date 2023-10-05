@@ -18,6 +18,8 @@ how do we make this so the code isnt shit :thinking_face:
 
 RESERACH:
 
+Assing k factor to different leagues not as effective since teams dont usually move between league except for msi and worlds. so teams in major region both win and lose more elo
+
 COMPARING RANKING SYSTEMS:
 There are many ways to compare two power ranking systems. Here are a few common methods:
 
@@ -30,7 +32,7 @@ There are many ways to compare two power ranking systems. Here are a few common 
 
 Elo rating system, the Glicko rating system, and the Sagarin rating system.
 
-
+https://wismuth.com/elo/calculator.html#best_of=5&score=0-0&system=tennis-men&e_score=0.6
 
 
 CHANGELOG:
