@@ -1,10 +1,12 @@
 .vscode
+.pytest_cache
+.git
 venv
+*_log.txt
 # esports-data
 __pycache__/
 .chalice/
 games
 .terraform*
 terraform.*
-chalicelib
 # *.json

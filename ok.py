@@ -1,0 +1,2 @@
+from chalicelib.generate_rankings import generate_rankings
+generate_rankings()

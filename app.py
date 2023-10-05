@@ -3,6 +3,7 @@ from chalicelib import rankings
 import logging, json
 from chalicelib.aws import s3
 from chalicelib.const import RANKINGS_BUCKET, GLOBAL_RANKINGS_FILE
+from chalicelib.generate_rankings import generate_rankings
 
 log = logging.getLogger(__name__)
 
@@ -10,6 +11,7 @@ app = Chalice(app_name='power_ranking')
 
 @app.route('/')
 def index():
+    generate_rankings()
     example_rankings = [
         {
             "team_id": "100205573495116443",
