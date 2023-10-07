@@ -23,7 +23,7 @@ def team_rankings(tournaments, team_ids):
     return rank_teams(teams_sorted)
 
 
-def get_tournament_teams(tournaments, tournament):
+def get_tournament_teams(tournament):
     for stage in tournament["stages"]:
         for section in stage["sections"]:
             for match in section["matches"]:

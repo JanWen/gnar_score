@@ -6,59 +6,64 @@ from chalicelib.leagues import league_points
 from datetime import datetime
 from chalicelib.team import Team
 
-ELO_GROWTH = 0.01
+# load all the team ids from the json file and initialize a dictionary with each
+# teams elo set to 1000
+
 BASE_ELO = 1000
 K_FACTOR = 50
-
-# class Elo():
-#     def __init__(self) -> None:
-#         self.elo = {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
-
-#     def yield_games():
-
-
-#     def update_elo(self, tournament):
-
 
 def init_elo():
     return {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
 
-def update_elo(
-    elo,
-    blue_id,
-    red_id,
-    blue_elo,
-    red_elo,
-    blue_win,
-    k_factor = K_FACTOR
-):
-    if not k_factor:
-        k_factor = K_FACTOR
-    expected_score_blue = 1/(1+10**((red_elo-blue_elo)/480))
-    expected_score_red = 1 - expected_score_blue
-    if blue_win:
-        elo[blue_id].elo = blue_elo + k_factor*(1-expected_score_blue)
-        elo[red_id].elo = red_elo + k_factor*(0-expected_score_red)
-    else:
-        elo[blue_id].elo = blue_elo + k_factor*(0-expected_score_blue)
-        elo[red_id].elo = red_elo + k_factor*(1-expected_score_red)
+def best_of_3(p):
+    q = 1-p
+    prob_2_0 = p*p
+    prob_2_1 = 2*p*p*q
+    return prob_2_0+prob_2_1
 
+function_by_score = {
+    1: {
+        0: lambda p: p,
+        1: lambda p: p*(1-p),
+    },
+    2: {
+        0: lambda p: p*p,
+        1: lambda p: 2*p*p*(1-p),
+    },
+    3: {
+        0: lambda p: p*p*p,
+        1: lambda p: 3*p*p*p*(1-p),
+        2: lambda p: 6*p*p*p*((1-p)**2),
+    }
+}
 
-def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now()):
+def best_of_5(p):
+    q = 1-p
+    prob_3_0 = p*p*p
+    prob_3_1 = 3*p*p*p*q
+    prob_3_2 = 6*p*p*p*q*q
+    return prob_3_0 + prob_3_1 + prob_3_2
+
+def calculate_elo(touranments, tournament_id=None, startDate=datetime.now()):
     elo = init_elo()
     back_test = {}
 
-    for tournament, league_id, game in tournaments.yield_games():
+    for tournament, _, league_match in touranments.yield_matches():
+        league_id = tournament["leagueId"]
         if tournament_id and tournament["id"] != tournament_id:
             break
         tournament_start_date = datetime.strptime(tournament["startDate"], "%Y-%m-%d")
         days_since = (startDate- tournament_start_date).days
-        if days_since > 700:
+        if days_since > 180:
             continue
-        blue_id = game["teams"][0]["id"]
-        red_id = game["teams"][1]["id"]
-        blue_win = game["teams"][0]["result"]["outcome"] == "win"
-        if game["teams"][0]["side"] != "blue":
+        blue_team = league_match["teams"][0]
+        blue_id = blue_team["id"]
+        red_team = league_match["teams"][1]
+        red_id = red_team["id"]
+        blue_win = blue_team["result"]["outcome"] == "win"
+        blue_game_wins = blue_team["result"]["gameWins"]
+        red_game_wins = red_team["result"]["gameWins"]
+        if blue_team["side"] != "blue":
             raise "FUCKING SHITBALL"
         try: # todo some chinese teams are not in the teams.json file
             blue_elo = elo[blue_id].elo
@@ -66,33 +71,30 @@ def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now()):
         except KeyError as e:
             continue
         
-        # backtest_elo()
-        elo_diff = round(blue_elo - red_elo)
-        if elo_diff not in back_test:
-            back_test[elo_diff] = {
-                "total": 1,
-            }
-            if blue_win:
-                back_test[elo_diff]["blue_wins"] = 1
-            else:
-                back_test[elo_diff]["blue_wins"] = 0
-        else:
-            back_test[elo_diff]["total"] += 1
-            if blue_win:
-                back_test[elo_diff]["blue_wins"] += 1
-        if not league_id:
-            raise "WAHT THE FUCK? WHAT THE FUUUCKKK!!!"    
-        k_factor = league_points(league_id)
+        best_of_n = league_match["strategy"]["count"]
 
-        update_elo(
-            elo,
-            blue_id,
-            red_id,
-            blue_elo,
-            red_elo,
-            blue_win,
-            k_factor
-        )
+        # k_factor = league_points(league_id)
+
+        # if not k_factor:
+        k_factor = K_FACTOR
+        
+        if blue_win:
+            expected_score_blue = 1/(1+10**((red_elo-blue_elo)/480))
+            expected_score_blue = function_by_score[blue_game_wins][red_game_wins](expected_score_blue)
+            expected_score_red = 1 - expected_score_blue
+            elo[blue_id].elo = blue_elo + k_factor*(1-expected_score_blue)
+            elo[red_id].elo = red_elo + k_factor*(0-expected_score_red)
+        else:
+            expected_score_red = 1/(1+10**((blue_elo-red_elo)/480))
+            try:
+                expected_score_red = function_by_score[red_game_wins][blue_game_wins](expected_score_red)
+            except Exception as e:
+                print(red_game_wins, blue_game_wins, expected_score_red, league_match["id"])
+                raise "FUUSASDLHKSD"
+            expected_score_blue = 1 - expected_score_red
+            elo[blue_id].elo = blue_elo + k_factor*(0-expected_score_blue)
+            elo[red_id].elo = red_elo + k_factor*(1-expected_score_red)
+
         elo[blue_id].games += 1
         elo[red_id].games += 1
         elo[blue_id].leagues.append(league_id)
