@@ -23,7 +23,7 @@ def get_tournaments_data():
 
 def get_s3_file(file_name):
    response = requests.get(f"{S3_BUCKET_URL}/{file_name}.json.gz")
-   print(response)
+   print(file_name, response)
    if response.status_code == 200:
        try:
            gzip_bytes = BytesIO(response.content)
@@ -36,7 +36,7 @@ def get_s3_file(file_name):
        print(f"Failed to download {file_name}")
 
 teams_data = json.load(get_s3_file("esports-data/teams"))
-leagues_data = json.load(get_s3_file("esports-data/leagues"))
+leagues_data = json.load(open("chalicelib/esports-data/leagues.json", "r"))
 
 def yield_matches():
     for tournament in get_tournaments_data():

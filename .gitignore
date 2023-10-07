@@ -9,4 +9,6 @@ __pycache__/
 games
 .terraform*
 terraform.*
+data
+chalicelib/esport-data/
 # *.json

@@ -1,7 +1,6 @@
 from chalice import Chalice
-from chalicelib import rankings
 import logging, json
-from chalicelib.aws import s3
+from chalicelib.aws import s3_client
 from chalicelib.const import RANKINGS_BUCKET, GLOBAL_RANKINGS_FILE
 from chalicelib.generate_rankings import generate_rankings
 
@@ -11,7 +10,6 @@ app = Chalice(app_name='power_ranking')
 
 @app.route('/')
 def index():
-    generate_rankings()
     example_rankings = [
         {
             "team_id": "100205573495116443",
@@ -49,7 +47,11 @@ def global_rankings():
         number_of_teams: number of teams to return
     """
     number_of_teams = 20
-    obj = s3.get_object(Bucket=RANKINGS_BUCKET, Key=GLOBAL_RANKINGS_FILE)
+    if app.current_request.query_params:
+        if app.current_request.query_params.get('number_of_teams'):
+            #TODO try except in case query param is some bullshit
+            number_of_teams = int(app.current_request.query_params.get('number_of_teams'))
+    obj = s3_client.get_object(Bucket=RANKINGS_BUCKET, Key=GLOBAL_RANKINGS_FILE)
     data = obj['Body'].read().decode('utf-8')
     data = json.loads(data)
     return list(
@@ -65,7 +67,7 @@ def tournament_rankings(tournament_id):
         stage string (query) Stage of tournament to return rankings for
     """
     
-    obj = s3.get_object(Bucket=RANKINGS_BUCKET, Key="rankings/"+tournament_id+".json")
+    obj = s3_client.get_object(Bucket=RANKINGS_BUCKET, Key="rankings/"+tournament_id+".json")
     data = obj['Body'].read().decode('utf-8')
     data = json.loads(data)
     return list(
@@ -80,14 +82,18 @@ def team_rankings():
         team_ids array[string] (query) *required IDs of tournaments to return ranking for
     """
     team_ids = []
-    #TODO looks like shit
+    #TODO looks ugly
     if app.current_request.query_params:
         if app.current_request.query_params.get('team_ids'):
             #TODO try except in case query param is some bullshit
             team_ids = app.current_request.query_params.get('team_ids').split(",")
             team_ids = [i.strip() for i in team_ids]
     if team_ids:
-        return list(team.json() for team in rankings.team_rankings(team_ids))
+        obj = s3_client.get_object(Bucket=RANKINGS_BUCKET, Key=GLOBAL_RANKINGS_FILE)
+        data = obj['Body'].read().decode('utf-8')
+        data = json.loads(data)
+        team_rankings = [team for team in data if team["team_id"] in team_ids]
+        return list(rank_teams(team_rankings))
     
     return {"error": "Please provide team_ids query param (comma separated list of team ids)"}
 

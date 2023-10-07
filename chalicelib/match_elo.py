@@ -1,8 +1,7 @@
 # load all the team ids from the json file and initialize a dictionary with each
 # teams elo set to 1000
 
-from chalicelib.esports import teams_data, yield_games, yield_matches
-import statistics
+from chalicelib.esports import teams_data, yield_games
 from chalicelib.leagues import league_points
 from datetime import datetime
 from chalicelib.team import Team
@@ -35,11 +34,11 @@ def update_elo(
         elo[red_id].elo = red_elo + k_factor*(1-expected_score_red)
 
 
-def calculate_elo(tournament_id=None, startDate=datetime.now()):
+def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now()):
     elo = init_elo()
     back_test = {}
 
-    for tournament, league_id, game in yield_games():
+    for tournament, league_id, game in tournaments.yield_games():
         if tournament_id and tournament["id"] != tournament_id:
             break
         tournament_start_date = datetime.strptime(tournament["startDate"], "%Y-%m-%d")

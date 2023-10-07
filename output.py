@@ -1,5 +1,5 @@
 from chalicelib.match_elo import calculate_elo, get_elo_cutoff
-from chalicelib.esports import teams_data
+from chalicelib.tournaments import Tournaments
 import statistics
 import os
 import matplotlib.pyplot as plt
@@ -20,7 +20,7 @@ except FileExistsError:
 def print_elo(elo):
     # sort dictionary by values
     
-    with open(results_dir + "/elo.txt", "w") as f:
+    with open(results_dir + "/elo.txt", "w", encoding="utf-8") as f:
         f.write("MIN ELO: %d \n" % min([i[1].elo for i in elo.items()]))
         f.write("AVERAGE ELO: %d \n" % (sum([i[1].elo for i in elo.items()])/len(elo)))
         f.write("MEDIAN ELO: %d \n" % statistics.median([i[1].elo for i in elo.items()]))
@@ -29,7 +29,7 @@ def print_elo(elo):
         for _, team in sorted(elo.items(), key=lambda item: item[1].elo):
             if not team.games:
                 continue
-            f.write(str(team) + "\n")
+            f.write(str(team) + "\n", )
 
 def print_backtest(back_test, even_match_cutoff):
     # sort dictionary by values
@@ -82,9 +82,10 @@ def elodiff_prediction_distribution():
     plt.tight_layout()
     plt.savefig(results_dir + "/games_per_elodiff.png")
     #plt.show()
+tournaments = Tournaments()
 
 
-elo, back_test = calculate_elo()
+elo, back_test = calculate_elo(tournaments)
 print_elo(elo)
 
 half_match_cutoff = get_elo_cutoff(back_test, 0.5)
