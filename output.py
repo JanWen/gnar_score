@@ -17,6 +17,21 @@ except FileExistsError:
     pass
 
 
+
+def get_elo_cutoff(back_test, percentage):
+    # get the elo score diff cut off at wich x% of games are included
+    total_games = sum([i[1]["total"] for i in back_test.items()])
+    cutoff = percentage * total_games
+    print("total games", total_games)
+    index = 1
+    max_index = max(back_test.keys())
+    while True:
+        games_in_range = sum([i[1]["total"] for i in back_test.items() if i[0] > -1*index and i[0] < index])
+        if games_in_range > cutoff or index > max_index:
+            return index
+        index += 1
+
+
 def print_elo(elo):
     # sort dictionary by values
     

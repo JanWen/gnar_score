@@ -14,10 +14,6 @@ def load_team_ids():
     return teams_data
 
 
-
-# def get_tournaments_data():
-#     tournaments_json = json.load(open("chalicelib/esports-data/tournaments.json", "r"))
-#     return sorted(tournaments_json, key=lambda item: item["startDate"])
 def get_tournaments_data():
     return json.load(get_s3_file("esports-data/tournaments"))
 
@@ -38,18 +34,3 @@ def get_s3_file(file_name):
 teams_data = json.load(get_s3_file("esports-data/teams"))
 leagues_data = json.load(open("chalicelib/esports-data/leagues.json", "r"))
 
-def yield_matches():
-    for tournament in get_tournaments_data():
-        # if tournament["leagueId"] != "98767991302996019":
-        #     continue
-        for stage in tournament["stages"]:
-            for section in stage["sections"]:
-                for match in section["matches"]:
-                    if match["state"] == "completed":
-                        yield tournament, tournament["leagueId"], match
-
-def yield_games():
-    for tournament, league_id, match in yield_matches():
-        for game in match["games"]:
-            if game["state"] == "completed":
-                yield tournament, league_id, game

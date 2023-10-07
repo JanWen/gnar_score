@@ -12,7 +12,7 @@ class Tournaments():
                 for section in stage["sections"]:
                     for match in section["matches"]:
                         if match["state"] == "completed":
-                            yield tournament, tournament["leagueId"], match
+                            yield tournament, match
 
     def yield_games(self):
         for tournament, league_id, match in self.yield_matches():
