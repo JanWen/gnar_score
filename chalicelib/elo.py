@@ -10,6 +10,16 @@ ELO_GROWTH = 0.01
 BASE_ELO = 1000
 K_FACTOR = 50
 
+# class Elo():
+#     def __init__(self) -> None:
+#         self.elo = {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
+
+#     def yield_games():
+
+
+#     def update_elo(self, tournament):
+
+
 def init_elo():
     return {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
 

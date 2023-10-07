@@ -1,5 +1,5 @@
 from chalicelib.rankings import teams_by_elo, get_tournament_teams
-from chalicelib.match_elo import calculate_elo
+from chalicelib.elo import calculate_elo
 from chalicelib.esports import get_tournaments_data
 from chalicelib.const import RANKINGS_BUCKET, RANKINGS_DIR, GLOBAL_RANKINGS_FILE
 from chalicelib.aws import s3

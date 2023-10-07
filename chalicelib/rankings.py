@@ -1,4 +1,4 @@
-from chalicelib.match_elo import calculate_elo
+from chalicelib.elo import calculate_elo
 from chalicelib.tournaments import Tournaments
 
 
