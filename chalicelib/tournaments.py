@@ -1,6 +1,8 @@
 from chalicelib.esports import get_s3_file
 import json
 
+
+
 class Tournaments():
     def __init__(self):
         print("WARNING LOADING TOUNRAMNETS DATA (LARGE MEMORY FOOTPRINT)")

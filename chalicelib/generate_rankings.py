@@ -6,9 +6,9 @@ from chalicelib.tournaments import Tournaments
 import json
 from datetime import datetime
 
-def save_locally(json_data, file_name):
-    with open("chalicelib/"+file_name, "w") as json_file:
-        json.dump(json_data, json_file)
+# def save_locally(json_data, file_name):
+#     with open("chalicelib/"+file_name, "w") as json_file:
+#         json.dump(json_data, json_file)
 
 def upload_to_s3(json_data, file_name):
     s3object = s3.Object(RANKINGS_BUCKET, file_name)
@@ -48,5 +48,5 @@ def generate_rankings():
     global_rankings = generate_global_rankings(tournaments)
     upload_to_s3(global_rankings, GLOBAL_RANKINGS_FILE)
     for tournament_id, tounament_ranking in generate_tournament_rankings(tournaments):
-        save_locally(tounament_ranking, "%s%s.json" % (RANKINGS_DIR, tournament_id))
+        # save_locally(tounament_ranking, "%s%s.json" % (RANKINGS_DIR, tournament_id))
         upload_to_s3(tounament_ranking, "%s%s.json" % (RANKINGS_DIR, tournament_id))

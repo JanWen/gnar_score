@@ -1,4 +1,4 @@
-from chalicelib.elo import calculate_elo, get_elo_cutoff
+from chalicelib.elo import calculate_elo
 from chalicelib.tournaments import Tournaments
 import statistics
 import os
@@ -98,7 +98,6 @@ def elodiff_prediction_distribution():
     plt.savefig(results_dir + "/games_per_elodiff.png")
     #plt.show()
 tournaments = Tournaments()
-
 
 elo, back_test = calculate_elo(tournaments)
 print_elo(elo)

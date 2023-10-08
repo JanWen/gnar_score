@@ -2,7 +2,7 @@ from chalicelib.tournaments import Tournaments
 from chalicelib.generate_rankings import teams_by_elo, get_tournament_teams
 from chalicelib.elo import calculate_elo
 from datetime import datetime
-TOURNAMENT_ID = "110574243270525539"
+TOURNAMENT_ID = "110535609415063567"
 
 
 tournaments = Tournaments()

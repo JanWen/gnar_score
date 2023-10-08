@@ -2,13 +2,34 @@
 https://lolglobalpowerrankings.devpost.com/
 https://docs.google.com/document/d/1wFRehKMJkkRR5zyjEZyaVL9H3ZbhP7_wP0FBE5ID40c/edit#heading=h.2xoljw88prx
 
+# 
+
+
 ELO system enrichen by findings from machine learning models.
 
-HOW TO TEST AN ELO SYSTEM
+# HOW TO TEST AN ELO SYSTEM
 
+## Predictability
 - elo system is not a predictive model, it is not supposed to predict failures or upsets, it is supposed to reflact them
+-  consider
 - predictive power can still be used to verify basic functionality of an elo system
--
+Out of the 2488 matches included in the dataset, with this elo system 50% of matches have an elo difference of less then 103. In all these matches, blue side has a wr of 55%. 
+In all matches with an elo diff greater then 103, blue side has a wr of 75%.
+In all red side favoured matches with an elo diff greater then 103, the blue side win rate is 31%.
+total games 2488
+half_match_cutoff 103
+
+EVEN MATCHES WR 0.55 1248
+bluefav_matches WR 0.75 667
+redfav_matches WR 0.31 569
+
+These win rates / elo difference are consitent with what is observed in other rating systems used by FIDE USCF.
+
+
+### Match Based Elo
+
+
+
 
 IDEA: Update elo not per game but per match with increasing importance acording to games in a match
 win bo5 
