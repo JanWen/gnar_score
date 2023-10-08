@@ -26,13 +26,17 @@ class Team:
     def json(self):
         main_league = self.get_main_league()
         league_name = get_league_name(main_league)
+        elo_ratio = get_league_elo_ratio(league_name)
+        elo = round(self.elo * elo_ratio)
+        if elo_ratio == 0 or elo == 0:
+            print(f"WARNING: {self.team_name} has no elo ratio for {league_name}")
         return {
                 "team_id": self.id,
                 "team_code": self.code,
                 "team_name": self.team_name,
                 "rank": self.rank,
                 "matches": self.matches,
-                "elo": round(self.elo) *  get_league_elo_ratio(league_name),
+                "elo": elo,
                 # "elo_ratio":,
                 "league": league_name,
             }

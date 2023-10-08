@@ -40,7 +40,6 @@ class Team():
         log.info(f"{self.name} team kill {self.kills}|{opponent.kills}")
 
 
-    
     def get_scaling_bonus(self, steps=None):
         return 0
 

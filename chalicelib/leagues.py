@@ -10,11 +10,10 @@ league_dict = {
     "major_west": [ "LEC","LCS"],
     "minor": ["CBLOL", "LCL", "LCO", "LJL", "LLA", "PCS", "TCL", "VCS"],
     "challenger": ["LCK Challengers", "EMEA Masters", "LCS Challengers Qualifiers", "LCS Challengers"],
-    "regional": ["Ultraliga", "Prime League", "College Championship", "All-Star Event", "La Ligue FranÃ§aise", "NLC", "Elite Series", "Liga Portuguesa", "PG Nationals", "SuperLiga", "Hitpoint Masters", "Esports Balkan League", "Greek Legends League", "Arabian League", "LCK Academy", "LJL Academy", "CBLOL Academy", "North Regional League", "South Regional League", "TFT Rising Legends"]
+    "regional": ["Ultraliga", "Prime League", "College Championship", "All-Star Event", "La Ligue FranÃ§aise", "NLC", "Elite Series", "Liga Portuguesa", "PG Nationals", "SuperLiga", "Hitpoint Masters", "Esports Balkan League", "Greek Legends League", "Arabian League", "LCK Academy", "LJL Academy", "CBLOL Academy", "North Regional League", "South Regional League", "TFT Rising Legends"],
+    "UNKNOWN": ["UNKNOWN"],
 }
 
-def get_leagues():
-    return leagues_data
 
 region_elo_ratio = {
     "international": 1.0, #TODO why is this needed?
@@ -22,7 +21,8 @@ region_elo_ratio = {
     "major_west": 0.9,
     "minor": 0.7,
     "challenger": 0.5,
-    "regional": 0.3
+    "regional": 0.3,
+    "UNKNOWN": 0.3,
 }
 
 points_mapping = {
@@ -31,8 +31,13 @@ points_mapping = {
     "major_west": 70,
     "minor": 60,
     "challenger": 40,
-    "regional": 20
+    "regional": 20,
+    "UNKNOWN": 20,
 }
+
+def get_leagues():
+    return leagues_data
+
 
 def get_league_elo_ratio(league_name):
     try:

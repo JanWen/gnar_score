@@ -11,7 +11,7 @@ from chalicelib.team import Team
 
 BASE_ELO = 1000
 K_FACTOR = 50
-DAYS_LIMIT = 180
+DAYS_LIMIT = 360
 
 
 class Elo:
@@ -99,11 +99,11 @@ def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now()):
 
     for tournament, league_match in tournaments.yield_matches():
         league_id = tournament["leagueId"]
-        if tournament_id and tournament["id"] != tournament_id:
+        if tournament_id and (tournament["id"] == tournament_id):
             break
         tournament_start_date = datetime.strptime(tournament["startDate"], "%Y-%m-%d")
         days_since = (startDate- tournament_start_date).days
-        if days_since > DAYS_LIMIT:
+        if days_since > DAYS_LIMIT or tournament_start_date > startDate:
             continue
 
         blue_team = league_match["teams"][0]
@@ -115,7 +115,7 @@ def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now()):
         red_game_wins = red_team["result"]["gameWins"]
         if blue_team["side"] != "blue":
             raise "FUCKING SHITBALL"
-        try: # todo some chinese teams are not in the teams.json file
+        try: #TODO some chinese teams are not in the teams.json file
             blue_elo = elo[blue_id].elo
             red_elo = elo[red_id].elo
         except KeyError as e:

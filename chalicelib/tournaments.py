@@ -4,10 +4,13 @@ import json
 class Tournaments():
     def __init__(self):
         print("WARNING LOADING TOUNRAMNETS DATA (LARGE MEMORY FOOTPRINT)")
-        self.data = json.load(get_s3_file("esports-data/tournaments"))
+        json_data = get_s3_file("esports-data/tournaments")
+
+        
+        self.data = sorted(json.load(json_data), key=lambda item: item["startDate"])
     
     def yield_matches(self):
-        for tournament in self.data:
+        for tournament in self.data: # Reverse order so we get the latest tournaments last
             for stage in tournament["stages"]:
                 for section in stage["sections"]:
                     for match in section["matches"]:

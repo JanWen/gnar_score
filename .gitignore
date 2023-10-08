@@ -11,4 +11,5 @@ games
 terraform.*
 data
 chalicelib/esport-data/
+chalicelib/rankings/
 # *.json

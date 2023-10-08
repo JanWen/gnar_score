@@ -4,6 +4,7 @@ from chalicelib.const import RANKINGS_BUCKET, RANKINGS_DIR, GLOBAL_RANKINGS_FILE
 from chalicelib.aws import s3
 from chalicelib.tournaments import Tournaments
 import json
+from datetime import datetime
 
 def save_locally(json_data, file_name):
     with open("chalicelib/"+file_name, "w") as json_file:
@@ -34,7 +35,8 @@ def generate_global_rankings(tournaments):
 
 def generate_tournament_rankings(tournaments):
     for tournament in tournaments.data:
-        elo, _ = calculate_elo(tournaments, tournament["id"])
+        tournament_start_date = datetime.strptime(tournament["startDate"], "%Y-%m-%d")
+        elo, _ = calculate_elo(tournaments, tournament["id"], tournament_start_date)
         teams_sorted = teams_by_elo(elo)
         teams_in_tournament = list(get_tournament_teams(tournament))
         teams_sorted = [team for team in teams_sorted if team.id in teams_in_tournament]
