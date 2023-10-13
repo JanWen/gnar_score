@@ -3,6 +3,7 @@ import logging, json
 from chalicelib.aws import s3_client
 from chalicelib.const import RANKINGS_BUCKET, GLOBAL_RANKINGS_FILE
 from chalicelib.generate_rankings import generate_rankings
+from chalicelib.esports import teams_data
 
 log = logging.getLogger(__name__)
 
@@ -97,3 +98,14 @@ def team_rankings():
     
     return {"error": "Please provide team_ids query param (comma separated list of team ids)"}
 
+
+@app.route('/teams', cors=True)
+def team_rankings():
+    return teams_data
+
+@app.route('/tournaments', cors=True)
+def team_rankings():
+    tournaments = None
+    with open("chalicelib/esports-data/tournaments_ids.json", "r") as json_file:
+        tournaments = json.load(json_file)
+    return tournaments

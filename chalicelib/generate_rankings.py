@@ -1,5 +1,4 @@
 from chalicelib.elo import calculate_elo
-from chalicelib.esports import get_tournaments_data
 from chalicelib.const import RANKINGS_BUCKET, RANKINGS_DIR, GLOBAL_RANKINGS_FILE
 from chalicelib.aws import s3
 from chalicelib.tournaments import Tournaments
@@ -43,8 +42,7 @@ def generate_tournament_rankings(tournaments):
         rankings = list(team.json() for team in teams_sorted)
         yield tournament["id"], rankings
     
-def generate_rankings():
-    tournaments = Tournaments()
+def generate_rankings(tournaments):
     global_rankings = generate_global_rankings(tournaments)
     upload_to_s3(global_rankings, GLOBAL_RANKINGS_FILE)
     for tournament_id, tounament_ranking in generate_tournament_rankings(tournaments):

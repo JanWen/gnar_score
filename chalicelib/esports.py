@@ -32,5 +32,4 @@ def get_s3_file(file_name):
        print(f"Failed to download {file_name}")
 
 teams_data = json.load(get_s3_file("esports-data/teams"))
-leagues_data = json.load(open("chalicelib/esports-data/leagues.json", "r"))
-
+leagues_data = json.load(get_s3_file("esports-data/leagues"))
