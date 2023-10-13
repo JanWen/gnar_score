@@ -1,3 +1,2 @@
 requests==2.31.0
-seaborn==0.13.0
 urllib3<2 # https://urllib3.readthedocs.io/en/stable/v2-migration-guide.html#importerror-cannot-import-name-default-ciphers-from-urllib3-util-ssl

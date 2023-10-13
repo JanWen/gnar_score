@@ -2,17 +2,21 @@
 https://lolglobalpowerrankings.devpost.com/
 https://docs.google.com/document/d/1wFRehKMJkkRR5zyjEZyaVL9H3ZbhP7_wP0FBE5ID40c/edit#heading=h.2xoljw88prx
 
-# 
+# ATHENA DATA
+https://docs.google.com/document/d/14uhbMUYb7cR_Hg6UWjlAgnN-hSy0ymhz19-_A6eidxI/edit
 
+# Motivation
+
+- intersting use case for data analasys
+- complex, dynamic system
+- long time fan of league and lol esports
 
 ELO system enrichen by findings from machine learning models.
 
 # HOW TO TEST AN ELO SYSTEM
 
 ## Predictability
-- elo system is not a predictive model, it is not supposed to predict failures or upsets, it is supposed to reflact them
--  consider
-- predictive power can still be used to verify basic functionality of an elo system
+
 Out of the 2488 matches included in the dataset, with this elo system 50% of matches have an elo difference of less then 103. In all these matches, blue side has a wr of 55%. 
 In all matches with an elo diff greater then 103, blue side has a wr of 75%.
 In all red side favoured matches with an elo diff greater then 103, the blue side win rate is 31%.
@@ -25,9 +29,39 @@ redfav_matches WR 0.31 569
 
 These win rates / elo difference are consitent with what is observed in other rating systems used by FIDE USCF.
 
+### Limitations
+
+- elo system is not a predictive model, it is not supposed to predict failures or upsets, it is supposed to reflact them
+-  consider player injury
+- predictive power can still be used to verify basic functionality of an elo system
 
 ### Match Based Elo
+Problem:
+- difference in preparation between matches and games in a match
+- difference of importance depending on  nr of matches
 
+Base elo on match performance:
+elo adapt for the score of specific match results
+
+
+# Enhancing Prediciton from ELO model
+
+
+# Analizing Statistical Indicators
+First Blood win percentage
+base first blood win perc
+team frist blood win perc
+team total wr
+- MOst statistical indicators are not very useful 
+- compare to other statistical indicators
+
+## Modeling the Game
+- modeling the games systems at a high level,
+  gameflow and comback systems -> comback systems result for difference in time based on
+  skill level
+- use reinforcement learning
+    https://www.youtube.com/watch?v=bD6V3rcr_54
+    https://www.andrew.cmu.edu/course/10-403/slides/aws_gym_tutorial.pdf
 
 
 

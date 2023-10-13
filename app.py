@@ -39,7 +39,7 @@ def rank_teams(teams_sorted):
         yield team
 
 
-@app.route('/global_rankings')
+@app.route('/global_rankings', cors=True)
 def global_rankings():
     """
     Global rankings - get current top X teams globally
@@ -58,7 +58,7 @@ def global_rankings():
         rank_teams(data)
     )[:number_of_teams]
 
-@app.route('/tournament_rankings/{tournament_id}')
+@app.route('/tournament_rankings/{tournament_id}', cors=True)
 def tournament_rankings(tournament_id):
     """
     Tournament rankings - get team rankings for a given tournament
@@ -74,7 +74,7 @@ def tournament_rankings(tournament_id):
         rank_teams(data)
     )
 
-@app.route('/team_rankings')
+@app.route('/team_rankings', cors=True)
 def team_rankings():
     """
     Get ranking for a list of teams
