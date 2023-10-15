@@ -2,8 +2,10 @@
 # Create First Blood View
 ```sql
 CREATE OR REPLACE VIEW lol.first_blood as
-
-select min(gametime) as gametime, platformgameid, killerteamid, winningteam
+select
+  min(gametime) as gametime,
+  platformgameid,
+  killerteamid
 from lol.games
 where eventtype = 'champion_kill'
 group by platformgameid, killerteamid, winningteam
@@ -22,7 +24,6 @@ where eventtype = 'game_end'
 CREATE OR REPLACE VIEW lol.first_blood_wins as
 SELECT * FROM "lol"."first_blood"
 INNER JOIN lol.wins ON lol.wins.platformgameid=lol.first_blood.platformgameid
-limit 10;
 ```
 
 # Red/Blue WR Stats
@@ -54,12 +55,16 @@ RedFbWr = 0.4736004456292524
 
 # First Blood by Team
 ```sql
-select name, avg(gametime) as avg_baron_kill, count(*) as games_no, min(gametime) as min_baron_kill_time
-from lol.first_blood as g, lol.team_games as tg, lol.teams as t
-where g.platformgameid = tg.platformgameid
-  and killerteamid = side
-  and teamid = team_id
-group by name
--- having count(*) > 10
-order by 2 asc
+SELECT
+    team_id,
+    name,
+    count(*) as Games,
+    sum(case when winningteam = side then 1 else 0 end) AS Wins,
+    sum(case when killerteamid = side then 1 else 0 end) as FirstBlood,
+    sum(case when killerteamid = side and killerteamid = winningteam then 1 else 0 end) as FirstBloodWins
+FROM "lol"."first_blood_wins"as fb, lol.team_games as tg, lol.teams as t
+where 
+    fb.platformgameid = tg.platformgameid
+    and teamid = team_id
+group by team_id, name
 ```

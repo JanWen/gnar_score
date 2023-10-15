@@ -34,6 +34,9 @@ CREATE EXTERNAL TABLE lol.`games`(
   `participant` bigint,
   `evolved` boolean,
   `wardtype` string,
+  `buildingtype` string,
+  `turretTier` string,
+  `teamid` bigint,
   `winningTeam` bigint,
   `position` struct<z:bigint,x:bigint>,
   `placer` bigint)

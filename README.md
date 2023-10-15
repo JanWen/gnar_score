@@ -1,6 +1,6 @@
 # GLOBAL POWER RANKINGS HACKATHON
 https://lolglobalpowerrankings.devpost.com/
-https://docs.google.com/document/d/1wFRehKMJkkRR5zyjEZyaVL9H3ZbhP7_wP0FBE5ID40c/edit#heading=h.2xoljw88prx
+https://docs.google.com/document/d/1wFRehKMJkkRR5zyjEZyaVL9H3ZbhP7_wP0FBE5ID40c
 
 # ATHENA DATA
 https://docs.google.com/document/d/14uhbMUYb7cR_Hg6UWjlAgnN-hSy0ymhz19-_A6eidxI/edit
@@ -51,6 +51,15 @@ elo adapt for the score of specific match results
 First Blood win percentage
 base first blood win perc
 team frist blood win perc
+
+Blue Team Base Winrate = 0.5284001981178801
+Blue Team With First Blood Winrate = 0.5305619585088626 
+
+red_winrate = 0.4715998018821199
+RedFbWr = 0.4736004456292524
+
+
+
 team total wr
 - MOst statistical indicators are not very useful 
 - compare to other statistical indicators
