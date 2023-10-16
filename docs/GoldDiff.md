@@ -31,10 +31,10 @@ SELECT
     name,
     count(*) as Games,
     sum(case when winningteam = side then 1 else 0 end) AS Wins,
-    sum(case when side = 100 and gold_diff > 100 then 1 else 0 end) AS BlueGoldAdv,
-    sum(case when side = 100 and gold_diff > 100 and winningteam = side  then 1 else 0 end) AS WinsBlueGoldAdv,
-    sum(case when side = 200 and gold_diff > -100 then 1 else 0 end) AS RedGoldAdv,
-    sum(case when side = 200 and gold_diff > 200 and winningteam = side  then 1 else 0 end) AS WinsRedGoldAdv
+    sum(case when side = 100 and gold_diff > 150 then 1 else 0 end) AS BlueGoldAdv,
+    sum(case when side = 100 and gold_diff > 150 and winningteam = side  then 1 else 0 end) AS WinsBlueGoldAdv,
+    sum(case when side = 200 and gold_diff > -150 then 1 else 0 end) AS RedGoldAdv,
+    sum(case when side = 200 and gold_diff > -150 and winningteam = side  then 1 else 0 end) AS WinsRedGoldAdv
 FROM "lol"."gold_diff"as fb, lol.team_games as tg, lol.teams as t
 where 
     fb.platformgameid = tg.platformgameid

@@ -5,15 +5,40 @@ https://docs.google.com/document/d/1wFRehKMJkkRR5zyjEZyaVL9H3ZbhP7_wP0FBE5ID40c
 # ATHENA DATA
 https://docs.google.com/document/d/14uhbMUYb7cR_Hg6UWjlAgnN-hSy0ymhz19-_A6eidxI/edit
 
-# Motivation
+#API URLS
+Prod URL: https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api
+Dev URL: https://hawoyft3p0.execute-api.eu-central-1.amazonaws.com/api/
 
-- intersting use case for data analasys
-- complex, dynamic system
-- long time fan of league and lol esports
+# Introduction
 
-ELO system enrichen by findings from machine learning models.
+This is an entry to the devpost power rankings hackathon 2023. I am a Software Engineer based in Berlin and have been a long time player of league and follower of it's esports scene. I have also always enjoyed discussion of the game from a technical and analytical view point and found it a great starting point for expanding my own knowledge of statistics and data analysis.
 
-# HOW TO TEST AN ELO SYSTEM
+THe combination of many micro gameplay with seemingly infinite variation and macro strategy and big picture decision make league legends and it's competitive environment and incredibly dynamic and complex environments for analysis.
+
+# Entry
+
+My Entry into this hackathon is in the form of an API. This API is available under 
+https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api where all the required endpoints are available. 
+The first 20 teams of the global rankings system can be fetched with the following curl command:
+curl --location 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/global_rankings?number_of_teams=20'
+
+# Tech Stack
+- Python and Chalice for writing the API
+- Terraform to configure required infrastructure 
+- AWS Lambda for hosting the API
+- S3 for accessing hackathon data and hosting data for the API
+- Athena for SQL queries
+
+Python was chosen because i was already familiar with the language and because it's good ecosystem and libraries for both api development and data science.
+Chalice is a Python library that allows us to easily deploy out code to AWS with lambda and API Gateway, using syntax that is similar to other common python api libraries like flask.
+
+
+# Elo System
+
+The rating system is implemented using an Elo system. The reason for this is the process directness and simplicity. While the specific formulas or parameters can differ between elo system, the most important part is that their purely result based systems. It makes no assumptions about which strategies, mid term goals or game play patters are preferable or desirable.  
+The attribution of points depends only on a teams ability to win, and nothing else. This approach is a convenient way to cut throught all the complexity and variance of a competitive game like league and easily derive and objective rating the accurate reflects relative strength base on past performance.  
+No doubt this is the reason these kinds of system are arcoss many compüetitive games and sports sucha as chess, teniss and fottball.
+# Testing The Elo System
 
 ## Predictability
 
@@ -55,9 +80,11 @@ team frist blood win perc
 Blue Team Base Winrate = 0.5284001981178801
 Blue Team With First Blood Winrate = 0.5305619585088626 
 
-red_winrate = 0.4715998018821199
-RedFbWr = 0.4736004456292524
+Red Team Base Winrate = 0.4715998018821199
+Blue Team WR With First Blood = 0.4736004456292524
 
+Basically no difference,
+diff per team not much different
 
 
 team total wr
