@@ -42,21 +42,31 @@ No doubt this is the reason these kinds of system are arcoss many compüetitive 
 
 ## Predictability
 
-Out of the 2488 matches included in the dataset, with this elo system 50% of matches have an elo difference of less then 103. In all these matches, blue side has a wr of 55%. 
+Out of the 2488 matches included in the dataset, with this elo system 50% of matches have an elo difference of less then 103. In all these matches, blue side has a win rate of 55%. 
 In all matches with an elo diff greater then 103, blue side has a wr of 75%.
 In all red side favoured matches with an elo diff greater then 103, the blue side win rate is 31%.
+
+The cutoff of 103 for even matched is picked as the point where half of all matches have an elo difference lower then this value.
+
 total games 2488
 half_match_cutoff 103
 
+There are a total of 1248 "even" matches where the elo difference between the two teams is less then 103. 
 EVEN MATCHES WR 0.55 1248
+in those matches, the blue side has a win rate of 55%
+
+Out of the 600 matches with a elo difference of over 103, blue side has a 75% win rate when the 
+
+
 bluefav_matches WR 0.75 667
 redfav_matches WR 0.31 569
+
 
 These win rates / elo difference are consitent with what is observed in other rating systems used by FIDE USCF.
 
 ### Limitations
 
-- elo system is not a predictive model, it is not supposed to predict failures or upsets, it is supposed to reflact them
+- elo system is not a predictive model, it is not supposed to predict failures or upsets, it is supposed to reflect them
 -  consider player injury
 - predictive power can still be used to verify basic functionality of an elo system
 

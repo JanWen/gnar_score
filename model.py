@@ -19,8 +19,8 @@ class LateGameTeam(Team):
         return steps-10
 
 
-class Model():
-    def __init__(self):
+class Match():
+    def __init__(self, blue_team, red_team):
         self.blue_team = Team("blue")
         self.red_team = Team("red")
         self.steps = 0
@@ -76,10 +76,11 @@ class Model():
 
 
 winners = []
+blue_team = Team("blue")
+red_team = Team("red")
 for i in range(1000):
-    model = Model()
+    model = Match(blue_team, red_team)
     winners.append(model.run())
-
 
 blue_win = [winner for winner in winners if winner == "blue"]
 red_win = [winner for winner in winners if winner == "red"]

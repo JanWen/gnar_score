@@ -19,6 +19,13 @@ class Elo:
         self.elo = {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
         self.back_test = {}
 
+    def update_team_elo(self, team_id, expected_score, win):
+        if win:
+            self.elo[team_id].elo = self.elo[team_id].elo + K_FACTOR*(1-expected_score)
+        else:
+            self.elo[team_id].elo = self.elo[team_id].elo + K_FACTOR*(0-expected_score)
+
+
     def update_elo(
             self,
             blue_team,

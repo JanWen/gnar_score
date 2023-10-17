@@ -16,8 +16,8 @@ def get_league(league_id):
 
 
 def get_tournaments_data(tournaments):
-    for t in tournaments:
-        name = None
+    for t in tournaments.data:
+        name = t["name"]
         league_name = get_league(t["leagueId"])
         if league_name and not t["name"].startswith(league_name):
             name = league_name + " " + t["name"]
@@ -27,7 +27,7 @@ def get_tournaments_data(tournaments):
         }
 
 with open("chalicelib/esports-data/tournaments_ids.json", "w") as json_file:
-    json.dump(get_tournaments_data(tournaments), json_file)
+    json.dump(list(get_tournaments_data(tournaments)), json_file)
 
 print("Generating rankings.json")
-# generate_rankings(tournaments)
+generate_rankings(tournaments)
