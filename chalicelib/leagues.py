@@ -10,7 +10,7 @@ league_dict = {
     "major_west": [ "LEC","LCS"],
     "minor": ["LLA", "PCS", "EMEA Masters"],
     "challenger": ["LCK Challengers", "LCS Challengers Qualifiers", "LCS Challengers"],
-    "regional": ["VCS", "TCL", "LJL", "LCO", "LCL", "CBLOL","Ultraliga", "Prime League", "College Championship", "All-Star Event", "La Ligue FranÃ§aise", "NLC", "Elite Series", "Liga Portuguesa", "PG Nationals", "SuperLiga", "Hitpoint Masters", "Esports Balkan League", "Greek Legends League", "Arabian League", "LCK Academy", "LJL Academy", "CBLOL Academy", "North Regional League", "South Regional League", "TFT Rising Legends"],
+    "regional": ["VCS", "TCL", "LJL", "LCO", "LCL", "CBLOL","Ultraliga", "Prime League", "College Championship", "All-Star Event", "La Ligue Française", "NLC", "Elite Series", "Liga Portuguesa", "PG Nationals", "SuperLiga", "Hitpoint Masters", "Esports Balkan League", "Greek Legends League", "Arabian League", "LCK Academy", "LJL Academy", "CBLOL Academy", "North Regional League", "South Regional League", "TFT Rising Legends"],
     "UNKNOWN": ["UNKNOWN"],
 }
 

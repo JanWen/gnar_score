@@ -2,8 +2,10 @@ from chalicelib.elo import calculate_elo
 from chalicelib.tournaments import Tournaments
 import statistics
 import os
+import json
 import matplotlib.pyplot as plt
 from datetime import datetime
+from chalicelib.generate_rankings import generate_global_rankings
 
 
 # current date and time
@@ -41,9 +43,7 @@ def print_elo(elo):
         f.write("MEDIAN ELO: %d \n" % statistics.median([i[1].elo for i in elo.items()]))
         f.write("MAX ELO: %d \n" % max([i[1].elo for i in elo.items()]))
         f.write("\n")
-        for _, team in sorted(elo.items(), key=lambda item: item[1].elo):
-            if not team.games:
-                continue
+        for _, team in sorted(elo.items(), key=lambda item: -1*item[1].elo):
             f.write(str(team) + "\n", )
 
 def print_backtest(back_test, even_match_cutoff):
@@ -106,4 +106,8 @@ half_match_cutoff = get_elo_cutoff(back_test, 0.5)
 print("half_match_cutoff", half_match_cutoff)
 print_backtest(back_test, half_match_cutoff)
 team_elodiff(elo)
+
+global_rankings = generate_global_rankings(elo)
+with open(results_dir + "/global_ranking.json", "w", encoding="utf-8") as f:
+    json.dump(global_rankings, f, indent=4)
 elodiff_prediction_distribution()

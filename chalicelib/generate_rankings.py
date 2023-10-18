@@ -27,8 +27,7 @@ def get_tournament_teams(tournament):
                     for team in match["teams"]:
                         yield team["id"]
 
-def generate_global_rankings(tournaments):
-    elo, _ = calculate_elo(tournaments)
+def generate_global_rankings(elo):
     rankings = list(i.json() for i in teams_by_elo(elo))
     return rankings    
 
@@ -41,9 +40,10 @@ def generate_tournament_rankings(tournaments):
         teams_sorted = [team for team in teams_sorted if team.id in teams_in_tournament]
         rankings = list(team.json() for team in teams_sorted)
         yield tournament["id"], rankings
-    
+
 def generate_rankings(tournaments):
-    global_rankings = generate_global_rankings(tournaments)
+    elo, _ = calculate_elo(tournaments)
+    global_rankings = generate_global_rankings(elo)
     upload_to_s3(global_rankings, GLOBAL_RANKINGS_FILE)
     for tournament_id, tounament_ranking in generate_tournament_rankings(tournaments):
         # save_locally(tounament_ranking, "%s%s.json" % (RANKINGS_DIR, tournament_id))

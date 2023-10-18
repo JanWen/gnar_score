@@ -79,9 +79,6 @@ Base elo on match performance:
 elo adapt for the score of specific match results
 
 
-# Enhancing Prediciton from ELO model
-
-
 # Analizing Statistical Indicators
 First Blood win percentage
 base first blood win perc
@@ -109,6 +106,8 @@ team total wr
     https://www.youtube.com/watch?v=bD6V3rcr_54
     https://www.andrew.cmu.edu/course/10-403/slides/aws_gym_tutorial.pdf
 
+
+# Enhancing Prediciton from ELO model
 
 
 IDEA: Update elo not per game but per match with increasing importance acording to games in a match

@@ -6,7 +6,6 @@ class Team:
     def __init__(self, elo_tuple):
         self.id = elo_tuple[0]
         self.elo = elo_tuple[1]
-        self.games = 0
         self.matches = 0
         self.rank = 0
         self.leagues = []
@@ -50,4 +49,4 @@ class Team:
         return self.__str__()
     
     def __str__(self) -> str:
-        return f"{self.team_name} {self.elo} {self.games} {self.get_main_league()}"
+        return f"{self.team_name} {self.elo} {self.matches} {self.get_main_league()}"

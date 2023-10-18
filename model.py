@@ -2,6 +2,9 @@ import random
 import logging
 from chalicelib.models.team import Team, NoShutdownTeam
 from chalicelib.models.logger import log
+from chalicelib.elo import Elo
+from chalicelib.models.logger import log
+
 
 
 class EarlyGameTeam(Team):
@@ -78,9 +81,51 @@ class Match():
 winners = []
 blue_team = Team("blue")
 red_team = Team("red")
+
+team_ids = [
+    Team("10"), 
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+]
+
+elo = Elo(team_ids)
 for i in range(1000):
+    blue_id = random.choice(team_ids)
+    red_id = random.choice(team_ids)
     model = Match(blue_team, red_team)
-    winners.append(model.run())
+    winning_team = model.run()
+    blue_team = {
+        "id": blue_id,
+        "result": {
+            "outcome": "win" if winning_team == "blue" else "loss",
+            "gameWins": 1 if winning_team == "blue" else 0,
+        }
+    }
+    red_team = {
+        "id": red_id,
+        "result": {
+            "outcome": "win" if winning_team == "red" else "loss",
+            "gameWins": 1 if winning_team == "red" else 0,
+        }
+    }
+    log.info("ELO_LOG: Elo before update")
+    log.info(f"ELO_LOG: Blue team {blue_team} {elo.elo[blue_id].elo}")
+    log.info(f"ELO_LOG: Red team {red_team} {elo.elo[red_id].elo}")
+
+    elo.update_elo(blue_team, red_team, "league_id")
+
+    log.info("ELO_LOG: Elo after update")
+    log.info(f"ELO_LOG: Blue team {blue_team} {elo.elo[blue_id].elo}")
+    log.info(f"ELO_LOG: Red team {red_team} {elo.elo[red_id].elo}")
+    winners.append(winning_team)
 
 blue_win = [winner for winner in winners if winner == "blue"]
 red_win = [winner for winner in winners if winner == "red"]
