@@ -7,7 +7,7 @@ select
     min(teams[1].totalgold) as blue_gold,
     min(teams[2].totalgold) as red_gold
 from lol.games
-where eventtype = 'stats_update' and gametime > 900000
+where eventtype = 'stats_update' and gametime > 600000
 group by platformgameid
 ```
 
@@ -25,6 +25,27 @@ FROM "lol"."team_gold"
 INNER JOIN lol.wins ON lol.wins.platformgameid=lol.team_gold.platformgameid
 ```
 
+# Advantages Per Side
+```sql
+SELECT
+    side,
+    count(*) as games,
+    sum(case when gold_diff > 100 and side = 100 then 1 else 0 end) AS BlueGamesWithAdv,
+    sum(case when gold_diff < 100 and side = 200 then 1 else 0 end) AS RedGamesWithAdv,
+
+    sum(case when gold_diff > 100 and winningTeam = 100 and side = 100 then 1 else 0 end) AS BlueWinWithAdv,
+    sum(case when gold_diff > 100 and winningTeam = 200 and side = 100 then 1 else 0 end) AS BlueLossWithAdv,
+
+    sum(case when gold_diff < 100 and winningTeam = 200 and side = 200 then 1 else 0 end) AS RedWinWithAdv,
+    sum(case when gold_diff < 100 and winningTeam = 100 and side = 200 then 1 else 0 end) AS RedLossWithAdv
+FROM "lol"."gold_diff"as fb, lol.team_games as tg
+where 
+    fb.platformgameid = tg.platformgameid
+group by side
+```
+
+
+# Advantages Per Team
 ```sql
 SELECT
     team_id,

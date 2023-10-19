@@ -15,9 +15,9 @@ DAYS_LIMIT = 180
 
 
 class Elo:
-    def __init__(self, team_ids=None) -> None:
-        if team_ids:
-            self.elo = {team_id:Team((team_id,BASE_ELO)) for team_id in team_ids}
+    def __init__(self, teams=None) -> None:
+        if teams:
+            self.elo = {team.id:team for team in teams}
         else:
             self.elo = {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
         self.back_test = {}

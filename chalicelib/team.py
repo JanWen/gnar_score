@@ -1,14 +1,18 @@
 from chalicelib.esports import teams_data
 from chalicelib.leagues import get_league_name, get_league_elo_ratio
-
+import random
+from chalicelib.models.logger import log
 
 class Team:
     def __init__(self, elo_tuple):
         self.id = elo_tuple[0]
+        self.name = self.id
         self.elo = elo_tuple[1]
         self.matches = 0
         self.rank = 0
         self.leagues = []
+        self.kills = 0
+        self.play_penalty = 0
         self.team_info = [team for team in teams_data if team["team_id"] == self.id]
         if len(self.team_info):
             self.team_name = self.team_info[0]["name"]
@@ -50,3 +54,40 @@ class Team:
     
     def __str__(self) -> str:
         return f"{self.team_name} {self.elo} {self.matches} {self.get_main_league()}"
+    
+
+
+    # fucntions for model
+    def roll_for_play(self, opponent, steps=None):
+        bonus = self.get_scaling_bonus(steps)
+        play_roll = random.randint(0,100) + bonus - opponent.kills + self.kills
+        if self.play_penalty > 0:
+            play_roll -= 20
+
+        if play_roll > 50:
+            self.roll_for_kills(opponent)
+            self.play_penalty = 2
+        elif random.randint(0,100) > 70: # roll for counterplay
+            opponent.roll_for_kills(self)
+
+
+    def roll_for_kills(self, opponent):
+        """
+        3. Team that makes play rolls for kills
+        
+        """
+        kill_roll = round(random.random())
+        #skirmush_bonus
+        if round(random.random()*0.3):
+            kill_roll += round(random.random()*(self.steps / 10))
+        if kill_roll > 5:
+            kill_roll = 5
+        #shutdown bonus
+        if opponent.kills - self.kills > 3:
+            kill_roll += round((opponent.kills - self.kills)/3)
+        self.kills += kill_roll
+        log.info(f"{self.name} team kill {self.kills}|{opponent.kills}")
+
+
+    def get_scaling_bonus(self, steps=None):
+        return 0

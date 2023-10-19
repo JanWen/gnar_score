@@ -36,8 +36,8 @@ Chalice is a Python library that allows us to easily deploy out code to AWS with
 # Elo System
 
 The rating system is implemented using an Elo system. The reason for this is the process directness and simplicity. While the specific formulas or parameters can differ between elo system, the most important part is that their purely result based systems. It makes no assumptions about which strategies, mid term goals or game play patters are preferable or desirable.  
-The attribution of points depends only on a teams ability to win, and nothing else. This approach is a convenient way to cut throught all the complexity and variance of a competitive game like league and easily derive and objective rating the accurate reflects relative strength base on past performance.  
-No doubt this is the reason these kinds of system are arcoss many compüetitive games and sports sucha as chess, teniss and fottball.
+The attribution of points depends only on a teams ability to win, and nothing else. This approach is a convenient way to cut through all the complexity and variance of a competitive game like league and easily derive and objective rating the accurate reflects relative strength base on past performance.  
+No doubt this is the reason these kinds of system are across many competitive games and sports such as chess, tennis and football.
 # Testing The Elo System
 
 ## Predictability
@@ -62,7 +62,7 @@ bluefav_matches WR 0.75 667
 redfav_matches WR 0.31 569
 
 
-These win rates / elo difference are consitent with what is observed in other rating systems used by FIDE USCF.
+These win rates / elo difference are consistent with what is observed in other rating systems used by FIDE USCF.
 
 ### Limitations
 
@@ -86,12 +86,34 @@ team frist blood win perc
 
 Blue Team Base Winrate = 0.5284001981178801
 Blue Team With First Blood Winrate = 0.5305619585088626 
-
 Red Team Base Winrate = 0.4715998018821199
-Blue Team WR With First Blood = 0.4736004456292524
+Red Team WR With First Blood = 0.4736004456292524
 
 Basically no difference,
 diff per team not much different
+
+
+## 100 Gold Difference @15 mins
+total_games = 25195
+
+games_with_blue_adv = 13241
+blue_win_with_adv = 10025
+blue_loss_with_adv = 3216
+blue_wr_with_adv = 0.75711
+
+
+games_with_red_adv = 11950
+red_win_with_adv = 8661
+red_loss_with_adv = 3289
+red_wr_with_adv = 0.72476
+
+
+
+- small gold diff
+- much better indicator then first tower or kill (that actually should give way more gold?)
+- better because it is compounded statistical indicator, it is the result of all the other actions being played out, and tradeoffs between different plays and event is evened out through the games systems into a mor useful statistical indicator
+- how much does it have to do with being a statistic taken later in the game?
+- how does it compare to 10 min?
 
 
 team total wr
