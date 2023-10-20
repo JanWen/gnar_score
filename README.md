@@ -3,17 +3,31 @@ https://lolglobalpowerrankings.devpost.com/
 https://docs.google.com/document/d/1wFRehKMJkkRR5zyjEZyaVL9H3ZbhP7_wP0FBE5ID40c
 
 # ATHENA DATA
-https://docs.google.com/document/d/14uhbMUYb7cR_Hg6UWjlAgnN-hSy0ymhz19-_A6eidxI/edit
+https://docs.google.com/document/d/14uhbMUYb7cR_Hg6UWjlAgnN-hSy0ymhz19-_A6eidxI/
 
 #API URLS
 Prod URL: https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api
 Dev URL: https://hawoyft3p0.execute-api.eu-central-1.amazonaws.com/api/
 
+
+
+Index
+- Intro
+- building simple elo model
+- trying simple machine learning prediction
+- explanation why machine leanring prediction poor
+- exploration of more complex systemic indocators
+- idk lol?
+
+Problem is difference between predicting live and predicting ahead of time?
+can u use eval from live predcitoin as a performance indicator for team rankings? how?
+
 # Introduction
 
-This is an entry to the devpost power rankings hackathon 2023. I am a Software Engineer based in Berlin and have been a long time player of league and follower of it's esports scene. I have also always enjoyed discussion of the game from a technical and analytical view point and found it a great starting point for expanding my own knowledge of statistics and data analysis.
+This is an entry to the Devpost Power Rankings Hackathon 2023. I am a Software Engineer based in Berlin and have been a long time player of league and follower of it's esports scene. Discussion of the game from a technical and analytical view point and found it a great starting point for expanding my own knowledge of statistics and data analysis.
 
-THe combination of many micro gameplay with seemingly infinite variation and macro strategy and big picture decision make league legends and it's competitive environment and incredibly dynamic and complex environments for analysis.
+
+League of legends offers a lot of variations in micro decision and skill expression through fast, reactive gameplay and cool combos, and also big picture, strategic thinking and organized team work which make it a fascinating environment to analyze.
 
 # Entry
 
@@ -29,15 +43,20 @@ curl --location 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/g
 - S3 for accessing hackathon data and hosting data for the API
 - Athena for SQL queries
 
-Python was chosen because i was already familiar with the language and because it's good ecosystem and libraries for both api development and data science.
+Python was chosen because my familiarity with the language and because it's ecosystem offers good libraries for both api development and data science tasks.
 Chalice is a Python library that allows us to easily deploy out code to AWS with lambda and API Gateway, using syntax that is similar to other common python api libraries like flask.
-
+The Athena data prepared 
 
 # Elo System
 
 The rating system is implemented using an Elo system. The reason for this is the process directness and simplicity. While the specific formulas or parameters can differ between elo system, the most important part is that their purely result based systems. It makes no assumptions about which strategies, mid term goals or game play patters are preferable or desirable.  
 The attribution of points depends only on a teams ability to win, and nothing else. This approach is a convenient way to cut through all the complexity and variance of a competitive game like league and easily derive and objective rating the accurate reflects relative strength base on past performance.  
 No doubt this is the reason these kinds of system are across many competitive games and sports such as chess, tennis and football.
+
+# K-Factor Scaling
+- account for importance of different kinds of matches
+- scaling based on bo5 nr
+
 # Testing The Elo System
 
 ## Predictability
@@ -45,23 +64,16 @@ No doubt this is the reason these kinds of system are across many competitive ga
 Out of the 2488 matches included in the dataset, with this elo system 50% of matches have an elo difference of less then 103. In all these matches, blue side has a win rate of 55%. 
 In all matches with an elo diff greater then 103, blue side has a wr of 75%.
 In all red side favoured matches with an elo diff greater then 103, the blue side win rate is 31%.
-
 The cutoff of 103 for even matched is picked as the point where half of all matches have an elo difference lower then this value.
 
-total games 2488
-half_match_cutoff 103
-
+total games 2478
+half_match_cutoff 50
 There are a total of 1248 "even" matches where the elo difference between the two teams is less then 103. 
-EVEN MATCHES WR 0.55 1248
+EVEN MATCHES WR 0.54 1250
 in those matches, the blue side has a win rate of 55%
-
 Out of the 600 matches with a elo difference of over 103, blue side has a 75% win rate when the 
-
-
-bluefav_matches WR 0.75 667
-redfav_matches WR 0.31 569
-
-
+bluefav_matches WR 0.77 657
+redfav_matches WR 0.31 554
 These win rates / elo difference are consistent with what is observed in other rating systems used by FIDE USCF.
 
 ### Limitations
@@ -116,6 +128,19 @@ red_wr_with_adv = 0.72476
 - how does it compare to 10 min?
 
 
+## 100 Gold Difference @10 mins
+
+games_with_blue_adv = 12703
+blue_win_with_adv = 9158
+blue_loss_with_adv = 3545
+blue_wr_with_adv = 0.72093
+
+
+games_with_red_adv = 12482
+red_win_with_adv = 8329
+red_loss_with_adv = 4153
+red_wr_with_adv = 0.66728
+
 team total wr
 - MOst statistical indicators are not very useful 
 - compare to other statistical indicators
@@ -132,7 +157,7 @@ team total wr
 # Enhancing Prediciton from ELO model
 
 
-IDEA: Update elo not per game but per match with increasing importance acording to games in a match
+IDEA: Update elo not per game but per match with increasing importance according to games in a match
 win bo5 
 boX are good numerical indicator of match importance since it's unlikely you'd want important titles decided by a small nr of matches
 how do we make this so the code isnt shit :thinking_face:

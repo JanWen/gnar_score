@@ -52,7 +52,7 @@ class Match():
     
     def step(self):
         """
-        1. Timestep for each minute
+        1. Time step for each minute
         """
         log.info(f"Step {self.steps}")
         
@@ -66,7 +66,6 @@ class Match():
             self.blue_team.play_penalty -= 1
         if self.red_team.play_penalty > 0:
             self.red_team.play_penalty -= 1
-        
         self.steps += 1
 
     
@@ -83,7 +82,6 @@ class Match():
 
 winners = []
 
-
 teams = [
     EarlyGameTeam(("11", 1000)),
     EarlyGameTeam(("12", 1000)),
@@ -99,10 +97,12 @@ teams = [
 winners_teams = {
     team.id: 0 for team in teams
 }
-
+matches_teams = {
+    team.id: 0 for team in teams
+}
 
 elo = Elo(teams)
-for i in range(10000):
+for i in range(1000):
     blue_team = random.choice(teams)
     red_team = random.choice(teams)
     while red_team.id == blue_team.id:
@@ -138,7 +138,12 @@ for i in range(10000):
         winners_teams[blue_id] += 1
     if winning_team == "red":
         winners_teams[red_id] += 1
+
+    blue_team.reset_stats()
+    red_team.reset_stats()
     winners.append(winning_team)
+    matches_teams[blue_id] += 1
+    matches_teams[red_id] += 1
 
 blue_win = [winner for winner in winners if winner == "blue"]
 red_win = [winner for winner in winners if winner == "red"]
@@ -150,6 +155,8 @@ print(f"Total {len(winners)}")
 for i,j in elo.elo.items():
     print(i,j.elo)
 
+# for i,j in winners_teams.items():
+#     print(i,j)
 
-for i,j in winners_teams.items():
-    print(i,j)
+# for i,j in matches_teams.items():
+#     print(i,j)

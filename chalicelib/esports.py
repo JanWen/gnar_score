@@ -23,7 +23,7 @@ def get_s3_file(file_name):
    if response.status_code == 200:
        try:
            gzip_bytes = BytesIO(response.content)
-           return gzip.GzipFile(fileobj=gzip_bytes, mode="rb")
+           return gzip.open(gzip_bytes, mode="rt", encoding="utf-8")
            
        except Exception as e:
            print("Error:", e)
@@ -33,3 +33,4 @@ def get_s3_file(file_name):
 
 teams_data = json.load(get_s3_file("esports-data/teams"))
 leagues_data = json.load(get_s3_file("esports-data/leagues"))
+print("uhm")

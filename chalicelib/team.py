@@ -44,6 +44,10 @@ class Team:
                 "league": league_name,
             }
     
+    def reset_stats(self):
+        self.kills = 0
+        self.play_penalty = 0
+    
     def get_main_league(self):
         if len(self.leagues) == 0:
             return "UNKNOWN"
@@ -77,7 +81,7 @@ class Team:
         
         """
         kill_roll = round(random.random())
-        #skirmush_bonus
+        #skirmish_bonus
         if round(random.random()*0.3):
             kill_roll += round(random.random()*(self.steps / 10))
         if kill_roll > 5:

@@ -2,7 +2,7 @@ CREATE EXTERNAL TABLE lol.`games`(
   `eventtime` string,
   `eventtype` string,
   `platformgameid` string,
-  `participants` array<struct<keystoneid:bigint,hashedip:string,teamid:bigint,participantid:bigint,championname:string,accountid:bigint,abgroup:string,perks:array<struct<perkids:array<int>,perkstyle:bigint,perksubstyle:bigint>>,summonername:string,summonerlevel:bigint,magicpenetrationpercent:bigint,primaryabilityresource:bigint,cooldownreduction:bigint,spellvamp:bigint,lifesteal:bigint,magicpenetrationpercentbonus:bigint,magicpenetration:bigint,primaryabilityresourceregen:bigint,healthmax:bigint,position:struct<z:bigint,x:bigint>,magicresist:bigint,primaryabilityresourcemax:bigint,armorpenetrationpercentbonus:bigint,armorpenetrationpercent:bigint,attackdamage:bigint,ccreduction:bigint,currentgold:bigint,healthregen:bigint,attackspeed:bigint,xp:bigint,armor:bigint,level:bigint,armorpenetration:bigint,totalgold:bigint,health:bigint,abilitypower:bigint,stats:array<struct<value:float,name:string>>,goldpersecond:bigint>>,
+  `participants` array<struct<shutdownValue:float,keystoneid:bigint,hashedip:string,teamid:bigint,participantid:bigint,championname:string,accountid:bigint,abgroup:string,perks:array<struct<perkids:array<int>,perkstyle:bigint,perksubstyle:bigint>>,summonername:string,summonerlevel:bigint,magicpenetrationpercent:bigint,primaryabilityresource:bigint,cooldownreduction:bigint,spellvamp:bigint,lifesteal:bigint,magicpenetrationpercentbonus:bigint,magicpenetration:bigint,primaryabilityresourceregen:bigint,healthmax:bigint,position:struct<z:bigint,x:bigint>,magicresist:bigint,primaryabilityresourcemax:bigint,armorpenetrationpercentbonus:bigint,armorpenetrationpercent:bigint,attackdamage:bigint,ccreduction:bigint,currentgold:bigint,healthregen:bigint,attackspeed:bigint,xp:bigint,armor:bigint,level:bigint,armorpenetration:bigint,totalgold:bigint,health:bigint,abilitypower:bigint,stats:array<struct<value:float,name:string>>,goldpersecond:bigint>>,
   `sequenceindex` bigint,
   `assistants` array<int>,
   `monstertype` string,
@@ -38,6 +38,8 @@ CREATE EXTERNAL TABLE lol.`games`(
   `turretTier` string,
   `teamid` bigint,
   `winningTeam` bigint,
+  `bounty` bigint,
+  `shutdownBounty` bigint,
   `position` struct<z:bigint,x:bigint>,
   `placer` bigint)
 ROW FORMAT SERDE

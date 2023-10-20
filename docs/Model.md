@@ -35,3 +35,6 @@ pentalties need to be sin wave-ish
 
 game time good indicator of skill
 people say low skill players dont know "how to close out the game", however i believe it stems from the built in comback systems. a low-skilled player in a position where he is head and trying to close out the game is likely to make a mistake, which will be punished much harder then mistakes at other stages/games states. A high-skill player finding himself with a significant advantage will avoid losing the bounty and simply end the game.
+
+
+How to implement agency= 
