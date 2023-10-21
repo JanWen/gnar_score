@@ -99,7 +99,9 @@ def elodiff_prediction_distribution():
     #plt.show()
 tournaments = Tournaments()
 
-elo, back_test = calculate_elo(tournaments)
+K_FACTOR = 50
+elo, back_test, msr = calculate_elo(tournaments, k_factor=K_FACTOR)
+print("MSR", msr)
 print_elo(elo)
 
 half_match_cutoff = get_elo_cutoff(back_test, 0.5)

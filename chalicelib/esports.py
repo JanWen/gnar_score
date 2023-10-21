@@ -33,4 +33,3 @@ def get_s3_file(file_name):
 
 teams_data = json.load(get_s3_file("esports-data/teams"))
 leagues_data = json.load(get_s3_file("esports-data/leagues"))
-print("uhm")

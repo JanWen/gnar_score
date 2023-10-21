@@ -1,8 +1,8 @@
 # load all the team ids from the json file and initialize a dictionary with each
 # teams elo set to 1000
 
-from chalicelib.esports import teams_data
-from chalicelib.leagues import league_points #TODO CHECK IF NEEDE
+from chalicelib.esports import teams_data, leagues_data
+from chalicelib.leagues import league_points #TODO CHECK IF NEEDED
 from datetime import datetime
 from chalicelib.team import Team
 
@@ -37,12 +37,54 @@ def adjust_k_factor_tennis(k_factor, elo):
         return 10*k_factor
 
 
+def get_tournament_league(tournament_id):
+    for league in leagues_data:
+        for tournaments in league["tournaments"]:
+            if tournaments["id"] == tournament_id:
+                return league["slug"]
+            
+
+def get_start_elo(league_slug):
+    if league_slug == "lpl" or league_slug == "lck":
+        return 1500
+    if league_slug == "lcs" or league_slug == "lec":
+        return 1200
+    if not league_slug:
+        return 800
+    return BASE_ELO
+
+def best_of_mod(k_factor, blue_game_wins, red_game_wins):
+    if blue_game_wins + red_game_wins < 3:
+        return 0.8*k_factor
+    elif blue_game_wins + red_game_wins < 5:
+        return 0.9*k_factor
+    return k_factor
+    
+def tournament_mod(tournament, stage, k_factor):
+    tournament_slug = tournament["slug"].lower()
+    if tournament_slug.startswith("worlds") or tournament_slug.startswith("msi"):
+        k_factor = 1.5*k_factor
+    elif "spring" in tournament_slug or "summer" in tournament_slug:
+        k_factor = 0.9*k_factor
+    else:
+        k_factor = 0.8*k_factor
+
+    if stage.lower() in ["playoffs", "knockouts", "promotion series", "promotion"]:
+        pass
+    elif stage.lower() in ["groups", "regular season"]:
+        k_factor = 0.9*k_factor
+    elif stage.lower() in ["play in groups", "play_in_knockouts", "play_in_knockouts"]:
+        k_factor = 0.8*k_factor
+    else:
+        k_factor = 0.7*k_factor
+    return k_factor
+
 class Elo:
     def __init__(self, teams=None, kfactor=K_FACTOR) -> None:
         if teams:
             self.elo = {team.id:team for team in teams}
         else:
-            self.elo = {team["team_id"]:Team((team["team_id"],BASE_ELO)) for team in teams_data}
+            self.elo = {}
         self.back_test = {}
         self.squared_errors = []
 
@@ -53,12 +95,8 @@ class Elo:
             league_id,
             stage=None,
             tournament=None,
+            k_factor=K_FACTOR,
     ):
-        
-
-        
-        
-        
         stage = stage["name"].lower()
         blue_win = blue_team["result"]["outcome"] == "win"
         red_win = red_team["result"]["outcome"] == "win"
@@ -66,70 +104,56 @@ class Elo:
         red_id = red_team["id"]
         blue_game_wins = blue_team["result"]["gameWins"]
         red_game_wins = red_team["result"]["gameWins"]
-        k_factor = K_FACTOR
+
+        league = get_tournament_league(tournament["id"])
+        start_elo = BASE_ELO
+        # start_elo = get_start_elo(league)
         
+        if blue_team["id"] not in self.elo:
+            self.elo[blue_team["id"]] = Team((blue_team["id"],start_elo))
+        if red_team["id"] not in self.elo:
+            self.elo[red_team["id"]] = Team((red_team["id"],start_elo))
         
         try: #TODO some chinese teams are not in the teams.json file
             blue_elo = self.elo[blue_id].elo
             red_elo = self.elo[red_id].elo
         except KeyError as e:
             return
+
+        # k_factor = tournament_mod(tournament, stage, k_factor)
+        # k_factor = best_of_mod(k_factor, blue_game_wins, red_game_wins)
         
-
-
-        tournament_slug = tournament["slug"].lower()
-        if tournament_slug.startswith("worlds") or tournament_slug.startswith("msi"):
-            k_factor = 1.5*k_factor
-        elif "spring" in tournament_slug or "summer" in tournament_slug:
-            k_factor = 0.9*k_factor
-        else:
-            k_factor = 0.8*k_factor
-
-        # if stage.lower() in ["playoffs", "knockouts", "promotion series", "promotion"]:
-        #     pass
-        # elif stage.lower() in ["groups", "regular season"]:
-        #     k_factor = 0.9*k_factor
-        # elif stage.lower() in ["play in groups", "play_in_knockouts", "play_in_knockouts"]:
-        #     k_factor = 0.8*k_factor
-        # else:
-        #     k_factor = 0.7*k_factor
-
-
-        # if blue_game_wins + red_game_wins < 3:
-        #     k_factor = 0.8*k_factor
-        # elif blue_game_wins + red_game_wins < 5:
-        #     k_factor = 0.9*k_factor
         
+        expected_score_blue = 1/(1+10**((red_elo-blue_elo)/480))
+        expected_score_red = 1/(1+10**((blue_elo-red_elo)/480))
 
-        expected_score_blue = 1/(1+10**((red_elo-blue_elo)/400))
-        expected_score_red = 1/(1+10**((blue_elo-red_elo)/400))
 
         blue_kfactor = adjust_k_factor(k_factor, blue_elo)
         red_kfactor = adjust_k_factor(k_factor, red_elo)
 
-        # NEWBIE BONUS
-        newbie_bonus = 30
-        if self.elo[blue_id].matches < 5:
-            blue_kfactor += newbie_bonus
-        if self.elo[red_id].matches < 5:
-            red_kfactor += newbie_bonus
+        # # NEWBIE BONUS
+        # newbie_bonus = 20
+        # if self.elo[blue_id].matches < 10:
+        #     blue_kfactor += newbie_bonus
+        # if self.elo[red_id].matches < 10:
+        #     red_kfactor += newbie_bonus
+        
         squared_error = None
         if blue_win:
-            
             squared_error = (expected_score_blue-1)**2 + (expected_score_red-0)**2
             self.elo[blue_id].elo = blue_elo + (blue_kfactor*(1-expected_score_blue)
-                                        *(1+0.12*(blue_game_wins-red_game_wins))
+                                        # *(1+0.12*(blue_game_wins-red_game_wins))
                                     )
             self.elo[red_id].elo = red_elo + (red_kfactor*(0-expected_score_red)
-                                        *(1+0.12*(blue_game_wins-red_game_wins))
+                                        # *(1+0.12*(blue_game_wins-red_game_wins))
                                     )
         elif red_win:
             squared_error = (expected_score_blue-0)**2 + (expected_score_red-1)**2
             self.elo[blue_id].elo = blue_elo + (blue_kfactor*(0-expected_score_blue)
-                                         *(1+0.12*(red_game_wins-blue_game_wins))       
+                                        #  *(1+0.12*(red_game_wins-blue_game_wins))       
                                 )
             self.elo[red_id].elo = red_elo + (red_kfactor*(1-expected_score_red)
-                                         *(1+0.12*(red_game_wins-blue_game_wins))       
+                                        #  *(1+0.12*(red_game_wins-blue_game_wins))       
                                               )
         if squared_error:
             self.squared_errors.append(squared_error)
@@ -202,11 +226,8 @@ def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now(), k_f
             league_id,
             stage,
             tournament,
+            k_factor,
         )
-        
-    print("Square Error\n",K_FACTOR, sum(elo.squared_errors)/len(elo.squared_errors))
     
-    return elo.elo, elo.back_test
-
-
-
+    mean_squared_error = sum(elo.squared_errors)/len(elo.squared_errors)
+    return elo.elo, elo.back_test, mean_squared_error
