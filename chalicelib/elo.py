@@ -126,10 +126,9 @@ class Elo:
         
         expected_score_blue = 1/(1+10**((red_elo-blue_elo)/480))
         expected_score_red = 1/(1+10**((blue_elo-red_elo)/480))
-
-
         blue_kfactor = adjust_k_factor(k_factor, blue_elo)
         red_kfactor = adjust_k_factor(k_factor, red_elo)
+
 
         # # NEWBIE BONUS
         # newbie_bonus = 20
@@ -141,20 +140,17 @@ class Elo:
         squared_error = None
         if blue_win:
             squared_error = (expected_score_blue-1)**2 + (expected_score_red-0)**2
-            self.elo[blue_id].elo = blue_elo + (blue_kfactor*(1-expected_score_blue)
-                                        # *(1+0.12*(blue_game_wins-red_game_wins))
-                                    )
-            self.elo[red_id].elo = red_elo + (red_kfactor*(0-expected_score_red)
-                                        # *(1+0.12*(blue_game_wins-red_game_wins))
-                                    )
+            # blue_kfactor = blue_kfactor * (1+0.12*(blue_game_wins-red_game_wins))
+            # red_kfactor = red_kfactor * (1+0.12*(blue_game_wins-red_game_wins))
+
+            self.elo[blue_id].elo = blue_elo + (blue_kfactor*(1-expected_score_blue))
+            self.elo[red_id].elo = red_elo + (red_kfactor*(0-expected_score_red))
         elif red_win:
             squared_error = (expected_score_blue-0)**2 + (expected_score_red-1)**2
-            self.elo[blue_id].elo = blue_elo + (blue_kfactor*(0-expected_score_blue)
-                                        #  *(1+0.12*(red_game_wins-blue_game_wins))       
-                                )
-            self.elo[red_id].elo = red_elo + (red_kfactor*(1-expected_score_red)
-                                        #  *(1+0.12*(red_game_wins-blue_game_wins))       
-                                              )
+            # blue_kfactor = blue_kfactor * (1+0.12*(red_game_wins-blue_game_wins))
+            # red_kfactor = red_kfactor * (1+0.12*(red_game_wins-blue_game_wins))
+            self.elo[blue_id].elo = blue_elo + (blue_kfactor*(0-expected_score_blue))
+            self.elo[red_id].elo = red_elo + (red_kfactor*(1-expected_score_red))
         if squared_error:
             self.squared_errors.append(squared_error)
         # back_test_elo()
