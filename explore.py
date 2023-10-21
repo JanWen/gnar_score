@@ -54,7 +54,7 @@ example_elo()
 
 def get_stages():
 
-    tournaments_data = json.load(open("esports-data/tournaments.json", "r"))
+    tournaments_data = json.load(open("chalicelib/esports-data/tournaments.json", "r"))
 
     print("Tournaments:" + str(len(tournaments_data)))
 
@@ -62,13 +62,14 @@ def get_stages():
     matches = 0
     stages = []
     for tournament in tournaments_data:
+        print(tournament["slug"])
         for stage in tournament["stages"]:
+            print("\t" + stage["name"])
             stages.append(stage["name"])
     for i in set(stages):
         print(i)
 
-ESPORTSTMNT05:1831534
-
+get_stages()
 def download_gzip_and_write_to_json(file_name):
    # If file already exists locally do not re-download game
 #    if os.path.isfile(f"{file_name}.json"):

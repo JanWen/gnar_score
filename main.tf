@@ -17,7 +17,6 @@ module "main" {
   iam_user_name = aws_iam_user.power_rankings.name
 }
 
-
 # TARGET s3 bucket
 resource "aws_s3_bucket" "power_rankings_hackathon" {
   bucket = "power-rankings-hackathon"

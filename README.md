@@ -14,10 +14,35 @@ Dev URL: https://hawoyft3p0.execute-api.eu-central-1.amazonaws.com/api/
 Index
 - Intro
 - building simple elo model
+ - k-factor tuning
 - trying simple machine learning prediction
 - explanation why machine leanring prediction poor
 - exploration of more complex systemic indocators
 - idk lol?
+
+# WIN stats per Side
+Total wins 25255
+Blue wins 13352
+Red wins 11903
+Blue win rate 0.5286873886359137
+
+# First Blood win Stats
+Blue wins 13350
+Red wins 11903
+Blue first blood 12886
+Red first blood 12325
+Blue first blood win 8241
+Red first blood win 7234
+Blue first blood win rate 0.6395312742511252
+Red first blood win rate 0.5869371196754564
+Average game time 318835.30970577756
+
+
+| Side | Total Game | Wins  | First Blood WR | First Tower WR | First Inhib WR |
+|------|------------|-------|----------------|----------------|----------------|
+| Blue | 25255      | 13352 |    0.63953     | 0.69689        | 0.94578        |
+| Red  | 25255      | 11903 |    0.58693     | 0.67633        | 0.94511        |
+
 
 Problem is difference between predicting live and predicting ahead of time?
 can u use eval from live predcitoin as a performance indicator for team rankings? how?
@@ -52,6 +77,11 @@ The Athena data prepared
 The rating system is implemented using an Elo system. The reason for this is the process directness and simplicity. While the specific formulas or parameters can differ between elo system, the most important part is that their purely result based systems. It makes no assumptions about which strategies, mid term goals or game play patters are preferable or desirable.  
 The attribution of points depends only on a teams ability to win, and nothing else. This approach is a convenient way to cut through all the complexity and variance of a competitive game like league and easily derive and objective rating the accurate reflects relative strength base on past performance.  
 No doubt this is the reason these kinds of system are across many competitive games and sports such as chess, tennis and football.
+
+K_Factor = 32
+K_Factor_Scaling = 
+expected_score_blue = 1/(1+10**((red_elo-blue_elo)/480))
+Elo = Old_elo + (K_FACTOR*(1-expected_score_blue)*blue_game_wins)
 
 # K-Factor Scaling
 - account for importance of different kinds of matches

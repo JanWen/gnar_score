@@ -68,3 +68,6 @@ where
     and teamid = team_id
 group by team_id, name
 ```
+
+
+# FIRST BLLOOD NEW
