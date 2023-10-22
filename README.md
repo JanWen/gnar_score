@@ -7,8 +7,8 @@ The PDF Version can be found [here](README.pdf).
 The video showcase of this entry can be be found (here)[youtube.com].
 ## Introduction
 
-This is an entry to the Devpost Power Rankings Hackathon 2023. I am a Software Engineer based in Berlin, Germany and have been a long time player of League of Legends and follower of it's esports scene.  
-League of legends offers a lot of variations in micro decision and skill expression through fast, reactive gameplay and cool combos, and also big picture, strategic thinking and organized team work which make it a fascinating environment to analyze.
+This is an entry to the Devpost Power Rankings Hackathon 2023. I am a IT Consultant based in Berlin, Germany and have been a long time player of League of Legends and follower of it's Esports scene.  
+The combination of micro decision and skill expression through fast, reactive gameplay and cool combos, and also big picture, strategic thinking and organized team work which make League of Legends a fascinating game to analyze.
 
 The GNAR(Gaussian Naive Adjusted Ranking)-Score is based on a Elo formula, whose predictive properties have been 
 improved using the output of a Gaussian Naive Bayes classifier trained on historical data.
