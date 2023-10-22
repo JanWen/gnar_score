@@ -1,0 +1,2612 @@
+[
+    {
+        "team_id": "99566404852189289",
+        "team_code": "JDG",
+        "team_name": "Beijing JDG Intel Esports Club",
+        "rank": 1,
+        "matches": 23,
+        "elo": 1555,
+        "league": "LPL"
+    },
+    {
+        "team_id": "100205573495116443",
+        "team_code": "GEN",
+        "team_name": "Gen.G",
+        "rank": 2,
+        "matches": 25,
+        "elo": 1462,
+        "league": "LCK"
+    },
+    {
+        "team_id": "99566404850008779",
+        "team_code": "LNG",
+        "team_name": "Suzhou LNG Esports",
+        "rank": 3,
+        "matches": 22,
+        "elo": 1391,
+        "league": "LPL"
+    },
+    {
+        "team_id": "99566404579461230",
+        "team_code": "KT",
+        "team_name": "kt Rolster",
+        "rank": 4,
+        "matches": 21,
+        "elo": 1340,
+        "league": "LCK"
+    },
+    {
+        "team_id": "99566404853854212",
+        "team_code": "BLG",
+        "team_name": "Bilibili Gaming Pingan Bank",
+        "rank": 5,
+        "matches": 27,
+        "elo": 1325,
+        "league": "LPL"
+    },
+    {
+        "team_id": "99566404853058754",
+        "team_code": "WBG",
+        "team_name": "WeiboGaming FAW AUDI",
+        "rank": 6,
+        "matches": 20,
+        "elo": 1267,
+        "league": "LPL"
+    },
+    {
+        "team_id": "98767991926151025",
+        "team_code": "G2",
+        "team_name": "G2 Esports",
+        "rank": 7,
+        "matches": 19,
+        "elo": 1238,
+        "league": "LEC"
+    },
+    {
+        "team_id": "98767991853197861",
+        "team_code": "T1",
+        "team_name": "T1",
+        "rank": 8,
+        "matches": 27,
+        "elo": 1172,
+        "league": "LCK"
+    },
+    {
+        "team_id": "99566404854685458",
+        "team_code": "TES",
+        "team_name": "TOP ESPORTS",
+        "rank": 9,
+        "matches": 20,
+        "elo": 1134,
+        "league": "LPL"
+    },
+    {
+        "team_id": "100205573496804586",
+        "team_code": "HLE",
+        "team_name": "Hanwha Life Esports",
+        "rank": 10,
+        "matches": 21,
+        "elo": 1123,
+        "league": "LCK"
+    },
+    {
+        "team_id": "99566404845279652",
+        "team_code": "UNKNOWN",
+        "team_name": "UNKNOWN",
+        "rank": 11,
+        "matches": 17,
+        "elo": 1113,
+        "league": "LPL"
+    },
+    {
+        "team_id": "98767991877340524",
+        "team_code": "C9",
+        "team_name": "Cloud9",
+        "rank": 12,
+        "matches": 25,
+        "elo": 1090,
+        "league": "LCS"
+    },
+    {
+        "team_id": "100725845018863243",
+        "team_code": "DK",
+        "team_name": "Dplus Kia",
+        "rank": 13,
+        "matches": 19,
+        "elo": 1081,
+        "league": "LCK"
+    },
+    {
+        "team_id": "106972778172351142",
+        "team_code": "NRG",
+        "team_name": "NRG",
+        "rank": 14,
+        "matches": 23,
+        "elo": 1073,
+        "league": "LCS"
+    },
+    {
+        "team_id": "98767991887166787",
+        "team_code": "UNKNOWN",
+        "team_name": "UNKNOWN",
+        "rank": 15,
+        "matches": 17,
+        "elo": 1037,
+        "league": "LPL"
+    },
+    {
+        "team_id": "98767991866488695",
+        "team_code": "FNC",
+        "team_name": "Fnatic",
+        "rank": 16,
+        "matches": 15,
+        "elo": 1027,
+        "league": "LEC"
+    },
+    {
+        "team_id": "98767991882270868",
+        "team_code": "EDG",
+        "team_name": "SHANGHAI EDWARD GAMING HYCAN",
+        "rank": 17,
+        "matches": 21,
+        "elo": 1021,
+        "league": "LPL"
+    },
+    {
+        "team_id": "99566404855553726",
+        "team_code": "FPX",
+        "team_name": "FunPlus Phoenix",
+        "rank": 18,
+        "matches": 16,
+        "elo": 1011,
+        "league": "LPL"
+    },
+    {
+        "team_id": "101388912914513220",
+        "team_code": "UNKNOWN",
+        "team_name": "UNKNOWN",
+        "rank": 19,
+        "matches": 18,
+        "elo": 991,
+        "league": "LPL"
+    },
+    {
+        "team_id": "104367068120825486",
+        "team_code": "PSG",
+        "team_name": "PSG Talon",
+        "rank": 20,
+        "matches": 24,
+        "elo": 986,
+        "league": "PCS"
+    },
+    {
+        "team_id": "98767991935149427",
+        "team_code": "R7",
+        "team_name": "Movistar R7",
+        "rank": 21,
+        "matches": 13,
+        "elo": 982,
+        "league": "LLA"
+    },
+    {
+        "team_id": "98926509885559666",
+        "team_code": "TL",
+        "team_name": "Team Liquid Honda",
+        "rank": 22,
+        "matches": 23,
+        "elo": 967,
+        "league": "LCS"
+    },
+    {
+        "team_id": "98767991892579754",
+        "team_code": "RNG",
+        "team_name": "Royal Never Give Up",
+        "rank": 23,
+        "matches": 17,
+        "elo": 954,
+        "league": "LPL"
+    },
+    {
+        "team_id": "109637393694097670",
+        "team_code": "TH",
+        "team_name": "Team Heretics",
+        "rank": 24,
+        "matches": 13,
+        "elo": 937,
+        "league": "LEC"
+    },
+    {
+        "team_id": "99294153824386385",
+        "team_code": "GG",
+        "team_name": "Golden Guardians",
+        "rank": 25,
+        "matches": 28,
+        "elo": 936,
+        "league": "LCS"
+    },
+    {
+        "team_id": "107563714667537640",
+        "team_code": "BDS",
+        "team_name": "Team BDS",
+        "rank": 26,
+        "matches": 14,
+        "elo": 912,
+        "league": "LEC"
+    },
+    {
+        "team_id": "107700199633958891",
+        "team_code": "CFO",
+        "team_name": "CTBC Flying Oyster",
+        "rank": 27,
+        "matches": 23,
+        "elo": 883,
+        "league": "PCS"
+    },
+    {
+        "team_id": "103461966951059521",
+        "team_code": "EG",
+        "team_name": "Evil Geniuses LG",
+        "rank": 28,
+        "matches": 21,
+        "elo": 883,
+        "league": "LCS"
+    },
+    {
+        "team_id": "106269804045322803",
+        "team_code": "BYG",
+        "team_name": "Beyond Gaming",
+        "rank": 29,
+        "matches": 22,
+        "elo": 880,
+        "league": "PCS"
+    },
+    {
+        "team_id": "99566404848691211",
+        "team_code": "IG",
+        "team_name": "Invictus Gaming",
+        "rank": 30,
+        "matches": 16,
+        "elo": 878,
+        "league": "LPL"
+    },
+    {
+        "team_id": "99566404585387054",
+        "team_code": "DRX",
+        "team_name": "DRX",
+        "rank": 31,
+        "matches": 19,
+        "elo": 857,
+        "league": "LCK"
+    },
+    {
+        "team_id": "98767991860392497",
+        "team_code": "TSM",
+        "team_name": "TSM",
+        "rank": 32,
+        "matches": 20,
+        "elo": 853,
+        "league": "LCS"
+    },
+    {
+        "team_id": "103461966965149786",
+        "team_code": "MAD",
+        "team_name": "MAD Lions",
+        "rank": 33,
+        "matches": 14,
+        "elo": 847,
+        "league": "LEC"
+    },
+    {
+        "team_id": "101383793572656373",
+        "team_code": "XL",
+        "team_name": "EXCEL",
+        "rank": 34,
+        "matches": 16,
+        "elo": 844,
+        "league": "LEC"
+    },
+    {
+        "team_id": "102747101565183056",
+        "team_code": "NS",
+        "team_name": "NongShim REDFORCE",
+        "rank": 35,
+        "matches": 18,
+        "elo": 833,
+        "league": "LCK"
+    },
+    {
+        "team_id": "101383793569248484",
+        "team_code": "AST",
+        "team_name": "Astralis",
+        "rank": 36,
+        "matches": 9,
+        "elo": 828,
+        "league": "LEC"
+    },
+    {
+        "team_id": "107760667929003738",
+        "team_code": "FAK",
+        "team_name": "Frank Esports",
+        "rank": 37,
+        "matches": 22,
+        "elo": 825,
+        "league": "PCS"
+    },
+    {
+        "team_id": "101388912911039804",
+        "team_code": "UNKNOWN",
+        "team_name": "UNKNOWN",
+        "rank": 38,
+        "matches": 16,
+        "elo": 817,
+        "league": "LPL"
+    },
+    {
+        "team_id": "104841890701948065",
+        "team_code": "EST",
+        "team_name": "Estral Esports",
+        "rank": 39,
+        "matches": 11,
+        "elo": 815,
+        "league": "LLA"
+    },
+    {
+        "team_id": "98926509892121852",
+        "team_code": "FLY",
+        "team_name": "FlyQuest",
+        "rank": 40,
+        "matches": 18,
+        "elo": 813,
+        "league": "LCS"
+    },
+    {
+        "team_id": "105505619546859895",
+        "team_code": "BRO",
+        "team_name": "OKSavingsBank BRION",
+        "rank": 41,
+        "matches": 18,
+        "elo": 807,
+        "league": "LCK"
+    },
+    {
+        "team_id": "100725845022060229",
+        "team_code": "LSB",
+        "team_name": "Liiv SANDBOX",
+        "rank": 42,
+        "matches": 18,
+        "elo": 794,
+        "league": "LCK"
+    },
+    {
+        "team_id": "103461966986776720",
+        "team_code": "UNKNOWN",
+        "team_name": "UNKNOWN",
+        "rank": 43,
+        "matches": 16,
+        "elo": 787,
+        "league": "LPL"
+    },
+    {
+        "team_id": "98767991930907107",
+        "team_code": "IMT",
+        "team_name": "Immortals Progressive",
+        "rank": 44,
+        "matches": 18,
+        "elo": 784,
+        "league": "LCS"
+    },
+    {
+        "team_id": "99566406490127625",
+        "team_code": "JT",
+        "team_name": "J Team",
+        "rank": 45,
+        "matches": 20,
+        "elo": 776,
+        "league": "PCS"
+    },
+    {
+        "team_id": "98926509883054987",
+        "team_code": "DIG",
+        "team_name": "Dignitas",
+        "rank": 46,
+        "matches": 21,
+        "elo": 775,
+        "league": "LCS"
+    },
+    {
+        "team_id": "101383793567806688",
+        "team_code": "SK",
+        "team_name": "SK Gaming",
+        "rank": 47,
+        "matches": 13,
+        "elo": 775,
+        "league": "LEC"
+    },
+    {
+        "team_id": "101383793574360315",
+        "team_code": "KOI",
+        "team_name": "KOI",
+        "rank": 48,
+        "matches": 11,
+        "elo": 771,
+        "league": "LEC"
+    },
+    {
+        "team_id": "99566404856367466",
+        "team_code": "UNKNOWN",
+        "team_name": "UNKNOWN",
+        "rank": 49,
+        "matches": 16,
+        "elo": 770,
+        "league": "LPL"
+    },
+    {
+        "team_id": "99566404847770461",
+        "team_code": "UNKNOWN",
+        "team_name": "UNKNOWN",
+        "rank": 50,
+        "matches": 16,
+        "elo": 763,
+        "league": "LPL"
+    },
+    {
+        "team_id": "107581284487120142",
+        "team_code": "6K",
+        "team_name": "Six Karma",
+        "rank": 51,
+        "matches": 10,
+        "elo": 742,
+        "league": "LLA"
+    },
+    {
+        "team_id": "99294153828264740",
+        "team_code": "100",
+        "team_name": "100 Thieves",
+        "rank": 52,
+        "matches": 20,
+        "elo": 739,
+        "league": "LCS"
+    },
+    {
+        "team_id": "99322214695067838",
+        "team_code": "VIT",
+        "team_name": "Team Vitality",
+        "rank": 53,
+        "matches": 9,
+        "elo": 723,
+        "league": "LEC"
+    },
+    {
+        "team_id": "107700204561086446",
+        "team_code": "DCG",
+        "team_name": "Deep Cross Gaming",
+        "rank": 54,
+        "matches": 21,
+        "elo": 722,
+        "league": "PCS"
+    },
+    {
+        "team_id": "99566404846951820",
+        "team_code": "LGD",
+        "team_name": "LGD GAMING",
+        "rank": 55,
+        "matches": 16,
+        "elo": 705,
+        "league": "LPL"
+    },
+    {
+        "team_id": "105550054006182911",
+        "team_code": "NS",
+        "team_name": "NONGSHIM ESPORTS ACADEMY",
+        "rank": 56,
+        "matches": 21,
+        "elo": 691,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "109981650516317055",
+        "team_code": "MIR",
+        "team_name": "Mirage Alliance",
+        "rank": 57,
+        "matches": 9,
+        "elo": 685,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "110428362822825796",
+        "team_code": "DSG",
+        "team_name": "Disguised",
+        "rank": 58,
+        "matches": 40,
+        "elo": 678,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "99566408358330419",
+        "team_code": "ISG",
+        "team_name": "Isurus",
+        "rank": 59,
+        "matches": 10,
+        "elo": 673,
+        "league": "LLA"
+    },
+    {
+        "team_id": "99566408562477641",
+        "team_code": "INF",
+        "team_name": "INFINITY",
+        "rank": 60,
+        "matches": 9,
+        "elo": 663,
+        "league": "LLA"
+    },
+    {
+        "team_id": "109692074894483834",
+        "team_code": "WP",
+        "team_name": "West Point Esports",
+        "rank": 61,
+        "matches": 18,
+        "elo": 663,
+        "league": "PCS"
+    },
+    {
+        "team_id": "109692071893352727",
+        "team_code": "HPS",
+        "team_name": "Hell Pigs",
+        "rank": 62,
+        "matches": 18,
+        "elo": 630,
+        "league": "PCS"
+    },
+    {
+        "team_id": "105550026570060790",
+        "team_code": "DK",
+        "team_name": "DK Challengers",
+        "rank": 63,
+        "matches": 22,
+        "elo": 624,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "99566404581868574",
+        "team_code": "KDF",
+        "team_name": "Kwangdong Freecs",
+        "rank": 64,
+        "matches": 18,
+        "elo": 622,
+        "league": "LCK"
+    },
+    {
+        "team_id": "106806773698472633",
+        "team_code": "AZE",
+        "team_name": "Team Aze",
+        "rank": 65,
+        "matches": 8,
+        "elo": 608,
+        "league": "LLA"
+    },
+    {
+        "team_id": "107580497041999074",
+        "team_code": "TA",
+        "team_name": "Team Ambition",
+        "rank": 66,
+        "matches": 10,
+        "elo": 597,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "103461966971048042",
+        "team_code": "EG",
+        "team_name": "Evil Geniuses Challengers",
+        "rank": 67,
+        "matches": 42,
+        "elo": 596,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "105550033967461806",
+        "team_code": "DRX",
+        "team_name": "DRX Challengers",
+        "rank": 68,
+        "matches": 22,
+        "elo": 591,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "109783149221216052",
+        "team_code": "LIT",
+        "team_name": "Lit Esports",
+        "rank": 69,
+        "matches": 7,
+        "elo": 586,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "99566405126602853",
+        "team_code": "FLY",
+        "team_name": "FlyQuest Challengers",
+        "rank": 70,
+        "matches": 40,
+        "elo": 584,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "110733870612047344",
+        "team_code": "CFY",
+        "team_name": "Team Coachify",
+        "rank": 71,
+        "matches": 5,
+        "elo": 575,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "107580483738977500",
+        "team_code": "WU",
+        "team_name": "Winthrop University",
+        "rank": 72,
+        "matches": 10,
+        "elo": 573,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "101383792559569368",
+        "team_code": "AK",
+        "team_name": "All Knights",
+        "rank": 73,
+        "matches": 7,
+        "elo": 573,
+        "league": "LLA"
+    },
+    {
+        "team_id": "108361552741927561",
+        "team_code": "FEAR",
+        "team_name": "Cincinnati Fear",
+        "rank": 74,
+        "matches": 40,
+        "elo": 570,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "105550049871017396",
+        "team_code": "KT",
+        "team_name": "kt Challengers",
+        "rank": 75,
+        "matches": 19,
+        "elo": 568,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "105550047979361273",
+        "team_code": "HLE",
+        "team_name": "HLE Challengers",
+        "rank": 76,
+        "matches": 21,
+        "elo": 538,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "110733864366329081",
+        "team_code": "TET",
+        "team_name": "Team E Turner",
+        "rank": 77,
+        "matches": 3,
+        "elo": 535,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "99566405124618295",
+        "team_code": "TL",
+        "team_name": "Team Liquid Honda Challengers",
+        "rank": 78,
+        "matches": 39,
+        "elo": 510,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "110534696811298545",
+        "team_code": "AMI",
+        "team_name": "Apex Mission Impossible",
+        "rank": 79,
+        "matches": 8,
+        "elo": 509,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "110733877357854829",
+        "team_code": "GHG",
+        "team_name": "Gentle Hearts Gaming",
+        "rank": 80,
+        "matches": 4,
+        "elo": 506,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "110534749775658790",
+        "team_code": "NPC",
+        "team_name": "The Cheese Chasers",
+        "rank": 81,
+        "matches": 4,
+        "elo": 504,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "107598699275015260",
+        "team_code": "LEV",
+        "team_name": "Leviat\u00e1n Esports",
+        "rank": 82,
+        "matches": 7,
+        "elo": 489,
+        "league": "LLA"
+    },
+    {
+        "team_id": "105536918475957734",
+        "team_code": "MCK",
+        "team_name": "Macko Esports",
+        "rank": 83,
+        "matches": 23,
+        "elo": 488,
+        "league": "PG Nationals"
+    },
+    {
+        "team_id": "110534741480867943",
+        "team_code": "TRV",
+        "team_name": "Teamless Revenge",
+        "rank": 84,
+        "matches": 6,
+        "elo": 484,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "106269859169658575",
+        "team_code": "IMP",
+        "team_name": "Impunity Esports",
+        "rank": 85,
+        "matches": 18,
+        "elo": 479,
+        "league": "PCS"
+    },
+    {
+        "team_id": "109981647134921596",
+        "team_code": "CCG",
+        "team_name": "CCG Esports",
+        "rank": 86,
+        "matches": 7,
+        "elo": 476,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "109981678167856017",
+        "team_code": "MRC",
+        "team_name": "Miracle",
+        "rank": 87,
+        "matches": 3,
+        "elo": 471,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "106857734387052095",
+        "team_code": "AOE",
+        "team_name": "AOE Gold",
+        "rank": 88,
+        "matches": 38,
+        "elo": 470,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "110534724851488577",
+        "team_code": "FROG",
+        "team_name": "Froggy Five",
+        "rank": 89,
+        "matches": 3,
+        "elo": 469,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "102235771678061291",
+        "team_code": "IW",
+        "team_name": "DenizBank \u0130stanbul Wildcats",
+        "rank": 90,
+        "matches": 22,
+        "elo": 468,
+        "league": "TCL"
+    },
+    {
+        "team_id": "105913238372341488",
+        "team_code": "WC",
+        "team_name": "Wildcard",
+        "rank": 91,
+        "matches": 39,
+        "elo": 466,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "110733889090164854",
+        "team_code": "ROTM",
+        "team_name": "Return of the Middlesticks",
+        "rank": 92,
+        "matches": 3,
+        "elo": 465,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "110534728305628996",
+        "team_code": "OLD",
+        "team_name": "Kelyx's Grandpa Gamers",
+        "rank": 93,
+        "matches": 6,
+        "elo": 463,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "110534714934488523",
+        "team_code": "CBG",
+        "team_name": "CB Gaming",
+        "rank": 94,
+        "matches": 5,
+        "elo": 454,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "110534751905120040",
+        "team_code": "YB",
+        "team_name": "Young Buffalos",
+        "rank": 95,
+        "matches": 2,
+        "elo": 445,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "108517492697602721",
+        "team_code": "DWT",
+        "team_name": "Dewish Team",
+        "rank": 96,
+        "matches": 18,
+        "elo": 445,
+        "league": "PCS"
+    },
+    {
+        "team_id": "110733881542862348",
+        "team_code": "COLD",
+        "team_name": "Cold Hearted",
+        "rank": 97,
+        "matches": 2,
+        "elo": 443,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "105550042327365041",
+        "team_code": "GEN",
+        "team_name": "Gen.G Global Academy",
+        "rank": 98,
+        "matches": 19,
+        "elo": 440,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "110534712174898632",
+        "team_code": "BOL",
+        "team_name": "Blue Otter",
+        "rank": 99,
+        "matches": 2,
+        "elo": 437,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "105559480124455983",
+        "team_code": "SKP",
+        "team_name": "SK Gaming Prime",
+        "rank": 100,
+        "matches": 27,
+        "elo": 430,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "110534732558665825",
+        "team_code": "KMD",
+        "team_name": "Komodo",
+        "rank": 101,
+        "matches": 5,
+        "elo": 427,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "105550036134585264",
+        "team_code": "BRO",
+        "team_name": "BRO Challengers",
+        "rank": 102,
+        "matches": 18,
+        "elo": 426,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "109674814051390025",
+        "team_code": "PMT",
+        "team_name": "Primate",
+        "rank": 103,
+        "matches": 21,
+        "elo": 424,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "105515219038427019",
+        "team_code": "KC",
+        "team_name": "Karmine Corp",
+        "rank": 104,
+        "matches": 27,
+        "elo": 414,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "103935468920814040",
+        "team_code": "GO",
+        "team_name": "Team GO",
+        "rank": 105,
+        "matches": 35,
+        "elo": 412,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "106827832203113865",
+        "team_code": "SHG",
+        "team_name": "SHG Academy",
+        "rank": 106,
+        "matches": 23,
+        "elo": 411,
+        "league": "LJL Academy"
+    },
+    {
+        "team_id": "106857761435870473",
+        "team_code": "SN",
+        "team_name": "Supernova",
+        "rank": 107,
+        "matches": 36,
+        "elo": 405,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "105593951536470384",
+        "team_code": "GTZ",
+        "team_name": "GTZ Esports",
+        "rank": 108,
+        "matches": 30,
+        "elo": 403,
+        "league": "Liga Portuguesa"
+    },
+    {
+        "team_id": "103877625775457850",
+        "team_code": "MRS",
+        "team_name": "Movistar Riders",
+        "rank": 109,
+        "matches": 29,
+        "elo": 403,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "98767991954244555",
+        "team_code": "GAM",
+        "team_name": "GAM Esports",
+        "rank": 110,
+        "matches": 18,
+        "elo": 403,
+        "league": "VCS"
+    },
+    {
+        "team_id": "107575082591536093",
+        "team_code": "EIQ",
+        "team_name": "Entropiq",
+        "rank": 111,
+        "matches": 23,
+        "elo": 402,
+        "league": "Hitpoint Masters"
+    },
+    {
+        "team_id": "107581759470356115",
+        "team_code": "SAP",
+        "team_name": "Saprissa Esports",
+        "rank": 112,
+        "matches": 21,
+        "elo": 400,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "105397404796640412",
+        "team_code": "LLL",
+        "team_name": "LOUD",
+        "rank": 113,
+        "matches": 23,
+        "elo": 399,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "110534700622694005",
+        "team_code": "APR",
+        "team_name": "Aporia",
+        "rank": 114,
+        "matches": 4,
+        "elo": 397,
+        "league": "LCS Challengers Qualifiers"
+    },
+    {
+        "team_id": "105550059790656435",
+        "team_code": "T1",
+        "team_name": "T1 Esports Academy",
+        "rank": 115,
+        "matches": 18,
+        "elo": 391,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "109669678317817381",
+        "team_code": "FUT",
+        "team_name": "FUT ESPORTS",
+        "rank": 116,
+        "matches": 24,
+        "elo": 390,
+        "league": "TCL"
+    },
+    {
+        "team_id": "100285330168091787",
+        "team_code": "DFM",
+        "team_name": "DetonatioN FocusMe",
+        "rank": 117,
+        "matches": 12,
+        "elo": 390,
+        "league": "LJL"
+    },
+    {
+        "team_id": "107565493716773932",
+        "team_code": "NTZ",
+        "team_name": "Nativz",
+        "rank": 118,
+        "matches": 23,
+        "elo": 386,
+        "league": "NLC"
+    },
+    {
+        "team_id": "105504044166670507",
+        "team_code": "USE",
+        "team_name": "Unicorns of Love Sexy Edition",
+        "rank": 119,
+        "matches": 28,
+        "elo": 381,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "102141671183409133",
+        "team_code": "MU",
+        "team_name": "Maryville University",
+        "rank": 120,
+        "matches": 38,
+        "elo": 380,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "107450819235010833",
+        "team_code": "BKR",
+        "team_name": "BK ROG Esports",
+        "rank": 121,
+        "matches": 30,
+        "elo": 379,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "105550024238752685",
+        "team_code": "KDF",
+        "team_name": "KDF Challengers",
+        "rank": 122,
+        "matches": 18,
+        "elo": 377,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "107581765633427097",
+        "team_code": "FUE",
+        "team_name": "Fuego",
+        "rank": 123,
+        "matches": 23,
+        "elo": 373,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "107597875833524424",
+        "team_code": "DIA",
+        "team_name": "Diamant Esports",
+        "rank": 124,
+        "matches": 23,
+        "elo": 370,
+        "league": "Esports Balkan League"
+    },
+    {
+        "team_id": "108352305932141947",
+        "team_code": "DSYR",
+        "team_name": "DSYRE",
+        "rank": 125,
+        "matches": 31,
+        "elo": 369,
+        "league": "PG Nationals"
+    },
+    {
+        "team_id": "105553606349477427",
+        "team_code": "Z10",
+        "team_name": "Zero Tenacity",
+        "rank": 126,
+        "matches": 20,
+        "elo": 369,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "109696073114910519",
+        "team_code": "ANB",
+        "team_name": "Anubis Gaming",
+        "rank": 127,
+        "matches": 24,
+        "elo": 368,
+        "league": "Arabian League"
+    },
+    {
+        "team_id": "102787200149928963",
+        "team_code": "WLG",
+        "team_name": "WLGaming Esports",
+        "rank": 128,
+        "matches": 24,
+        "elo": 368,
+        "league": "Greek Legends League"
+    },
+    {
+        "team_id": "99566408217955692",
+        "team_code": "PNG",
+        "team_name": "paiN Gaming",
+        "rank": 129,
+        "matches": 21,
+        "elo": 367,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "105520796734358045",
+        "team_code": "7AM",
+        "team_name": "Team 7AM",
+        "rank": 130,
+        "matches": 22,
+        "elo": 366,
+        "league": "Elite Series"
+    },
+    {
+        "team_id": "107467834753797729",
+        "team_code": "BSO",
+        "team_name": "Bisons",
+        "rank": 131,
+        "matches": 26,
+        "elo": 362,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "99566408356697119",
+        "team_code": "FG",
+        "team_name": "Furious Gaming",
+        "rank": 132,
+        "matches": 22,
+        "elo": 360,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "109800832177252614",
+        "team_code": "OAE",
+        "team_name": "Orbit Anonymo",
+        "rank": 133,
+        "matches": 26,
+        "elo": 358,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "105549998884468136",
+        "team_code": "PNG",
+        "team_name": "paiN Academy",
+        "rank": 134,
+        "matches": 20,
+        "elo": 356,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "105550051809743868",
+        "team_code": "LSB",
+        "team_name": "Liiv SANDBOX Youth",
+        "rank": 135,
+        "matches": 18,
+        "elo": 353,
+        "league": "LCK Challengers"
+    },
+    {
+        "team_id": "105550005698683818",
+        "team_code": "LBR",
+        "team_name": "Liberty Academy",
+        "rank": 136,
+        "matches": 20,
+        "elo": 352,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "107251295460371069",
+        "team_code": "TS",
+        "team_name": "Team Secret",
+        "rank": 137,
+        "matches": 17,
+        "elo": 351,
+        "league": "VCS"
+    },
+    {
+        "team_id": "105521706535388095",
+        "team_code": "ANO",
+        "team_name": "Anorthosis Famagusta Esports",
+        "rank": 138,
+        "matches": 30,
+        "elo": 351,
+        "league": "Greek Legends League"
+    },
+    {
+        "team_id": "106827827857159558",
+        "team_code": "V3",
+        "team_name": "V3 Academy",
+        "rank": 139,
+        "matches": 23,
+        "elo": 348,
+        "league": "LJL Academy"
+    },
+    {
+        "team_id": "103535282119620510",
+        "team_code": "SHG",
+        "team_name": "Fukuoka SoftBank HAWKS gaming",
+        "rank": 140,
+        "matches": 11,
+        "elo": 348,
+        "league": "LJL"
+    },
+    {
+        "team_id": "99566406332987990",
+        "team_code": "CHF",
+        "team_name": "The Chiefs",
+        "rank": 141,
+        "matches": 14,
+        "elo": 346,
+        "league": "LCO"
+    },
+    {
+        "team_id": "107598805167594304",
+        "team_code": "WAP",
+        "team_name": "Wap Esports",
+        "rank": 142,
+        "matches": 22,
+        "elo": 346,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "107597870621708485",
+        "team_code": "CWE",
+        "team_name": "Cyber Wolves Esports",
+        "rank": 143,
+        "matches": 17,
+        "elo": 345,
+        "league": "Esports Balkan League"
+    },
+    {
+        "team_id": "105549995617170853",
+        "team_code": "KBM",
+        "team_name": "KaBuM! Academy",
+        "rank": 144,
+        "matches": 20,
+        "elo": 345,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "108361575122450254",
+        "team_code": "TACO",
+        "team_name": "Team Fish Taco",
+        "rank": 145,
+        "matches": 36,
+        "elo": 342,
+        "league": "LCS Challengers"
+    },
+    {
+        "team_id": "109642680932009857",
+        "team_code": "NORD",
+        "team_name": "Nord Esports",
+        "rank": 146,
+        "matches": 24,
+        "elo": 342,
+        "league": "NLC"
+    },
+    {
+        "team_id": "109696092218588987",
+        "team_code": "NGX",
+        "team_name": "Nigma Galaxy",
+        "rank": 147,
+        "matches": 24,
+        "elo": 341,
+        "league": "Arabian League"
+    },
+    {
+        "team_id": "107251245690956393",
+        "team_code": "SGB",
+        "team_name": "Saigon Buffalo Esports",
+        "rank": 148,
+        "matches": 17,
+        "elo": 341,
+        "league": "VCS"
+    },
+    {
+        "team_id": "109695910533747910",
+        "team_code": "RAAD",
+        "team_name": "RAAD",
+        "rank": 149,
+        "matches": 16,
+        "elo": 340,
+        "league": "Arabian League"
+    },
+    {
+        "team_id": "105536643047197642",
+        "team_code": "NASR",
+        "team_name": "NASR ESPORTS",
+        "rank": 150,
+        "matches": 23,
+        "elo": 337,
+        "league": "TCL"
+    },
+    {
+        "team_id": "107581689894520368",
+        "team_code": "BAN",
+        "team_name": "Bandits Gaming",
+        "rank": 151,
+        "matches": 21,
+        "elo": 336,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "108573042084687884",
+        "team_code": "TW",
+        "team_name": "TEAM WHALES",
+        "rank": 152,
+        "matches": 16,
+        "elo": 334,
+        "league": "VCS"
+    },
+    {
+        "team_id": "102787200126663579",
+        "team_code": "GIA",
+        "team_name": "Giants",
+        "rank": 153,
+        "matches": 20,
+        "elo": 333,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "107416483509696259",
+        "team_code": "EINS",
+        "team_name": "Eintracht Spandau",
+        "rank": 154,
+        "matches": 20,
+        "elo": 332,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "99566408221961358",
+        "team_code": "RED",
+        "team_name": "RED Kalunga",
+        "rank": 155,
+        "matches": 21,
+        "elo": 331,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "102787200136756173",
+        "team_code": "BIG",
+        "team_name": "Berlin International Gaming",
+        "rank": 156,
+        "matches": 20,
+        "elo": 331,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "107598878262940546",
+        "team_code": "MVG",
+        "team_name": "Malvinas Rise",
+        "rank": 157,
+        "matches": 21,
+        "elo": 331,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "101428372605353526",
+        "team_code": "SG",
+        "team_name": "Sengoku Gaming",
+        "rank": 158,
+        "matches": 11,
+        "elo": 331,
+        "league": "LJL"
+    },
+    {
+        "team_id": "107456994699991548",
+        "team_code": "ATE",
+        "team_name": "Atleta Esport",
+        "rank": 159,
+        "matches": 16,
+        "elo": 328,
+        "league": "PG Nationals"
+    },
+    {
+        "team_id": "106827844148688268",
+        "team_code": "SG",
+        "team_name": "SG Academy",
+        "rank": 160,
+        "matches": 22,
+        "elo": 328,
+        "league": "LJL Academy"
+    },
+    {
+        "team_id": "108404211655217274",
+        "team_code": "PAR",
+        "team_name": "Partizan Esports",
+        "rank": 161,
+        "matches": 22,
+        "elo": 325,
+        "league": "Esports Balkan League"
+    },
+    {
+        "team_id": "107422385694193066",
+        "team_code": "BAR",
+        "team_name": "Bar\u00e7a Esports",
+        "rank": 162,
+        "matches": 19,
+        "elo": 320,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "105521674055625312",
+        "team_code": "GSMC",
+        "team_name": "Gamespace Mediterranean College Esports",
+        "rank": 163,
+        "matches": 16,
+        "elo": 320,
+        "league": "Greek Legends League"
+    },
+    {
+        "team_id": "107179740624168899",
+        "team_code": "HEET",
+        "team_name": "HEET",
+        "rank": 164,
+        "matches": 14,
+        "elo": 318,
+        "league": "Elite Series"
+    },
+    {
+        "team_id": "109485335453835911",
+        "team_code": "VKS",
+        "team_name": "Vivo Keyd Stars Academy",
+        "rank": 165,
+        "matches": 19,
+        "elo": 318,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "105520786527322647",
+        "team_code": "GENK",
+        "team_name": "KRC Genk Esports",
+        "rank": 166,
+        "matches": 23,
+        "elo": 317,
+        "league": "Elite Series"
+    },
+    {
+        "team_id": "107416342401528388",
+        "team_code": "MFSK",
+        "team_name": "Maturalni Forsaken",
+        "rank": 167,
+        "matches": 20,
+        "elo": 316,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "107565477822627354",
+        "team_code": "VER",
+        "team_name": "Verdant",
+        "rank": 168,
+        "matches": 16,
+        "elo": 316,
+        "league": "NLC"
+    },
+    {
+        "team_id": "101383792887446028",
+        "team_code": "MEC",
+        "team_name": "MAMMOTH",
+        "rank": 169,
+        "matches": 11,
+        "elo": 315,
+        "league": "LCO"
+    },
+    {
+        "team_id": "102787200151698443",
+        "team_code": "VITB",
+        "team_name": "Vitality.Bee",
+        "rank": 170,
+        "matches": 20,
+        "elo": 312,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "109675484017801229",
+        "team_code": "TB",
+        "team_name": "Team Bliss",
+        "rank": 171,
+        "matches": 13,
+        "elo": 311,
+        "league": "LCO"
+    },
+    {
+        "team_id": "109485342651298305",
+        "team_code": "FX",
+        "team_name": "FLUXO Academy",
+        "rank": 172,
+        "matches": 19,
+        "elo": 311,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "109539776003058530",
+        "team_code": "AB",
+        "team_name": "Alior Bank Team",
+        "rank": 173,
+        "matches": 28,
+        "elo": 311,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "102787200129022886",
+        "team_code": "ESB",
+        "team_name": "eSuba",
+        "rank": 174,
+        "matches": 16,
+        "elo": 310,
+        "league": "Hitpoint Masters"
+    },
+    {
+        "team_id": "99566408217116828",
+        "team_code": "ITZ",
+        "team_name": "INTZ",
+        "rank": 175,
+        "matches": 21,
+        "elo": 310,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "109696126554266494",
+        "team_code": "GK",
+        "team_name": "Geekay Esports",
+        "rank": 176,
+        "matches": 15,
+        "elo": 309,
+        "league": "Arabian League"
+    },
+    {
+        "team_id": "110418022381234710",
+        "team_code": "SPK",
+        "team_name": "SPIKE Syndicate",
+        "rank": 177,
+        "matches": 15,
+        "elo": 308,
+        "league": "Esports Balkan League"
+    },
+    {
+        "team_id": "110506938087991033",
+        "team_code": "FL",
+        "team_name": "FL Academy",
+        "rank": 178,
+        "matches": 21,
+        "elo": 307,
+        "league": "LJL Academy"
+    },
+    {
+        "team_id": "99566408219409348",
+        "team_code": "VKS",
+        "team_name": "Vivo Keyd Stars",
+        "rank": 179,
+        "matches": 20,
+        "elo": 305,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "107582157086477662",
+        "team_code": "DSC",
+        "team_name": "Descuydado Aucas Esports",
+        "rank": 180,
+        "matches": 20,
+        "elo": 305,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "109480056092207899",
+        "team_code": "FX",
+        "team_name": "FLUXO",
+        "rank": 181,
+        "matches": 19,
+        "elo": 304,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "107128093558481418",
+        "team_code": "ZNT",
+        "team_name": "ZennIT",
+        "rank": 182,
+        "matches": 16,
+        "elo": 304,
+        "league": "Elite Series"
+    },
+    {
+        "team_id": "107574959289974368",
+        "team_code": "OSC",
+        "team_name": "Odivelas Sports Club",
+        "rank": 183,
+        "matches": 16,
+        "elo": 302,
+        "league": "Liga Portuguesa"
+    },
+    {
+        "team_id": "107467827374313054",
+        "team_code": "FNK",
+        "team_name": "Finetwork KOI",
+        "rank": 184,
+        "matches": 21,
+        "elo": 301,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "109668849651338559",
+        "team_code": "FL",
+        "team_name": "FENNEL",
+        "rank": 185,
+        "matches": 10,
+        "elo": 300,
+        "league": "LJL"
+    },
+    {
+        "team_id": "105593182576105603",
+        "team_code": "BRT",
+        "team_name": "BRUTE",
+        "rank": 186,
+        "matches": 23,
+        "elo": 299,
+        "league": "Hitpoint Masters"
+    },
+    {
+        "team_id": "106827839261303409",
+        "team_code": "CGA",
+        "team_name": "CGA  Academy",
+        "rank": 187,
+        "matches": 22,
+        "elo": 298,
+        "league": "LJL Academy"
+    },
+    {
+        "team_id": "105594135137147298",
+        "team_code": "WD",
+        "team_name": "White Dragons",
+        "rank": 188,
+        "matches": 23,
+        "elo": 298,
+        "league": "Liga Portuguesa"
+    },
+    {
+        "team_id": "106382545123328648",
+        "team_code": "DNE",
+        "team_name": "Dynamo Eclot",
+        "rank": 189,
+        "matches": 15,
+        "elo": 297,
+        "league": "Hitpoint Masters"
+    },
+    {
+        "team_id": "110424394375218208",
+        "team_code": "AOMA",
+        "team_name": "A One Man Army",
+        "rank": 190,
+        "matches": 15,
+        "elo": 296,
+        "league": "Elite Series"
+    },
+    {
+        "team_id": "110492173877838150",
+        "team_code": "EF",
+        "team_name": "Eternal Fire",
+        "rank": 191,
+        "matches": 16,
+        "elo": 295,
+        "league": "TCL"
+    },
+    {
+        "team_id": "105503948999800557",
+        "team_code": "EWI",
+        "team_name": "E WIE EINFACH E-SPORTS",
+        "rank": 192,
+        "matches": 18,
+        "elo": 293,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "107581296208168309",
+        "team_code": "TMR",
+        "team_name": "Tomorrow Esports",
+        "rank": 193,
+        "matches": 20,
+        "elo": 293,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "107581750701049485",
+        "team_code": "JNS",
+        "team_name": "Janus Esports",
+        "rank": 194,
+        "matches": 18,
+        "elo": 293,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "108439036582886702",
+        "team_code": "BWE",
+        "team_name": "BWE Esports",
+        "rank": 195,
+        "matches": 14,
+        "elo": 291,
+        "league": "Liga Portuguesa"
+    },
+    {
+        "team_id": "109696115986547257",
+        "team_code": "FOX",
+        "team_name": "Fox Gaming",
+        "rank": 196,
+        "matches": 14,
+        "elo": 291,
+        "league": "Arabian League"
+    },
+    {
+        "team_id": "103535282124208038",
+        "team_code": "PGG",
+        "team_name": "Pentanet.GG",
+        "rank": 197,
+        "matches": 8,
+        "elo": 291,
+        "league": "LCO"
+    },
+    {
+        "team_id": "107251374793416561",
+        "team_code": "CES",
+        "team_name": "CERBERUS ESPORTS",
+        "rank": 198,
+        "matches": 16,
+        "elo": 291,
+        "league": "VCS"
+    },
+    {
+        "team_id": "110425157952111645",
+        "team_code": "4W",
+        "team_name": "Fourth Wall",
+        "rank": 199,
+        "matches": 14,
+        "elo": 287,
+        "league": "NLC"
+    },
+    {
+        "team_id": "105515345386578249",
+        "team_code": "SLY",
+        "team_name": "Solary",
+        "rank": 200,
+        "matches": 19,
+        "elo": 287,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "105537226118106446",
+        "team_code": "AXL",
+        "team_name": "Axolotl Esports",
+        "rank": 201,
+        "matches": 14,
+        "elo": 286,
+        "league": "PG Nationals"
+    },
+    {
+        "team_id": "100205576309502431",
+        "team_code": "FUR",
+        "team_name": "FURIA",
+        "rank": 202,
+        "matches": 18,
+        "elo": 286,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "109642690191894407",
+        "team_code": "RUD",
+        "team_name": "Ruddy Esports",
+        "rank": 203,
+        "matches": 15,
+        "elo": 286,
+        "league": "NLC"
+    },
+    {
+        "team_id": "107582178455767077",
+        "team_code": "PD",
+        "team_name": "Pirate Dream",
+        "rank": 204,
+        "matches": 18,
+        "elo": 285,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "105532791598779236",
+        "team_code": "UCAM",
+        "team_name": "UCAM",
+        "rank": 205,
+        "matches": 18,
+        "elo": 285,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "107467803833323099",
+        "team_code": "HRTS",
+        "team_name": "Los Heretics",
+        "rank": 206,
+        "matches": 20,
+        "elo": 285,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "105550001032913831",
+        "team_code": "RED",
+        "team_name": "RED Academy",
+        "rank": 207,
+        "matches": 20,
+        "elo": 285,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "103878020539746273",
+        "team_code": "EGN",
+        "team_name": "EGN Esports",
+        "rank": 208,
+        "matches": 14,
+        "elo": 285,
+        "league": "Liga Portuguesa"
+    },
+    {
+        "team_id": "98767991921462763",
+        "team_code": "DW",
+        "team_name": "Dire Wolves",
+        "rank": 209,
+        "matches": 9,
+        "elo": 284,
+        "league": "LCO"
+    },
+    {
+        "team_id": "109539873500788632",
+        "team_code": "EXD",
+        "team_name": "EXEED",
+        "rank": 210,
+        "matches": 18,
+        "elo": 283,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "104710682193583854",
+        "team_code": "WOLF",
+        "team_name": "Topo Centras Iron Wolves",
+        "rank": 211,
+        "matches": 19,
+        "elo": 283,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "102787200124959636",
+        "team_code": "CZV",
+        "team_name": "Crvena Zvezda Esports",
+        "rank": 212,
+        "matches": 14,
+        "elo": 282,
+        "league": "Esports Balkan League"
+    },
+    {
+        "team_id": "109480204628225868",
+        "team_code": "LOS",
+        "team_name": "Los Grandes",
+        "rank": 213,
+        "matches": 18,
+        "elo": 281,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "104710678170825211",
+        "team_code": "SIN",
+        "team_name": "SINNERS Esports",
+        "rank": 214,
+        "matches": 14,
+        "elo": 280,
+        "league": "Hitpoint Masters"
+    },
+    {
+        "team_id": "107598712583969458",
+        "team_code": "EBG",
+        "team_name": "EBRO",
+        "rank": 215,
+        "matches": 19,
+        "elo": 279,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "105536738266035235",
+        "team_code": "CGG",
+        "team_name": "Cyberground Gaming",
+        "rank": 216,
+        "matches": 15,
+        "elo": 279,
+        "league": "PG Nationals"
+    },
+    {
+        "team_id": "105514967858969605",
+        "team_code": "GW",
+        "team_name": "GameWard",
+        "rank": 217,
+        "matches": 18,
+        "elo": 278,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "99322214689444546",
+        "team_code": "S04",
+        "team_name": "Schalke 04 Esports",
+        "rank": 218,
+        "matches": 19,
+        "elo": 278,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "102787200132955066",
+        "team_code": "FTW",
+        "team_name": "FTW Esports",
+        "rank": 219,
+        "matches": 15,
+        "elo": 277,
+        "league": "Liga Portuguesa"
+    },
+    {
+        "team_id": "105521637552587612",
+        "team_code": "TP",
+        "team_name": "Team Phantasma",
+        "rank": 220,
+        "matches": 15,
+        "elo": 276,
+        "league": "Greek Legends League"
+    },
+    {
+        "team_id": "105521293297166647",
+        "team_code": "HELL",
+        "team_name": "Hell Zerolag Esports",
+        "rank": 221,
+        "matches": 14,
+        "elo": 276,
+        "league": "Greek Legends League"
+    },
+    {
+        "team_id": "107423083507599175",
+        "team_code": "VNR",
+        "team_name": "Vanir",
+        "rank": 222,
+        "matches": 14,
+        "elo": 275,
+        "league": "NLC"
+    },
+    {
+        "team_id": "105521408363571548",
+        "team_code": "IHG",
+        "team_name": "Illuminar Gaming",
+        "rank": 223,
+        "matches": 19,
+        "elo": 275,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "109523293035238887",
+        "team_code": "AEG",
+        "team_name": "Aegis",
+        "rank": 224,
+        "matches": 19,
+        "elo": 275,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "99566406065437842",
+        "team_code": "DP",
+        "team_name": "Dark Passage",
+        "rank": 225,
+        "matches": 15,
+        "elo": 275,
+        "league": "TCL"
+    },
+    {
+        "team_id": "105549997263803379",
+        "team_code": "LLL",
+        "team_name": "LOUD Academy",
+        "rank": 226,
+        "matches": 18,
+        "elo": 275,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "102787200120306562",
+        "team_code": "MOUZ",
+        "team_name": "Mousesports",
+        "rank": 227,
+        "matches": 19,
+        "elo": 274,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "103877675241047720",
+        "team_code": "LDLC",
+        "team_name": "LDLC OL",
+        "rank": 228,
+        "matches": 18,
+        "elo": 272,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "104843437139220481",
+        "team_code": "UBK",
+        "team_name": "Undead BK",
+        "rank": 229,
+        "matches": 18,
+        "elo": 272,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "99566406064558732",
+        "team_code": "SUP",
+        "team_name": "Papara SuperMassive ",
+        "rank": 230,
+        "matches": 15,
+        "elo": 272,
+        "league": "TCL"
+    },
+    {
+        "team_id": "110425005562048945",
+        "team_code": "KYP",
+        "team_name": "Keypulse Esports",
+        "rank": 231,
+        "matches": 14,
+        "elo": 272,
+        "league": "Liga Portuguesa"
+    },
+    {
+        "team_id": "107564167676290839",
+        "team_code": "RBLS",
+        "team_name": "Rebels",
+        "rank": 232,
+        "matches": 18,
+        "elo": 271,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "106827765448944398",
+        "team_code": "DFM",
+        "team_name": "DFM Academy",
+        "rank": 233,
+        "matches": 21,
+        "elo": 271,
+        "league": "LJL Academy"
+    },
+    {
+        "team_id": "110424397251619481",
+        "team_code": "MYTH",
+        "team_name": "Myth Esports",
+        "rank": 234,
+        "matches": 14,
+        "elo": 270,
+        "league": "Elite Series"
+    },
+    {
+        "team_id": "107582184905264520",
+        "team_code": "WS",
+        "team_name": "Waia Snikt",
+        "rank": 235,
+        "matches": 18,
+        "elo": 270,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "107693836459380354",
+        "team_code": "SMP",
+        "team_name": "SAMPI",
+        "rank": 236,
+        "matches": 14,
+        "elo": 270,
+        "league": "Hitpoint Masters"
+    },
+    {
+        "team_id": "105537149834356301",
+        "team_code": "OP",
+        "team_name": "Anc Outplayed",
+        "rank": 237,
+        "matches": 14,
+        "elo": 270,
+        "league": "PG Nationals"
+    },
+    {
+        "team_id": "107467794614674479",
+        "team_code": "FNTQ",
+        "team_name": "FnaticTQ",
+        "rank": 238,
+        "matches": 18,
+        "elo": 270,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "109676337359108345",
+        "team_code": "ECG",
+        "team_name": "Eclipse Gaming",
+        "rank": 239,
+        "matches": 18,
+        "elo": 269,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "105549993449477104",
+        "team_code": "ITZ",
+        "team_name": "INTZ Academy",
+        "rank": 240,
+        "matches": 18,
+        "elo": 269,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "101428372607057464",
+        "team_code": "AXZ",
+        "team_name": "AXIZ",
+        "rank": 241,
+        "matches": 9,
+        "elo": 267,
+        "league": "LJL"
+    },
+    {
+        "team_id": "105549991104165282",
+        "team_code": "FUR",
+        "team_name": "FURIA Academy",
+        "rank": 242,
+        "matches": 18,
+        "elo": 267,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "105515109012592449",
+        "team_code": "IZI",
+        "team_name": "IZIDREAM",
+        "rank": 243,
+        "matches": 18,
+        "elo": 266,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "107565448721890834",
+        "team_code": "DMN",
+        "team_name": "Domino Esports",
+        "rank": 244,
+        "matches": 14,
+        "elo": 266,
+        "league": "NLC"
+    },
+    {
+        "team_id": "101428372603715124",
+        "team_code": "CGA",
+        "team_name": "Crest Gaming Act",
+        "rank": 245,
+        "matches": 9,
+        "elo": 265,
+        "league": "LJL"
+    },
+    {
+        "team_id": "107581212180071788",
+        "team_code": "PK",
+        "team_name": "Peek Gaming",
+        "rank": 246,
+        "matches": 19,
+        "elo": 265,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "105521412995449549",
+        "team_code": "ESCA",
+        "team_name": "Team ESCA Gaming",
+        "rank": 247,
+        "matches": 18,
+        "elo": 264,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "105514907449611976",
+        "team_code": "BDSA",
+        "team_name": "Team BDS Academy",
+        "rank": 248,
+        "matches": 18,
+        "elo": 259,
+        "league": "La Ligue Fran\u00e7aise"
+    },
+    {
+        "team_id": "101428372598668846",
+        "team_code": "BC",
+        "team_name": "Burning Core",
+        "rank": 249,
+        "matches": 8,
+        "elo": 258,
+        "league": "LJL"
+    },
+    {
+        "team_id": "109696047948627764",
+        "team_code": "GNG",
+        "team_name": "GNG Esports",
+        "rank": 250,
+        "matches": 14,
+        "elo": 258,
+        "league": "Arabian League"
+    },
+    {
+        "team_id": "108403526900459473",
+        "team_code": "UNIQ",
+        "team_name": "UniQ Esports",
+        "rank": 251,
+        "matches": 14,
+        "elo": 258,
+        "league": "NLC"
+    },
+    {
+        "team_id": "103877589042434434",
+        "team_code": "GL",
+        "team_name": "GamerLegion",
+        "rank": 252,
+        "matches": 18,
+        "elo": 257,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "107067065368380132",
+        "team_code": "WPE",
+        "team_name": "Wild Panthers Esports",
+        "rank": 253,
+        "matches": 14,
+        "elo": 255,
+        "league": "Greek Legends League"
+    },
+    {
+        "team_id": "106806779752531762",
+        "team_code": "GET",
+        "team_name": "Globant Emerald Team",
+        "rank": 254,
+        "matches": 19,
+        "elo": 254,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "99566406066182955",
+        "team_code": "GAL",
+        "team_name": "GALAKTICOS",
+        "rank": 255,
+        "matches": 14,
+        "elo": 254,
+        "league": "TCL"
+    },
+    {
+        "team_id": "109697689430777005",
+        "team_code": "ANK",
+        "team_name": "Ankora Gaming",
+        "rank": 256,
+        "matches": 14,
+        "elo": 252,
+        "league": "Esports Balkan League"
+    },
+    {
+        "team_id": "109671413728531527",
+        "team_code": "PTR",
+        "team_name": "Pentagon Rejects",
+        "rank": 257,
+        "matches": 14,
+        "elo": 251,
+        "league": "Greek Legends League"
+    },
+    {
+        "team_id": "110383487456480967",
+        "team_code": "VTX",
+        "team_name": "Vertex ESC",
+        "rank": 258,
+        "matches": 9,
+        "elo": 250,
+        "league": "LCO"
+    },
+    {
+        "team_id": "107599040773840060",
+        "team_code": "MG",
+        "team_name": "Meta Gaming",
+        "rank": 259,
+        "matches": 18,
+        "elo": 249,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "107179722233063345",
+        "team_code": "OVA",
+        "team_name": "Cryptova",
+        "rank": 260,
+        "matches": 14,
+        "elo": 248,
+        "league": "Hitpoint Masters"
+    },
+    {
+        "team_id": "109697683685398040",
+        "team_code": "MGZ",
+        "team_name": "MAGAZA",
+        "rank": 261,
+        "matches": 14,
+        "elo": 247,
+        "league": "Esports Balkan League"
+    },
+    {
+        "team_id": "107258254469504696",
+        "team_code": "TF",
+        "team_name": "Team Flash",
+        "rank": 262,
+        "matches": 16,
+        "elo": 246,
+        "league": "VCS"
+    },
+    {
+        "team_id": "109828279319224248",
+        "team_code": "MBE",
+        "team_name": "MGN Box Esports",
+        "rank": 263,
+        "matches": 14,
+        "elo": 240,
+        "league": "VCS"
+    },
+    {
+        "team_id": "108078422885368642",
+        "team_code": "PAO",
+        "team_name": "Panathinaikos Esports",
+        "rank": 264,
+        "matches": 14,
+        "elo": 239,
+        "league": "Greek Legends League"
+    },
+    {
+        "team_id": "103495716886587312",
+        "team_code": "BJK",
+        "team_name": "Be\u015fikta\u015f",
+        "rank": 265,
+        "matches": 14,
+        "elo": 239,
+        "league": "TCL"
+    },
+    {
+        "team_id": "107437032053655867",
+        "team_code": "KNG",
+        "team_name": "Kanga Esports",
+        "rank": 266,
+        "matches": 7,
+        "elo": 237,
+        "league": "LCO"
+    },
+    {
+        "team_id": "109675490370327425",
+        "team_code": "GZ",
+        "team_name": "Ground Zero",
+        "rank": 267,
+        "matches": 7,
+        "elo": 237,
+        "league": "LCO"
+    },
+    {
+        "team_id": "109696138543579708",
+        "team_code": "3BL",
+        "team_name": "3BL Esports",
+        "rank": 268,
+        "matches": 14,
+        "elo": 235,
+        "league": "Arabian League"
+    },
+    {
+        "team_id": "107599485973747723",
+        "team_code": "GRP",
+        "team_name": "Grypciocraft Esports",
+        "rank": 269,
+        "matches": 18,
+        "elo": 235,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "109695924147263860",
+        "team_code": "TE",
+        "team_name": "Triple Esports",
+        "rank": 270,
+        "matches": 14,
+        "elo": 235,
+        "league": "Arabian League"
+    },
+    {
+        "team_id": "109749493607708438",
+        "team_code": "NM3",
+        "team_name": "ENEMI3S",
+        "rank": 271,
+        "matches": 14,
+        "elo": 233,
+        "league": "PG Nationals"
+    },
+    {
+        "team_id": "109539675734129088",
+        "team_code": "NLE",
+        "team_name": "Northern Lions Esports",
+        "rank": 272,
+        "matches": 14,
+        "elo": 230,
+        "league": "Elite Series"
+    },
+    {
+        "team_id": "105520822049210915",
+        "team_code": "MCON",
+        "team_name": "mCon esports",
+        "rank": 273,
+        "matches": 14,
+        "elo": 229,
+        "league": "Elite Series"
+    },
+    {
+        "team_id": "106371141659311452",
+        "team_code": "VPG",
+        "team_name": "Valiance PRO GAME",
+        "rank": 274,
+        "matches": 14,
+        "elo": 229,
+        "league": "Esports Balkan League"
+    },
+    {
+        "team_id": "107564135791716115",
+        "team_code": "GSNS",
+        "team_name": "Guasones",
+        "rank": 275,
+        "matches": 18,
+        "elo": 228,
+        "league": "SuperLiga"
+    },
+    {
+        "team_id": "107456355516438414",
+        "team_code": "SGE",
+        "team_name": "Eintracht Frankfurt",
+        "rank": 276,
+        "matches": 18,
+        "elo": 227,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "109485351596724390",
+        "team_code": "LOS",
+        "team_name": "Los Grandes Academy",
+        "rank": 277,
+        "matches": 18,
+        "elo": 223,
+        "league": "CBLOL Academy"
+    },
+    {
+        "team_id": "107648168744912288",
+        "team_code": "DREN",
+        "team_name": "DREN Esports",
+        "rank": 278,
+        "matches": 14,
+        "elo": 223,
+        "league": "PG Nationals"
+    },
+    {
+        "team_id": "106827823550343961",
+        "team_code": "AXZ",
+        "team_name": "AXZ Academy",
+        "rank": 279,
+        "matches": 21,
+        "elo": 220,
+        "league": "LJL Academy"
+    },
+    {
+        "team_id": "106827848618374543",
+        "team_code": "BC",
+        "team_name": "BC Academy",
+        "rank": 280,
+        "matches": 21,
+        "elo": 218,
+        "league": "LJL Academy"
+    },
+    {
+        "team_id": "105594163014588871",
+        "team_code": "BFC",
+        "team_name": "Boavista F.C",
+        "rank": 281,
+        "matches": 14,
+        "elo": 216,
+        "league": "Liga Portuguesa"
+    },
+    {
+        "team_id": "107582641798795198",
+        "team_code": "SB",
+        "team_name": "Spectacled Bears",
+        "rank": 282,
+        "matches": 18,
+        "elo": 216,
+        "league": "South Regional League"
+    },
+    {
+        "team_id": "105521419784127190",
+        "team_code": "KNF",
+        "team_name": "Komil&Friends",
+        "rank": 283,
+        "matches": 18,
+        "elo": 213,
+        "league": "Ultraliga"
+    },
+    {
+        "team_id": "105593161016793151",
+        "team_code": "ING",
+        "team_name": "Inside Games",
+        "rank": 284,
+        "matches": 14,
+        "elo": 211,
+        "league": "Hitpoint Masters"
+    },
+    {
+        "team_id": "99566408222831088",
+        "team_code": "LBR",
+        "team_name": "Liberty",
+        "rank": 285,
+        "matches": 18,
+        "elo": 203,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "101428372602011186",
+        "team_code": "V3",
+        "team_name": "V3 Esports",
+        "rank": 286,
+        "matches": 8,
+        "elo": 203,
+        "league": "LJL"
+    },
+    {
+        "team_id": "107456352597333899",
+        "team_code": "NNO",
+        "team_name": "NNO Prime",
+        "rank": 287,
+        "matches": 18,
+        "elo": 195,
+        "league": "Prime League"
+    },
+    {
+        "team_id": "99566408221114231",
+        "team_code": "KBM",
+        "team_name": "KaBuM! Esports",
+        "rank": 288,
+        "matches": 18,
+        "elo": 194,
+        "league": "CBLOL"
+    },
+    {
+        "team_id": "108319257932089006",
+        "team_code": "OSK",
+        "team_name": "Osaka",
+        "rank": 289,
+        "matches": 18,
+        "elo": 180,
+        "league": "North Regional League"
+    },
+    {
+        "team_id": "107251231972989211",
+        "team_code": "SE",
+        "team_name": "SBTC ESPORTS",
+        "rank": 290,
+        "matches": 14,
+        "elo": 162,
+        "league": "VCS"
+    }
+]

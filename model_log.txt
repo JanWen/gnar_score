@@ -1,2 +1,89 @@
+DEBUG:matplotlib:matplotlib data path: c:\Users\Jan\power_ranking\venv\lib\site-packages\matplotlib\mpl-data
+DEBUG:matplotlib:CONFIGDIR=C:\Users\Jan\.matplotlib
+DEBUG:matplotlib:interactive is False
+DEBUG:matplotlib:platform is win32
+DEBUG:matplotlib:CACHEDIR=C:\Users\Jan\.matplotlib
+DEBUG:matplotlib.font_manager:Using fontManager instance from C:\Users\Jan\.matplotlib\fontlist-v330.json
+DEBUG:botocore.hooks:Changing event name from creating-client-class.iot-data to creating-client-class.iot-data-plane
+DEBUG:botocore.hooks:Changing event name from before-call.apigateway to before-call.api-gateway
+DEBUG:botocore.hooks:Changing event name from request-created.machinelearning.Predict to request-created.machine-learning.Predict
+DEBUG:botocore.hooks:Changing event name from before-parameter-build.autoscaling.CreateLaunchConfiguration to before-parameter-build.auto-scaling.CreateLaunchConfiguration
+DEBUG:botocore.hooks:Changing event name from before-parameter-build.route53 to before-parameter-build.route-53
+DEBUG:botocore.hooks:Changing event name from request-created.cloudsearchdomain.Search to request-created.cloudsearch-domain.Search
+DEBUG:botocore.hooks:Changing event name from docs.*.autoscaling.CreateLaunchConfiguration.complete-section to docs.*.auto-scaling.CreateLaunchConfiguration.complete-section
+DEBUG:botocore.hooks:Changing event name from before-parameter-build.logs.CreateExportTask to before-parameter-build.cloudwatch-logs.CreateExportTask
+DEBUG:botocore.hooks:Changing event name from docs.*.logs.CreateExportTask.complete-section to docs.*.cloudwatch-logs.CreateExportTask.complete-section
+DEBUG:botocore.hooks:Changing event name from before-parameter-build.cloudsearchdomain.Search to before-parameter-build.cloudsearch-domain.Search
+DEBUG:botocore.hooks:Changing event name from docs.*.cloudsearchdomain.Search.complete-section to docs.*.cloudsearch-domain.Search.complete-section
+DEBUG:botocore.utils:IMDS ENDPOINT: http://169.254.169.254/
+DEBUG:botocore.credentials:Looking for credentials via: env
+DEBUG:botocore.credentials:Looking for credentials via: assume-role
+DEBUG:botocore.credentials:Looking for credentials via: assume-role-with-web-identity
+DEBUG:botocore.credentials:Looking for credentials via: sso
+DEBUG:botocore.credentials:Looking for credentials via: shared-credentials-file
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+DEBUG:botocore.loaders:Loading JSON file: c:\Users\Jan\power_ranking\venv\lib\site-packages\botocore\data\endpoints.json
+DEBUG:botocore.loaders:Loading JSON file: c:\Users\Jan\power_ranking\venv\lib\site-packages\botocore\data\sdk-default-configuration.json
+DEBUG:botocore.hooks:Event choose-service-name: calling handler <function handle_service_name_alias at 0x000002267F5611F0>
+DEBUG:botocore.loaders:Loading JSON file: c:\Users\Jan\power_ranking\venv\lib\site-packages\botocore\data\s3\2006-03-01\service-2.json
+DEBUG:botocore.loaders:Loading JSON file: c:\Users\Jan\power_ranking\venv\lib\site-packages\botocore\data\s3\2006-03-01\endpoint-rule-set-1.json.gz
+DEBUG:botocore.loaders:Loading JSON file: c:\Users\Jan\power_ranking\venv\lib\site-packages\botocore\data\partitions.json
+DEBUG:botocore.hooks:Event creating-client-class.s3: calling handler <function add_generate_presigned_post at 0x000002267F4773A0>
+DEBUG:botocore.hooks:Event creating-client-class.s3: calling handler <function lazy_call.<locals>._handler at 0x000002267ED613A0>
+DEBUG:botocore.hooks:Event creating-client-class.s3: calling handler <function add_generate_presigned_url at 0x000002267F477160>
+DEBUG:botocore.configprovider:Looking for endpoint for s3 via: environment_service
+DEBUG:botocore.configprovider:Looking for endpoint for s3 via: environment_global
+DEBUG:botocore.configprovider:Looking for endpoint for s3 via: config_service
+DEBUG:botocore.configprovider:Looking for endpoint for s3 via: config_global
+DEBUG:botocore.configprovider:No configured endpoint found.
+DEBUG:botocore.endpoint:Setting s3 timeout as (60, 60)
+DEBUG:botocore.loaders:Loading JSON file: c:\Users\Jan\power_ranking\venv\lib\site-packages\botocore\data\_retry.json
+DEBUG:botocore.client:Registering retry handlers for service: s3
+DEBUG:botocore.utils:Registering S3 region redirector handler
+DEBUG:botocore.loaders:Loading JSON file: c:\Users\Jan\power_ranking\venv\lib\site-packages\boto3\data\s3\2006-03-01\resources-1.json
+DEBUG:botocore.hooks:Event choose-service-name: calling handler <function handle_service_name_alias at 0x000002267F5611F0>
+DEBUG:botocore.hooks:Event creating-client-class.s3: calling handler <function add_generate_presigned_post at 0x000002267F4773A0>
+DEBUG:botocore.hooks:Event creating-client-class.s3: calling handler <function lazy_call.<locals>._handler at 0x000002267ED613A0>
+DEBUG:botocore.hooks:Event creating-client-class.s3: calling handler <function add_generate_presigned_url at 0x000002267F477160>
+DEBUG:botocore.configprovider:Looking for endpoint for s3 via: environment_service
+DEBUG:botocore.configprovider:Looking for endpoint for s3 via: environment_global
+DEBUG:botocore.configprovider:Looking for endpoint for s3 via: config_service
+DEBUG:botocore.configprovider:Looking for endpoint for s3 via: config_global
+DEBUG:botocore.configprovider:No configured endpoint found.
+DEBUG:botocore.endpoint:Setting s3 timeout as (60, 60)
+DEBUG:botocore.client:Registering retry handlers for service: s3
+DEBUG:botocore.utils:Registering S3 region redirector handler
+DEBUG:boto3.resources.factory:Loading s3:s3
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): power-rankings-dataset-gprhack.s3.us-west-2.amazonaws.com:443
 DEBUG:urllib3.connectionpool:https://power-rankings-dataset-gprhack.s3.us-west-2.amazonaws.com:443 "GET /esports-data/tournaments.json.gz HTTP/1.1" 200 2560051
+DEBUG:matplotlib.pyplot:Loaded backend tkagg version 8.6.
+INFO:model:COCKTIME 13876    2023-04-15 03:09:14.747000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13944    2023-04-23 12:55:35.126000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13885    2023-04-15 18:27:59.549000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13877    2023-04-15 09:14:09.487000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13827    2023-04-09 21:53:13.496000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13813    2023-04-09 09:20:10.597000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13876    2023-04-15 03:09:14.747000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13877    2023-04-15 09:14:09.487000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13876    2023-04-15 03:09:14.747000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13885    2023-04-15 18:27:59.549000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13813    2023-04-09 09:20:10.597000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13929    2023-04-21 19:37:59.370000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13811    2023-04-09 07:28:42.449000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13827    2023-04-09 21:53:13.496000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02
+INFO:model:COCKTIME 13811    2023-04-09 07:28:42.449000+00:00
+Name: eventtime, dtype: string BALL TIME XD 2023-05-02

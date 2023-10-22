@@ -100,7 +100,43 @@ def elodiff_prediction_distribution():
 tournaments = Tournaments()
 
 K_FACTOR = 50
-elo, back_test, msr = calculate_elo(tournaments, k_factor=K_FACTOR)
+
+import pandas as pd
+from sklearn.naive_bayes import GaussianNB
+import numpy as np
+
+df = pd.read_csv("csv/sql/rolling.csv",
+                dtype= {
+                    'blue_teamid': 'str',
+                    'red_teamid': 'str',
+                })
+df["eventtime"] = pd.to_datetime(df["eventtime"], errors="coerce")
+df["blue_teamid"].fillna(0, inplace=True)
+df["red_teamid"].fillna(0, inplace=True)
+df["blue_teamid"] = df["blue_teamid"].astype(np.int64).astype(str)
+df["red_teamid"] = df["red_teamid"].astype(np.int64).astype(str)
+x = df[[
+        "blue_avg_inhib", "red_avg_inhib",
+        "blue_avg_tower", "red_avg_tower",
+        "blue_avg_kills", "red_avg_kills",
+        "blue_avg_win", "red_avg_win",
+        "red_avg_deaths", "blue_avg_deaths",
+        "blue_level", "red_level",
+        "blue_cs", "red_cs",
+        "blue_avg_kill", "red_avg_kill",
+        # "blue_avg_shutdown_converted", "red_avg_shutdown_converted",
+        # "blue_avg_shutdown_held", "red_avg_shutdown_held", "blue_avg_shutdown_collected", "red_avg_shutdown_collected",
+]]
+y = df["winningteam"]
+gnb = GaussianNB()
+model = gnb.fit(x, y)
+
+elo, back_test, msr = calculate_elo(
+    tournaments,
+    k_factor=K_FACTOR,
+    df = df,
+    model = model,
+)
 print("MSR", msr)
 print_elo(elo)
 
@@ -110,6 +146,8 @@ print_backtest(back_test, half_match_cutoff)
 team_elodiff(elo)
 
 global_rankings = generate_global_rankings(elo)
+for i in range(len(global_rankings)):
+    global_rankings[i]["rank"] = i+1
 with open(results_dir + "/global_ranking.json", "w", encoding="utf-8") as f:
     json.dump(global_rankings, f, indent=4)
 elodiff_prediction_distribution()

@@ -12,5 +12,5 @@ for i in range(10, 100, 5):
     # print(elo)
 
 sorted_errors = sorted(errors, key=lambda x: x[1])
-for i in sorted_errors[:5]:
-    print(i)
+for i,j in sorted_errors[:5]:
+    print(i, round(j, 3))

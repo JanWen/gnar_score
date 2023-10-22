@@ -1,14 +1,45 @@
-# GLOBAL POWER RANKINGS HACKATHON
-https://lolglobalpowerrankings.devpost.com/
+# Global Power Ranking Hackathon
+This is an entry for the [DevPost Power Ranking Hackathon](https://lolglobalpowerrankings.devpost.com/).
+
 https://docs.google.com/document/d/1wFRehKMJkkRR5zyjEZyaVL9H3ZbhP7_wP0FBE5ID40c
 
-# ATHENA DATA
-https://docs.google.com/document/d/14uhbMUYb7cR_Hg6UWjlAgnN-hSy0ymhz19-_A6eidxI/
+The PDF Version can be found [here](mf-pdf-linlk.com).  
+The video showcase of this entry can be be found here.
 
-#API URLS
-Prod URL: https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api
-Dev URL: https://hawoyft3p0.execute-api.eu-central-1.amazonaws.com/api/
+# Introduction
 
+This is an entry to the Devpost Power Rankings Hackathon 2023. I am a Software Engineer based in Berlin and have been a long time player of League of Legends and follower of it's esports scene.  
+League of legends offers a lot of variations in micro decision and skill expression through fast, reactive gameplay and cool combos, and also big picture, strategic thinking and organized team work which make it a fascinating environment to analyze.
+
+# Entry
+
+My Entry into this hackathon is in the form of an API. This API is available under 
+https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api where all the required endpoints are available. 
+The first 20 teams of the global rankings system can be fetched with the following curl command:
+here is a curl command for each endpoitn
+```bash
+# get the global rankind (first 20 teams)
+curl 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/global_rankings?number_of_teams=20'
+
+# get rankings for a list of team_ids
+curl 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/team_rankings?team_ids=98767991926151025,107563714667537640,98767991853197861,100205573495116443'
+
+# get the rankings for teams in a tournament by tournament_id
+curl 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/tournament_rankings/110733838935136200'
+```
+<div class="page"/>
+
+# Tech Stack
+- The API is written in Python with the Chalice framework from AWS
+- AWS Lambda and ApiGateway for hosting the API
+- S3 for accessing hackathon data and hosting data for the API
+- Athena for exploring and exporting data
+- Terraform to configure required infrastructure and permission
+
+
+Python was chosen because my familiarity with the language and because it's ecosystem offers good libraries for both api development and data science tasks.
+Chalice is a Python library that allows us to easily deploy out code to AWS with lambda and API Gateway, using syntax that is similar to other common python api frameworks like flask and fast-api.
+The Data from S3 was used to create tables in Athena as per the guide. 
 
 
 Index
@@ -59,21 +90,9 @@ When trying to predict the outcome of a game
 
 
 Problem is difference between predicting live and predicting ahead of time?
-can u use eval from live predcitoin as a performance indicator for team rankings? how?
-
-# Introduction
-
-This is an entry to the Devpost Power Rankings Hackathon 2023. I am a Software Engineer based in Berlin and have been a long time player of league and follower of it's esports scene. Discussion of the game from a technical and analytical view point and found it a great starting point for expanding my own knowledge of statistics and data analysis.
+can u use eval from live prediction as a performance indicator for team rankings? how?
 
 
-League of legends offers a lot of variations in micro decision and skill expression through fast, reactive gameplay and cool combos, and also big picture, strategic thinking and organized team work which make it a fascinating environment to analyze.
-
-# Entry
-
-My Entry into this hackathon is in the form of an API. This API is available under 
-https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api where all the required endpoints are available. 
-The first 20 teams of the global rankings system can be fetched with the following curl command:
-curl --location 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/global_rankings?number_of_teams=20'
 
 # Tech Stack
 - Python and Chalice for writing the API

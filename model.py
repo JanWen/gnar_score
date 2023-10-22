@@ -4,7 +4,6 @@ import logging
 from chalicelib.team import Team
 from chalicelib.models.logger import log
 from chalicelib.elo import Elo
-from chalicelib.models.logger import log
 
 
 

@@ -6,14 +6,17 @@ from chalicelib.leagues import league_points #TODO CHECK IF NEEDED
 from datetime import datetime
 from chalicelib.team import Team
 import json
+from chalicelib.models.logger import log
 
 # load all the team ids from the json file and initialize a dictionary with each
 # teams elo set to 1000
 
-BASE_ELO = 1500
-DAYS_LIMIT = 720
+BASE_ELO = 1000
+DAYS_LIMIT = 180
 
 K_FACTOR = 50
+
+ML = True
 
 mappings_data = None
 with open("chalicelib/esports-data/mapping_data.json", "r") as json_file:
@@ -84,6 +87,13 @@ def tournament_mod(tournament, stage, k_factor):
         k_factor = 0.7*k_factor
     return k_factor
 
+def get_platformgameid(esportsgameid):
+    for mapping in mappings_data:
+        if mapping["esportsGameId"] == esportsgameid:
+            return mapping["platformGameId"]
+
+
+
 class Elo:
     def __init__(self, teams=None, kfactor=K_FACTOR) -> None:
         if teams:
@@ -92,6 +102,8 @@ class Elo:
             self.elo = {}
         self.back_test = {}
         self.squared_errors = []
+        self.cock = 0
+        self.balls = 0
 
     def update_elo(
             self,
@@ -101,6 +113,8 @@ class Elo:
             stage=None,
             tournament=None,
             k_factor=K_FACTOR,
+            df=None,
+            model=None,
     ):
         stage = stage["name"].lower()
         blue_win = blue_team["result"]["outcome"] == "win"
@@ -110,6 +124,35 @@ class Elo:
         blue_game_wins = blue_team["result"]["gameWins"]
         red_game_wins = red_team["result"]["gameWins"]
 
+        model_prediction = None
+        if ML:
+            if df is not None:
+                blue_team_data = df[(df["blue_teamid"] == blue_id) | (df["red_teamid"] == blue_id)]
+                blue_team_data = df[df["eventtime"] <= tournament["startDate"]]
+                if len(blue_team_data):
+                    red_team_data = blue_team_data[(blue_team_data["red_teamid"] == red_id) | (blue_team_data["blue_teamid"] == red_id)].sort_values(by="eventtime", ascending=False)
+                    if len(red_team_data):
+                        red_team_data["eventtime"] = red_team_data["eventtime"].astype("string")
+                        log.info("COCKTIME %s BALL TIME XD %s" % (red_team_data.iloc[[0]]["eventtime"], tournament["startDate"]) )
+
+                        self.cock += 1
+                        x = red_team_data.iloc[[0]][[
+                            "blue_avg_inhib", "red_avg_inhib",
+                            "blue_avg_tower", "red_avg_tower",
+                            "blue_avg_kills", "red_avg_kills",
+                            "blue_avg_win", "red_avg_win",
+                            "red_avg_deaths", "blue_avg_deaths",
+                            "blue_level", "red_level",
+                            "blue_cs", "red_cs",
+                            "blue_avg_kill", "red_avg_kill",
+                        ]]
+                        prediction = model.predict(x)[0]
+                        if prediction == 100:
+                            model_prediction = 1
+                        elif prediction == 200:
+                            model_prediction = 0
+                        # print(prediction)
+        self.balls += 1
         league = get_tournament_league(tournament["id"])
         start_elo = BASE_ELO
         # start_elo = get_start_elo(league)
@@ -131,6 +174,13 @@ class Elo:
         
         expected_score_blue = 1/(1+10**((red_elo-blue_elo)/480))
         expected_score_red = 1/(1+10**((blue_elo-red_elo)/480))
+        # if model_prediction is not None:
+        #     if model_prediction == 1:
+        #         expected_score_blue = (expected_score_blue + 1)/2 
+        #         expected_score_red = (expected_score_red + 0)/2
+        #     elif model_prediction == 0:
+        #         expected_score_red = (expected_score_red + 1)/2
+        #         expected_score_blue = (expected_score_blue + 0)/2 
         blue_kfactor = adjust_k_factor(k_factor, blue_elo)
         red_kfactor = adjust_k_factor(k_factor, red_elo)
 
@@ -144,16 +194,24 @@ class Elo:
         
         squared_error = None
         if blue_win:
+            if ML:
+                if model_prediction == 0:
+                    blue_kfactor = 2*blue_kfactor
+                    red_kfactor = 2*red_kfactor
             squared_error = (expected_score_blue-1)**2 + (expected_score_red-0)**2
-            # blue_kfactor = blue_kfactor * (1+0.12*(blue_game_wins-red_game_wins))
-            # red_kfactor = red_kfactor * (1+0.12*(blue_game_wins-red_game_wins))
+            blue_kfactor = blue_kfactor * (1+0.8*(blue_game_wins-red_game_wins))
+            red_kfactor = red_kfactor * (1+0.8*(blue_game_wins-red_game_wins))
 
             self.elo[blue_id].elo = blue_elo + (blue_kfactor*(1-expected_score_blue))
             self.elo[red_id].elo = red_elo + (red_kfactor*(0-expected_score_red))
         elif red_win:
+            if ML:
+                if model_prediction == 1:
+                    blue_kfactor = 2*blue_kfactor
+                    red_kfactor = 2*red_kfactor
             squared_error = (expected_score_blue-0)**2 + (expected_score_red-1)**2
-            # blue_kfactor = blue_kfactor * (1+0.12*(red_game_wins-blue_game_wins))
-            # red_kfactor = red_kfactor * (1+0.12*(red_game_wins-blue_game_wins))
+            blue_kfactor = blue_kfactor * (1+0.8*(red_game_wins-blue_game_wins))
+            red_kfactor = red_kfactor * (1+0.8*(red_game_wins-blue_game_wins))
             self.elo[blue_id].elo = blue_elo + (blue_kfactor*(0-expected_score_blue))
             self.elo[red_id].elo = red_elo + (red_kfactor*(1-expected_score_red))
         if squared_error:
@@ -203,7 +261,8 @@ function_by_score = {
     }
 }
 
-def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now(), k_factor=K_FACTOR):
+def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now(), k_factor=K_FACTOR, df=None,
+            model=None):
     elo = Elo()
 
     for tournament,stage, league_match in tournaments.yield_matches():
@@ -218,9 +277,10 @@ def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now(), k_f
         blue_team = league_match["teams"][0]
         red_team = league_match["teams"][1]
 
-        if blue_team["side"] != "blue":
-            raise "FUCKING SHITBALL"
-        
+        game_platform_ids = [get_platformgameid(game["id"]) for game in league_match["games"]]
+
+            
+
         elo.update_elo(
             blue_team,
             red_team,
@@ -228,7 +288,9 @@ def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now(), k_f
             stage,
             tournament,
             k_factor,
+            df=df,
+            model=model
+            game_platform_ids=game_platform_ids
         )
-    
     mean_squared_error = sum(elo.squared_errors)/len(elo.squared_errors)
     return elo.elo, elo.back_test, mean_squared_error
