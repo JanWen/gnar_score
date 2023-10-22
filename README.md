@@ -14,8 +14,10 @@ Dev URL: https://hawoyft3p0.execute-api.eu-central-1.amazonaws.com/api/
 Index
 - Intro
 - building simple elo model
- - k-factor tuning
-- trying simple machine learning prediction
+- k-factor tuning?
+- trying simple prediction model
+    - simple statistics
+    - 
 - explanation why machine leanring prediction poor
 - exploration of more complex systemic indocators
 - idk lol?
@@ -37,11 +39,23 @@ Blue first blood win rate 0.6395312742511252
 Red first blood win rate 0.5869371196754564
 Average game time 318835.30970577756
 
+## Basic Statistical Indicators
+
+To begin building a predictive model we can start by looking at some basic statistics indicators. A few somewhat obvious choices
+are first blood, first tower and first inhibitor.
+Out of the 25255 games in the dataset, Blue won 13350 games and red 11903. Therefore the blue side has a 64% winrate after getting first blood,
+while the red side has 0.59.
+The following table also includes the winrates per for first tower and first inhibitor.
 
 | Side | Total Game | Wins  | First Blood WR | First Tower WR | First Inhib WR |
 |------|------------|-------|----------------|----------------|----------------|
 | Blue | 25255      | 13352 |    0.63953     | 0.69689        | 0.94578        |
 | Red  | 25255      | 11903 |    0.58693     | 0.67633        | 0.94511        |
+
+These stats might be interesting, but are only use for predicting the outcome of the game live as it is being played out. And event like the first inhibitor only happen  quite late into the game, ideally we would like to make predictions earlier, even before the games starts
+
+## Historic Performance through rolling averages
+When trying to predict the outcome of a game 
 
 
 Problem is difference between predicting live and predicting ahead of time?

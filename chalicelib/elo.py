@@ -5,6 +5,7 @@ from chalicelib.esports import teams_data, leagues_data
 from chalicelib.leagues import league_points #TODO CHECK IF NEEDED
 from datetime import datetime
 from chalicelib.team import Team
+import json
 
 # load all the team ids from the json file and initialize a dictionary with each
 # teams elo set to 1000
@@ -13,6 +14,10 @@ BASE_ELO = 1500
 DAYS_LIMIT = 720
 
 K_FACTOR = 50
+
+mappings_data = None
+with open("chalicelib/esports-data/mapping_data.json", "r") as json_file:
+       mappings_data = json.load(json_file)
 
 def adjust_k_factor(k_factor, elo):
     # if elo > 1700:
