@@ -14,8 +14,9 @@ The GNAR(Gaussian Naive Adjusted Ranking)-Score is based on a Elo formula, whose
 improved using the output of a Gaussian Naive Bayes classifier trained on historical data.
 
 ## Entry
-My Entry into this hackathon is in the form of an API. This API is available under 
-https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api where all the required endpoints are available. 
+My Entry into this hackathon is in the form of an API. This API is available under  
+https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api  
+where all the required endpoints are available. 
 The first 20 teams of the global rankings system can be fetched with the following curl command:
 here is a curl command for each endpoitn
 ```bash
@@ -27,7 +28,10 @@ curl 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/team_ranking
 
 # get the rankings for teams in a tournament by tournament_id
 curl 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/tournament_rankings/110733838935136200'
-```
+```  
+
+A frontend to explore the rankings in the browser is also availabe at:  
+ http://power-rankings-frontend.s3-website.eu-central-1.amazonaws.com/
 <div class="page"/>
 
 ## Tech Stack

@@ -105,7 +105,7 @@ import pandas as pd
 from sklearn.naive_bayes import GaussianNB
 import numpy as np
 
-df = pd.read_csv("csv/sql/rolling.csv",
+df = pd.read_csv("sql/rolling.csv",
                 dtype= {
                     'blue_teamid': 'str',
                     'red_teamid': 'str',
