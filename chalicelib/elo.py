@@ -11,8 +11,8 @@ from chalicelib.models.logger import log
 # load all the team ids from the json file and initialize a dictionary with each
 # teams elo set to 1000
 
-BASE_ELO = 1000
-DAYS_LIMIT = 180
+BASE_ELO = 1500
+DAYS_LIMIT = 360
 
 K_FACTOR = 50
 
@@ -21,29 +21,6 @@ ML = True
 mappings_data = None
 with open("chalicelib/esports-data/mapping_data.json", "r") as json_file:
        mappings_data = json.load(json_file)
-
-def adjust_k_factor(k_factor, elo):
-    # if elo > 1700:
-    #     return k_factor - 20
-    return k_factor
-
-def adjust_k_factor_tennis(k_factor, elo):
-    #https://www.ultimatetennisstatistics.com/blog?post=eloKfactorTweaks#
-    ratio = 1+18/(1+2**((elo-1500)/63))
-    return ratio * k_factor
-    if elo > 2200:
-        return 1.008*k_factor
-    elif elo > 2000:
-        return 1.07*k_factor
-    elif elo > 1800:
-        return 1.64*k_factor
-    elif elo > 1600:
-        return 5.5*k_factor
-    elif elo > 1500:
-        return 10*k_factor
-    else:
-        return 10*k_factor
-
 
 def get_tournament_league(tournament_id):
     for league in leagues_data:
@@ -127,6 +104,8 @@ class Elo:
         red_game_wins = red_team["result"]["gameWins"]
 
         model_prediction = None
+        prob_blue = None
+        prob_red = None
         if ML:
             if df is not None and any(game_platform_ids):
                 games = df[df["platformgameid"].isin(game_platform_ids)]
@@ -146,6 +125,7 @@ class Elo:
                         "blue_cs", "red_cs",
                         "blue_avg_kill", "red_avg_kill",
                     ]]
+                    prob_blue, prob_red = model.predict_proba(x)[0]
                     prediction = model.predict(x)[0]
                     if prediction == 100:
                         model_prediction = 1
@@ -176,43 +156,30 @@ class Elo:
         expected_score_blue_pure = 1/(1+10**((red_elo-blue_elo)/480))
         expected_score_red = 1/(1+10**((blue_elo-red_elo)/480))
         expected_score_red_pure = 1/(1+10**((blue_elo-red_elo)/480))
+
         if model_prediction is not None:
-            if model_prediction == 1:
-                expected_score_blue = (expected_score_blue + 1)/2 
-                expected_score_red = (expected_score_red + 0)/2
-            elif model_prediction == 0:
-                expected_score_red = (expected_score_red + 1)/2
-                expected_score_blue = (expected_score_blue + 0)/2 
-        blue_kfactor = adjust_k_factor(k_factor, blue_elo)
-        red_kfactor = adjust_k_factor(k_factor, red_elo)
+            w = 0.5
+            if prob_blue > 0.85 or prob_red > 0.85:
+                w = max(prob_blue, prob_red)
+            expected_score_blue = (w * expected_score_blue) + ((1 - w) * prob_blue)
+            expected_score_red = (w * expected_score_red) + ((1 - w) * prob_red)
 
+            # if prob_blue > 0.85 or prob_red > 0.85:
+            #     k_factor = 1.5*k_factor
 
-        # # NEWBIE BONUS
-        # newbie_bonus = 20
-        # if self.elo[blue_id].matches < 10:
-        #     blue_kfactor += newbie_bonus
-        # if self.elo[red_id].matches < 10:
-        #     red_kfactor += newbie_bonus
-        
+        blue_kfactor = k_factor
+        red_kfactor = k_factor
+
         squared_error = None
         squared_error_pure = None
         if blue_win:
-            # if ML:
-            #     if model_prediction == 0:
-            #         blue_kfactor = 1.8*blue_kfactor
-            #         red_kfactor = 1.8*red_kfactor
             squared_error = (expected_score_blue-1)**2 + (expected_score_red-0)**2
             squared_error_pure = (expected_score_blue_pure-1)**2 + (expected_score_red_pure-0)**2
             blue_kfactor = blue_kfactor * (1+0.8*(blue_game_wins-red_game_wins))
             red_kfactor = red_kfactor * (1+0.8*(blue_game_wins-red_game_wins))
-
             self.elo[blue_id].elo = blue_elo + (blue_kfactor*(1-expected_score_blue))
             self.elo[red_id].elo = red_elo + (red_kfactor*(0-expected_score_red))
         elif red_win:
-            # if ML:
-            #     if model_prediction == 1:
-            #         blue_kfactor = 1.8*blue_kfactor
-            #         red_kfactor = 1.8*red_kfactor
             squared_error = (expected_score_blue-0)**2 + (expected_score_red-1)**2
             squared_error_pure = (expected_score_blue_pure-0)**2 + (expected_score_red_pure-1)**2
             blue_kfactor = blue_kfactor * (1+0.8*(red_game_wins-blue_game_wins))
@@ -299,7 +266,7 @@ def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now(), k_f
             model=model,
             game_platform_ids=game_platform_ids
         )
-    mean_squared_error = sum(elo.squared_errors)/len(elo.squared_errors)
-    mean_squared_error_pure = sum(elo.squared_errors_pure)/len(elo.squared_errors_pure)
-    print("PURE MSR", mean_squared_error_pure)
+    mean_squared_error =  sum(elo.squared_errors)/len(elo.squared_errors) if elo.squared_errors else None
+    mean_squared_error_pure = sum(elo.squared_errors_pure)/len(elo.squared_errors_pure) if elo.squared_errors_pure else None
+    print("PURE MSR", len(elo.squared_errors_pure),mean_squared_error_pure)
     return elo.elo, elo.back_test, mean_squared_error
