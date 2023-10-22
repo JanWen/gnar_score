@@ -81,5 +81,6 @@ def generate_rankings(tournaments):
     for tournament_id, tounament_ranking in generate_tournament_rankings(tournaments, df, model):
         # save_locally(tounament_ranking, "%s%s.json" % (RANKINGS_DIR, tournament_id))
         print(tournament_id)
-        save_locally(tounament_ranking, "/%s.json" % (tournament_id))
-        # upload_to_s3(tounament_ranking, "%s%s.json" % (RANKINGS_DIR, tournament_id))
+        if tounament_ranking:
+            save_locally(tounament_ranking, "/%s.json" % (tournament_id))
+            upload_to_s3(tounament_ranking, "%s%s.json" % (RANKINGS_DIR, tournament_id))
