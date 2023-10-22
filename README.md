@@ -1,11 +1,11 @@
 # Global Power Ranking Hackathon
+<img src="images/gentleman_gnar.webp" alt="Gentleman Gnar" width="400"/>
+
 This is an entry for the [DevPost Power Ranking Hackathon](https://lolglobalpowerrankings.devpost.com/).
 
 https://docs.google.com/document/d/1wFRehKMJkkRR5zyjEZyaVL9H3ZbhP7_wP0FBE5ID40c
-
 The PDF Version can be found [here](mf-pdf-linlk.com).  
 The video showcase of this entry can be be found here.
-
 # Introduction
 
 This is an entry to the Devpost Power Rankings Hackathon 2023. I am a Software Engineer based in Berlin and have been a long time player of League of Legends and follower of it's esports scene.  
@@ -86,7 +86,12 @@ The following table also includes the winrates per for first tower and first inh
 These stats might be interesting, but are only use for predicting the outcome of the game live as it is being played out. And event like the first inhibitor only happen  quite late into the game, ideally we would like to make predictions earlier, even before the games starts
 
 ## Historic Performance through rolling averages
-When trying to predict the outcome of a game 
+When trying to predict the outcome of a game we want to use data about past performance to predict to outcome
+of the next game. We can combine the stats of past games by averaging them together.
+For example, if in the last last 3 games, Team A has gotten 21, 15 and 30 kills. Its kill average would be 22.
+WE can also average out information about the stats above by for example count ting the the past games where a team got first blood as 1 and games where it didnt as 0. A team that has gotten first blood in 2/3 last games would have a avgerage first blood ratio of 0.66.
+
+
 
 
 Problem is difference between predicting live and predicting ahead of time?
