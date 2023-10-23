@@ -4,7 +4,7 @@
 This is an entry for the [DevPost Power Ranking Hackathon](https://lolglobalpowerrankings.devpost.com/).
 
 The PDF Version can be found [here](README.pdf).  
-The video showcase of this entry can be be found [here](youtube.com).
+The video showcase of this entry can be be found [here](https://www.youtube.com/watch?v=26nAAUDfKW4).
 ## Introduction
 
 This is an entry to the Devpost Power Rankings Hackathon 2023. I am a IT Consultant based in Berlin, Germany and have been a long time player of League of Legends and follower of it's esports scene.  
@@ -49,7 +49,21 @@ Python was chosen because of my familiarity with the language and because it's e
 Chalice is a Python library that allows easy deployment to AWS with lambda and API Gateway, using syntax that is similar to other common python api frameworks like flask and fast-api.
 The Data from S3 was used to create tables in Athena as per the guide provided by Devpost.
 
-<div class="page"/>
+### Running locally
+
+The `generate.py` script generates the global rankings and rankings for each tournament and stores them in an S3 bucket. The name of the s3 bucket can be configure in `/chalicelib/const.py`
+```py
+RANKINGS_BUCKET="power-rankings-hackathon"
+RANKINGS_DIR="rankings/"
+```
+After configuring the S3 bucket, the rankings can be generated like so (can take a long time):
+```bash
+python3 generate.py
+```
+Afterwards the api can be started locally by install [chalice](https://github.com/aws/chalice) and running
+```bash
+chalice local
+```
 
 ## Basic Statistical Indicators
 
@@ -86,6 +100,8 @@ The code for training and testing this model can be found in the [model jupyter 
 
 The main component of the GNAR-Score is an Elo system. These kinda of ranking systems are relatively simple and robust. They make no assumptions about which strategies or game play patters are desirable, since the attribution of points depends only on a teams ability to win. This approach is a convenient way to cut through all the complexity and variance of a competitive game like league and easily derive and objective rating the accurate reflects relative strength base on past performance.  
 
+In this elo system, each team starts with 1500 points, and all matches in the last 180 days are considered.
+
 A teams elo is updated base on the following formula:
 ```python
 k_factor = 50
@@ -100,7 +116,7 @@ squared_error = (expected_score_blue-outcome_blue)**2 + (expected_score_red-outc
 By averaging out the squared_error over all prediction, the base Elo system has a `mean_squared_error` of around `44%`.
 
 
-# Combining Statistical and Elo Model
+## Combining Statistical and Elo Model
 The superior predictive ability of the earlier model can be used to improve the elo system by incorporating its predictions into the expected out come.
 The formula above can be updated, so the expected score is combined with the weighted output of the gaussian statistical model.
 
@@ -110,7 +126,9 @@ expected_score = (w * expected_score) + ((1 - w) * prob_outcome)
 ```
 Where `prob_outcome` is the prediction of out model and `w` is the weight, which is adjusted in proportion to the confidence of our prediction (high confidence, high weight).  
 
-After incorporating the models predations the `mean_squared_error` of the systems predictions is around `35%`.
+After incorporating the models predations the `mean_squared_error` of the systems predictions is around `37%`. This is an increase of about 7 percentage points, which may not sound like a lot, but is a good result for a highly randomized environment of a League of Legends match.
+
+The script `mean_squared_error.py` will calculate and output the mean suared error for the elo system with and without the prediction model.
 
 
 <br></br>

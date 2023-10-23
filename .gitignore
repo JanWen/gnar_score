@@ -10,6 +10,7 @@ games
 .terraform*
 terraform.*
 data
+results
 chalicelib/esport-data/
 chalicelib/rankings/
 # *.json

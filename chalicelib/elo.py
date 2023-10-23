@@ -12,11 +12,9 @@ from chalicelib.models.logger import log
 # teams elo set to 1000
 
 BASE_ELO = 1500
-DAYS_LIMIT = 360
+DAYS_LIMIT = 180
 
 K_FACTOR = 50
-
-ML = True
 
 mappings_data = None
 with open("chalicelib/esports-data/mapping_data.json", "r") as json_file:
@@ -72,11 +70,12 @@ def get_platformgameid(esportsgameid):
 
 
 class Elo:
-    def __init__(self, teams=None, kfactor=K_FACTOR) -> None:
+    def __init__(self, teams=None, kfactor=K_FACTOR, ML=False) -> None:
         if teams:
             self.elo = {team.id:team for team in teams}
         else:
             self.elo = {}
+        self.ML=ML
         self.back_test = {}
         self.squared_errors = []
         self.squared_errors_pure = []
@@ -91,7 +90,8 @@ class Elo:
             k_factor=K_FACTOR,
             df=None,
             model=None,
-            game_platform_ids=None
+            game_platform_ids=None,
+            features=None,
     ):
         stage = stage["name"].lower()
         blue_win = blue_team["result"]["outcome"] == "win"
@@ -104,24 +104,11 @@ class Elo:
         model_prediction = None
         prob_blue = None
         prob_red = None
-        if ML:
+        if self.ML:
             if df is not None and any(game_platform_ids):
                 games = df[df["platformgameid"].isin(game_platform_ids)]
-                # blue_team_data = df[df["eventtime"] <= tournament["startDate"]]
                 if len(games):
-                    # games["eventtime"] = games["eventtime"].astype("string")
-                    log.info("COCKTIME %s BALL TIME XD %s" % (games.iloc[[0]]["eventtime"], tournament["startDate"]) )
-
-                    x = games.iloc[[0]][[
-                        "blue_avg_inhib", "red_avg_inhib",
-                        "blue_avg_tower", "red_avg_tower",
-                        "blue_avg_kills", "red_avg_kills",
-                        "blue_avg_win", "red_avg_win",
-                        "red_avg_deaths", "blue_avg_deaths",
-                        "blue_level", "red_level",
-                        "blue_cs", "red_cs",
-                        "blue_avg_kill", "red_avg_kill",
-                    ]]
+                    x = games.iloc[[0]][features]
                     prob_blue, prob_red = model.predict_proba(x)[0]
                     prediction = model.predict(x)[0]
                     if prediction == 100:
@@ -129,7 +116,6 @@ class Elo:
                     elif prediction == 200:
                         model_prediction = 0
                     # print(prediction)
-        self.balls += 1
         league = get_tournament_league(tournament["id"])
         start_elo = BASE_ELO
         # start_elo = get_start_elo(league)
@@ -155,14 +141,9 @@ class Elo:
         expected_score_red_pure = 1/(1+10**((blue_elo-red_elo)/480))
 
         if model_prediction is not None:
-            w = 0.5
-            if prob_blue > 0.85 or prob_red > 0.85:
-                w = max(prob_blue, prob_red)
+            w = 0.3
             expected_score_blue = (w * expected_score_blue) + ((1 - w) * prob_blue)
             expected_score_red = (w * expected_score_red) + ((1 - w) * prob_red)
-
-            # if prob_blue > 0.85 or prob_red > 0.85:
-            #     k_factor = 1.5*k_factor
 
         blue_kfactor = k_factor
         red_kfactor = k_factor
@@ -232,10 +213,17 @@ function_by_score = {
     }
 }
 
-def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now(), k_factor=K_FACTOR, df=None,
-            model=None):
-    elo = Elo()
-
+def calculate_elo(
+    tournaments,
+    tournament_id=None,
+    startDate=datetime.now(),
+    k_factor=K_FACTOR,
+    df=None,
+    model=None,
+    features=None,
+    ml=False,
+):
+    elo = Elo(ML=ml)
     for tournament,stage, league_match in tournaments.yield_matches():
         league_id = tournament["leagueId"]
         if tournament_id and (tournament["id"] == tournament_id):
@@ -261,9 +249,10 @@ def calculate_elo(tournaments, tournament_id=None, startDate=datetime.now(), k_f
             k_factor,
             df=df,
             model=model,
-            game_platform_ids=game_platform_ids
+            game_platform_ids=game_platform_ids,
+            features=features,
         )
     mean_squared_error =  sum(elo.squared_errors)/len(elo.squared_errors) if elo.squared_errors else None
     mean_squared_error_pure = sum(elo.squared_errors_pure)/len(elo.squared_errors_pure) if elo.squared_errors_pure else None
-    print("PURE MSR", len(elo.squared_errors_pure),mean_squared_error_pure)
+    # print("PURE MSR", len(elo.squared_errors_pure),mean_squared_error_pure)
     return elo.elo, elo.back_test, mean_squared_error

@@ -4,34 +4,15 @@ from chalicelib.tournaments import Tournaments
 import pandas as pd
 from sklearn.naive_bayes import GaussianNB
 import numpy as np
+from chalicelib.model import load_model
+
+"""
+Tune K_FACTOR of the elo model by calculating the mean squared error of the model for different values of K_FACTOR
+"""
 
 tournaments = Tournaments()
 
-
-df = pd.read_csv("csv/sql/rolling.csv",
-                dtype= {
-                    'blue_teamid': 'str',
-                    'red_teamid': 'str',
-                })
-df["eventtime"] = pd.to_datetime(df["eventtime"], errors="coerce")
-df["blue_teamid"].fillna(0, inplace=True)
-df["red_teamid"].fillna(0, inplace=True)
-df["blue_teamid"] = df["blue_teamid"].astype(np.int64).astype(str)
-df["red_teamid"] = df["red_teamid"].astype(np.int64).astype(str)
-x = df[[
-        "blue_avg_inhib", "red_avg_inhib",
-        "blue_avg_tower", "red_avg_tower",
-        "blue_avg_kills", "red_avg_kills",
-        "blue_avg_win", "red_avg_win",
-        "red_avg_deaths", "blue_avg_deaths",
-        "blue_level", "red_level",
-        "blue_cs", "red_cs",
-        "blue_avg_kill", "red_avg_kill",
-]]
-y = df["winningteam"]
-gnb = GaussianNB()
-model = gnb.fit(x, y)
-
+df, features, model = load_model()
 
 errors = []
 for i in range(10, 100, 5):
