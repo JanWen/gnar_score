@@ -80,8 +80,6 @@ class Elo:
         self.back_test = {}
         self.squared_errors = []
         self.squared_errors_pure = []
-        self.cock = 0
-        self.balls = 0
 
     def update_elo(
             self,
@@ -114,7 +112,6 @@ class Elo:
                     # games["eventtime"] = games["eventtime"].astype("string")
                     log.info("COCKTIME %s BALL TIME XD %s" % (games.iloc[[0]]["eventtime"], tournament["startDate"]) )
 
-                    self.cock += 1
                     x = games.iloc[[0]][[
                         "blue_avg_inhib", "red_avg_inhib",
                         "blue_avg_tower", "red_avg_tower",

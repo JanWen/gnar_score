@@ -45,16 +45,15 @@ http://power-rankings-frontend.s3-website.eu-central-1.amazonaws.com/
 - Terraform to configure required infrastructure and permission
 
 
-Python was chosen because my familiarity with the language and because it's ecosystem offers good libraries for both api development and data science tasks.
-Chalice is a Python library that allows us to easily deploy out code to AWS with lambda and API Gateway, using syntax that is similar to other common python api frameworks like flask and fast-api.
-The Data from S3 was used to create tables in Athena as per the guide.
+Python was chosen because of my familiarity with the language and because it's ecosystem offers good libraries for both api development and data science tasks.
+Chalice is a Python library that allows easy deployment to AWS with lambda and API Gateway, using syntax that is similar to other common python api frameworks like flask and fast-api.
+The Data from S3 was used to create tables in Athena as per the guide provided by Devpost.
 
 <div class="page"/>
 
 ## Basic Statistical Indicators
 
-To begin building a predictive model we can start by looking at some basic statistics indicators. A few somewhat obvious choices
-are first blood, first tower and first inhibitor.
+To begin building a predictive model we can start by looking at some basic statistics indicators. A few somewhat obvious choices are first blood, first tower and first inhibitor.
 Out of the 25255 games in the dataset, Blue won 13350 games and red 11903. Therefore the blue side has a 64% win rate after getting first blood,
 while the red side has 0.59.
 The following table also includes the win rates per for first tower and first inhibitor.
@@ -68,7 +67,7 @@ These stats might be interesting, but are only use for predicting the outcome of
 
 ## Predictive Model
 
-The folling indicators have been used to train the predictive model:
+The following indicators have been used to train the predictive model:
 - first_blood, tower_tower and first_inhibitor
 - total kills and deaths
 - level and minion score advantage in the early game
@@ -102,8 +101,8 @@ By averaging out the squared_error over all prediction, the base Elo system has 
 
 
 # Combining Statistical and Elo Model
-The superior predictive ability of the earlier model, can be used to improve our elo system by incorporating its predictions into our expected out come.
-The formula above can be outdated, so the expected score is combined with the weighted output of the gaussian statistical model.
+The superior predictive ability of the earlier model can be used to improve the elo system by incorporating its predictions into the expected out come.
+The formula above can be updated, so the expected score is combined with the weighted output of the gaussian statistical model.
 
 ```py
 expected_score = 1/(1+10**((opponent_elo-old_elo)/480))
@@ -111,4 +110,9 @@ expected_score = (w * expected_score) + ((1 - w) * prob_outcome)
 ```
 Where `prob_outcome` is the prediction of out model and `w` is the weight, which is adjusted in proportion to the confidence of our prediction (high confidence, high weight).  
 
-After incorporating the models predations, the `mean_squared_error` of the systems predictions is around `35%`.
+After incorporating the models predations the `mean_squared_error` of the systems predictions is around `35%`.
+
+
+<br></br>
+Created by Jan Wendel jan@wendel.berlin
+Credit frontend: Xander Van den Bossche - https://github.com/Xandervdb1/league-front/tree/main
