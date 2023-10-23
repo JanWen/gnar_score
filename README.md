@@ -4,23 +4,25 @@
 This is an entry for the [DevPost Power Ranking Hackathon](https://lolglobalpowerrankings.devpost.com/).
 
 The PDF Version can be found [here](README.pdf).  
-The video showcase of this entry can be be found (here)[youtube.com].
+The video showcase of this entry can be be found [here](youtube.com).
 ## Introduction
 
-This is an entry to the Devpost Power Rankings Hackathon 2023. I am a IT Consultant based in Berlin, Germany and have been a long time player of League of Legends and follower of it's Esports scene.  
-The combination of micro decision and skill expression through fast, reactive gameplay and cool combos, and also big picture, strategic thinking and organized team work which make League of Legends a fascinating game to analyze.
+This is an entry to the Devpost Power Rankings Hackathon 2023. I am a IT Consultant based in Berlin, Germany and have been a long time player of League of Legends and follower of it's esports scene.  
+The combination of micro decision and skill expression through fast, reactive game play and cool combos, and also big picture, strategic thinking and organized team work which make League of Legends a fascinating game to analyze.
 
 The GNAR(Gaussian Naive Adjusted Ranking)-Score is based on a Elo formula, whose predictive properties have been 
 improved using the output of a Gaussian Naive Bayes classifier trained on historical data.
 
+<div class="page"/>
+
 ## Entry
 My Entry into this hackathon is in the form of an API. This API is available under  
-https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api  
+https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/global_rankings
 where all the required endpoints are available. 
 The first 20 teams of the global rankings system can be fetched with the following curl command:
 here is a curl command for each endpoitn
 ```bash
-# get the global rankind (first 20 teams)
+# get the global ranking (first 20 teams)
 curl 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/global_rankings?number_of_teams=20'
 
 # get rankings for a list of team_ids
@@ -31,8 +33,8 @@ curl 'https://usm38g8rwj.execute-api.eu-central-1.amazonaws.com/api/tournament_r
 ```  
 
 A frontend to explore the rankings in the browser is also availabe at:  
- http://power-rankings-frontend.s3-website.eu-central-1.amazonaws.com/
-<div class="page"/>
+http://power-rankings-frontend.s3-website.eu-central-1.amazonaws.com/
+
 
 ## Tech Stack
 - The API is written in Python with the Chalice framework from AWS
@@ -46,6 +48,8 @@ A frontend to explore the rankings in the browser is also availabe at:
 Python was chosen because my familiarity with the language and because it's ecosystem offers good libraries for both api development and data science tasks.
 Chalice is a Python library that allows us to easily deploy out code to AWS with lambda and API Gateway, using syntax that is similar to other common python api frameworks like flask and fast-api.
 The Data from S3 was used to create tables in Athena as per the guide.
+
+<div class="page"/>
 
 ## Basic Statistical Indicators
 
@@ -77,6 +81,7 @@ The resulting data was used as input to train the Gaussian Naive Bayes classifie
 On the test data, the trained classifier achieves and accuracy score of around 80%.  
 The code for training and testing this model can be found in the [model jupyter notebook](model.ipynb)
 
+<div class="page"/>
 
 ## Elo System
 
