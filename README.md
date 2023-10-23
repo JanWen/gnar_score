@@ -114,5 +114,5 @@ After incorporating the models predations the `mean_squared_error` of the system
 
 
 <br></br>
-Created by Jan Wendel jan@wendel.berlin
+Created by Jan Wendel jan@wendel.berlin  
 Credit frontend: Xander Van den Bossche - https://github.com/Xandervdb1/league-front/tree/main
